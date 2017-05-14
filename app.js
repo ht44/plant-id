@@ -9,19 +9,22 @@ const fs = require('fs');
 const app = express();
 
 let db,
-    cloudant,
-    fileToUpload;
-
+    cloudant;
 const dbCredentials = {
     dbName: 'my_sample_db'
 };
 
+// npm modules
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const logger = require('morgan');
 const errorHandler = require('errorhandler');
 const multipart = require('connect-multiparty')
 const multipartMiddleware = multipart();
+
+// custom exports
+const getDBCredentialsUrl = require('./modules/db_init').getDBCredentialsUrl;
+const initDBConnection = require('./modules/db_init').initDBConnection;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -42,49 +45,16 @@ if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
 
-initDBConnection();
+dbCredentials.url = initDBConnection(getDBCredentialsUrl);
+cloudant = require('cloudant')(dbCredentials.url);
 
-function getDBCredentialsUrl(jsonData) {
-    var vcapServices = JSON.parse(jsonData);
-    // Pattern match to find the first instance of a Cloudant service in
-    // VCAP_SERVICES. If you know your service key, you can access the
-    // service credentials directly by using the vcapServices object.
-    for (var vcapService in vcapServices) {
-        if (vcapService.match(/cloudant/i)) {
-            return vcapServices[vcapService][0].credentials.url;
-        }
-    }
-}
+// check if DB exists if not create
+cloudant.db.create(dbCredentials.dbName, (err, res) => {
+    if (err)
+        console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
+});
 
-function initDBConnection() {
-    //When running on Bluemix, this variable will be set to a json object
-    //containing all the service credentials of all the bound services
-    if (process.env.VCAP_SERVICES) {
-        dbCredentials.url = getDBCredentialsUrl(process.env.VCAP_SERVICES);
-    } else { //When running locally, the VCAP_SERVICES will not be set
-
-        // When running this app locally you can get your Cloudant credentials
-        // from Bluemix (VCAP_SERVICES in "cf env" output or the Environment
-        // Variables section for an app in the Bluemix console dashboard).
-        // Once you have the credentials, paste them into a file called vcap-local.json.
-        // Alternately you could point to a local database here instead of a
-        // Bluemix service.
-        // url will be in this format: https://username:password@xxxxxxxxx-bluemix.cloudant.com
-        dbCredentials.url = getDBCredentialsUrl(fs.readFileSync("vcap-local.json", "utf-8"));
-    }
-
-    cloudant = require('cloudant')(dbCredentials.url);
-
-    // check if DB exists if not create
-    cloudant.db.create(dbCredentials.dbName, function(err, res) {
-        if (err) {
-            console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
-        }
-    });
-
-    db = cloudant.use(dbCredentials.dbName);
-}
-
+db = cloudant.use(dbCredentials.dbName);
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -183,7 +153,7 @@ app.post('/api/favorites/attach', multipartMiddleware, function(request, respons
 
         var file = request.files.file;
         var newPath = './public/uploads/' + file.name;
-
+///////////////////////////////////////////////////////////////////////////////
         var insertAttachment = function(file, id, rev, name, value, response) {
 
             fs.readFile(file.path, function(err, data) {
@@ -234,7 +204,7 @@ app.post('/api/favorites/attach', multipartMiddleware, function(request, respons
                 }
             });
         }
-
+///////////////////////////////////////////////////////////////////////////////
         if (!isExistingDoc) {
             existingdoc = {
                 name: name,
@@ -258,13 +228,13 @@ app.post('/api/favorites/attach', multipartMiddleware, function(request, respons
 
                 }
             });
-
+///////////////////////////////////////////////////////////////////////////////
         } else {
             console.log('Adding attachment to existing doc.');
             console.log(existingdoc);
             insertAttachment(file, existingdoc._id, existingdoc._rev, name, value, response);
         }
-
+///////////////////////////////////////////////////////////////////////////////
     });
 
 });
@@ -342,86 +312,57 @@ app.get('/api/favorites', function(request, response) {
 
     console.log("Get method invoked.. ")
 
-    db = cloudant.use(dbCredentials.dbName);
+    // db = cloudant.use(dbCredentials.dbName);
     var docList = [];
     var i = 0;
     db.list(function(err, body) {
         if (!err) {
             var len = body.rows.length;
-            console.log('total # of docs -> ' + len);
-            if (len == 0) {
-                // push sample data
-                // save doc
-                var docName = 'sample_doc';
-                var docDesc = 'A sample Document';
-                db.insert({
-                    name: docName,
-                    value: 'A sample Document'
-                }, '', function(err, doc) {
-                    if (err) {
-                        console.log(err);
-                    } else {
+            body.rows.forEach(function(document) {
 
-                        console.log('Document : ' + JSON.stringify(doc));
-                        var responseData = createResponseData(
-                            doc.id,
-                            docName,
-                            docDesc, []);
+                db.get(document.id, {
+                    revs_info: true
+                }, function(err, doc) {
+                    if (!err) {
+                        if (doc['_attachments']) {
+
+                            var attachments = [];
+                            for (var attribute in doc['_attachments']) {
+
+                                if (doc['_attachments'][attribute] && doc['_attachments'][attribute]['content_type']) {
+                                    attachments.push({
+                                        "key": attribute,
+                                        "type": doc['_attachments'][attribute]['content_type']
+                                    });
+                                }
+                                // console.log(attribute + ": " + JSON.stringify(doc['_attachments'][attribute]));
+                            }
+                            var responseData = createResponseData(
+                                doc._id,
+                                doc.name,
+                                doc.value,
+                                attachments);
+
+                        } else {
+                            var responseData = createResponseData(
+                                doc._id,
+                                doc.name,
+                                doc.value, []);
+                        }
+
                         docList.push(responseData);
-                        response.write(JSON.stringify(docList));
-                        console.log(JSON.stringify(docList));
-                        console.log('ending response...');
-                        response.end();
+                        i++;
+                        if (i >= len) {
+                            response.write(JSON.stringify(docList));
+                            console.log('ending response...');
+                            response.end();
+                        }
+                    } else {
+                        console.log(err);
                     }
                 });
-            } else {
 
-                body.rows.forEach(function(document) {
-
-                    db.get(document.id, {
-                        revs_info: true
-                    }, function(err, doc) {
-                        if (!err) {
-                            if (doc['_attachments']) {
-
-                                var attachments = [];
-                                for (var attribute in doc['_attachments']) {
-
-                                    if (doc['_attachments'][attribute] && doc['_attachments'][attribute]['content_type']) {
-                                        attachments.push({
-                                            "key": attribute,
-                                            "type": doc['_attachments'][attribute]['content_type']
-                                        });
-                                    }
-                                    console.log(attribute + ": " + JSON.stringify(doc['_attachments'][attribute]));
-                                }
-                                var responseData = createResponseData(
-                                    doc._id,
-                                    doc.name,
-                                    doc.value,
-                                    attachments);
-
-                            } else {
-                                var responseData = createResponseData(
-                                    doc._id,
-                                    doc.name,
-                                    doc.value, []);
-                            }
-
-                            docList.push(responseData);
-                            i++;
-                            if (i >= len) {
-                                response.write(JSON.stringify(docList));
-                                console.log('ending response...');
-                                response.end();
-                            }
-                        } else {
-                            console.log(err);
-                        }
-                    });
-
-                });
-            }
+            });
 
         } else {
             console.log(err);
@@ -431,6 +372,6 @@ app.get('/api/favorites', function(request, response) {
 });
 
 
-http.createServer(app).listen(app.get('port'), '0.0.0.0', function() {
+http.createServer(app).listen(app.get('port'), '0.0.0.0', () => {
     console.log('Express server listening on port ' + app.get('port'));
 });
