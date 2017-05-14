@@ -1,32 +1,27 @@
-/**
- * Module dependencies.
- */
+//
+const express = require('express');
+const routes = require('./routes');
+const user = require('./routes/user');
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
-var express = require('express'),
-    routes = require('./routes'),
-    user = require('./routes/user'),
-    http = require('http'),
-    path = require('path'),
-    fs = require('fs');
+const app = express();
 
-var app = express();
+let db,
+    cloudant,
+    fileToUpload;
 
-var db;
-
-var cloudant;
-
-var fileToUpload;
-
-var dbCredentials = {
+const dbCredentials = {
     dbName: 'my_sample_db'
 };
 
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var logger = require('morgan');
-var errorHandler = require('errorhandler');
-var multipart = require('connect-multiparty')
-var multipartMiddleware = multipart();
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const logger = require('morgan');
+const errorHandler = require('errorhandler');
+const multipart = require('connect-multiparty')
+const multipartMiddleware = multipart();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -46,6 +41,8 @@ app.use('/style', express.static(path.join(__dirname, '/views/style')));
 if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
+
+initDBConnection();
 
 function getDBCredentialsUrl(jsonData) {
     var vcapServices = JSON.parse(jsonData);
@@ -88,7 +85,11 @@ function initDBConnection() {
     db = cloudant.use(dbCredentials.dbName);
 }
 
-initDBConnection();
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 app.get('/', routes.index);
 
