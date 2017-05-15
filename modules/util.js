@@ -8,6 +8,8 @@ const util = module.exports = (() => {
     saveDocument: saveDocument
   };
 
+  /////////////////////////////////////////////////////////////////////////////
+
   function sanitizeInput(str) {
       return String(str).replace(/&(?!amp;|lt;|gt;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  res.render('index.html', { title: 'Cloudant Boiler Plate' });
+  res.render('index.html', { title: 'Node SDK' });
 });
 
 module.exports = router;

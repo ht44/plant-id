@@ -13,6 +13,7 @@ function createXHR(){
 	}
 	return null;
 }
+
 function xhrGet(url, callback, errback){
 	var xhr = new createXHR();
 	xhr.open("GET", url, true);
@@ -25,11 +26,12 @@ function xhrGet(url, callback, errback){
 			}
 		}
 	};
-	
+
 	xhr.timeout = 100000;
 	xhr.ontimeout = errback;
 	xhr.send();
 }
+
 function xhrPut(url, data, callback, errback){
 	var xhr = new createXHR();
 	xhr.open("PUT", url, true);
@@ -48,11 +50,10 @@ function xhrPut(url, data, callback, errback){
 	xhr.send(objectToQuery(data));
 }
 
-function xhrAttach(url, data, callback, errback)
-{
+function xhrAttach(url, data, callback, errback) {
 	var xhr = new createXHR();
 	xhr.open("POST", url, true);
-	//xhr.setRequestHeader("Content-type", "multipart/form-data");
+	// xhr.setRequestHeader("Content-type", "multipart/form-data");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){
@@ -67,7 +68,7 @@ function xhrAttach(url, data, callback, errback)
 	xhr.send(data);
 }
 
-function xhrPost(url, data, callback, errback){
+function xhrPost(url, data, callback, errback) {
 	var xhr = new createXHR();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -85,7 +86,7 @@ function xhrPost(url, data, callback, errback){
 	xhr.send(objectToQuery(data));
 }
 
-function xhrDelete(url, callback, errback){	
+function xhrDelete(url, callback, errback){
 	var xhr = new createXHR();
 	xhr.open("DELETE", url, true);
 	xhr.onreadystatechange = function(){
@@ -106,6 +107,10 @@ function parseJson(str){
 	return window.JSON ? JSON.parse(str) : eval('(' + str + ')');
 }
 
+function encodeUriAndQuotes(untrustedStr) {
+    return encodeURI(String(untrustedStr)).replace(/'/g, '%27').replace(')', '%29');
+}
+
 function objectToQuery(map){
 	var enc = encodeURIComponent, pairs = [];
 	for(var name in map){
@@ -121,4 +126,3 @@ function objectToQuery(map){
 	}
 	return pairs.join("&");
 }
-

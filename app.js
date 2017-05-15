@@ -5,7 +5,7 @@
 const express = require('express');
 const routes = require('./routes');
 const user = require('./routes/user');
-const admin = require('./routes/admin');
+const data = require('./routes/data');
 const auth = require('./routes/auth');
 const http = require('http');
 const path = require('path');
@@ -39,8 +39,9 @@ if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
 
+// routers
 app.use('/login', auth);
-app.use('/api', admin);
+app.use('/data', data);
 
 app.get('/', (req, res) => {
   res.redirect('/login');

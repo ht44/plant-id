@@ -8,6 +8,8 @@ const dbInit = module.exports = (() => {
     getDBCredentialsUrl: getDBCredentialsUrl
   };
 
+  /////////////////////////////////////////////////////////////////////////////
+
   function initDBConnection(getDBCredentialsUrl) {
       if (process.env.VCAP_SERVICES) {
           return getDBCredentialsUrl(process.env.VCAP_SERVICES);
