@@ -1,4 +1,6 @@
-const dbInit = module.exports = (function() {
+const dbInit = module.exports = (() => {
+
+  'use strict';
   const fs = require('fs');
 
   return {
