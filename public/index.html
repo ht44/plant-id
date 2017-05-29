@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html np-app='app'>
-<head>
-	<title><%= title %></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link rel="stylesheet" href="/style/style.css" />
-</head>
-<body>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Reddit Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <base href="/">
+  </head>
+  <body>
 
-	<ui-view></ui-view>
+    <ui-view></ui-view>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
-	<script src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
-	<!-- <script type="text/javascript" src="/scripts/util.js"></script> -->
-	<!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
-</body>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/angular/angular.min.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/js/app/app.module.js"></script>
+    <script src="/js/app/app.config.js"></script>
+    <script src="/js/app/app.component.js"></script>
+    <script src="/js/navbar/navbar.component.js"></script>
+  </body>
 </html>
