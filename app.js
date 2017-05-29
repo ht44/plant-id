@@ -42,11 +42,11 @@ if ('development' == app.get('env')) {
 }
 
 // routers
-app.use('/login', auth);
-app.use('/api', api);
+// app.use('/login', auth);
+// app.use('/api', api);
 
 app.get('/', (req, res) => {
-  res.redirect('/login');
+    res.render('index.html', { title: 'Node SDK' });
 });
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', () => {

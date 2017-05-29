@@ -3,7 +3,7 @@
 
   angular.module('app')
     .component('app', {
-      templateUrl: '/js/app/app.template.html',
+      templateUrl: '/scripts/app/app.template.html',
       controller: controller
     })
 
