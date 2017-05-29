@@ -18,8 +18,15 @@
     .state({
       name: 'navbar',
       parent: 'app',
-      url: '/',
+      url: '/oo',
       component: 'navBar',
     })
+    .state({
+      name: 'sidebar',
+      parent: 'app',
+      url: '/',
+      component: 'sideBar',
+    })
+
   }
 }());
