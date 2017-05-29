@@ -16,10 +16,10 @@
       component: 'app',
     })
     .state({
-      name: 'docs',
+      name: 'console',
       parent: 'app',
       url: '/',
-      component: 'docs'
+      component: 'console'
     })
   }
 }());

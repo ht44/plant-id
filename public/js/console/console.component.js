@@ -2,11 +2,11 @@
   'use strict'
 
   angular.module('app')
-    .component('docs', {
+    .component('console', {
       require: {
         layout: '^app'
       },
-      templateUrl: '/js/docs/docs.template.html',
+      templateUrl: '/js/console/console.template.html',
       controller: controller
     })
 
@@ -20,5 +20,5 @@
       console.log('connecteddddddd');
     }
   }
-  
+
 }());

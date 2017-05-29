@@ -3,6 +3,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
@@ -40,8 +41,13 @@ body {
 	color: pink;
 }
 
+
+
+
+
 .sidebar {
 	height: 100%;
+	width: 150px;
 	margin-top: 50px;
 	border-right: 2px outset rgba(71, 62, 62, 1);
 	position: fixed;
@@ -59,6 +65,26 @@ body {
 .sidebar form {
     position: inherit;
     bottom: 0;
+}
+
+
+.console {
+	width: 50%;
+	height: 100%;
+	border-right: 3px solid grey;
+	margin-top: 50px;
+	margin-left: 150px;
+	float: left;
+}
+
+
+.console img {
+	border-bottom: 3px solid grey;
+	width: 100%;
+}
+
+.console input:focus {
+	outline: 0;
 }
 
 .docs {
