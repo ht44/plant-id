@@ -53,7 +53,7 @@ function xhrPut(url, data, callback, errback){
 function xhrAttach(url, data, callback, errback) {
 	var xhr = new createXHR();
 	xhr.open("POST", url, true);
-	// xhr.setRequestHeader("Content-type", "multipart/form-data");
+	xhr.setRequestHeader("Content-type", "multipart/form-data");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.status == 200){

@@ -1,6 +1,6 @@
 'use strict';
 
-const REST_DATA = '/data';
+const REST_DATA = '/api';
 
 const browse = document.querySelector('input[type=file]');
 const upload = document.querySelector('input[type=submit]');
@@ -24,7 +24,7 @@ function uploadFile() {
 
     queryParams = `id=${docId}`
 
-    xhrAttach(REST_DATA + "/attach?" + queryParams, form, item => {
+    xhrPut(REST_DATA + "?" + queryParams, form, item => {
         console.log(item);
     }, function(err) {
         console.error(err);
