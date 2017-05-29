@@ -6,6 +6,8 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^1.0.3",
     "bluemix-object-storage": "^2.0.1",
     "body-parser": "1.14.x",
     "cloudant": "1.4.x",
@@ -13,9 +15,11 @@
     "ejs": "2.4.x",
     "errorhandler": "1.4.x",
     "express": "4.13.x",
+    "jquery": "^3.2.1",
     "method-override": "2.3.x",
     "morgan": "1.6.x",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "ui-router": "^1.0.0-alpha.3"
   },
   "repository": {},
   "engines": {
