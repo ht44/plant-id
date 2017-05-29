@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html np-app='app'>
 <head>
 	<title><%= title %></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -8,38 +8,13 @@
 	<link rel="stylesheet" href="/style/style.css" />
 </head>
 <body>
-	<div class = "container">
 
-		<div class = "banner">
-			<img class="newappIcon" src="images/newapp-icon.png">
-			<p class = "appTitle">
-				Node SDK
-			</p>
-		</div>
+	<ui-view></ui-view>
 
-		<section>
-			<div class='uploadBox'>
-				<input type="file" name="file" id="upload_file">
-				<input width="100" type="submit" value="Upload">
-				<select name="doc-id">
-					<option value="test-set-alpha">Alpha</option>
-					<option value="test-set-bravo">Bravo</option>
-					<option value="test-set-charlie">Charlie</option>
-				</select>
-			</div>
-		</section>
-
-		<footer>
-			<div id="loadingImage"></div>
-			<div id="errorDiv" class='errorMsg'></div>
-		</footer>
-
-
-	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
 	<script src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
-	<script type="text/javascript" src="/scripts/util.js"></script>
-	<script type="text/javascript" src="/scripts/index.js"></script>
+	<!-- <script type="text/javascript" src="/scripts/util.js"></script> -->
+	<!-- <script type="text/javascript" src="/scripts/index.js"></script> -->
 </body>
 </html>
