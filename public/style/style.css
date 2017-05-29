@@ -48,6 +48,19 @@ body {
   float:left;
 }
 
+
+.sidebar ul {
+    /*position: inherit;;*/
+	top: auto;
+	overflow: scroll;
+	height: 80%;
+}
+
+.sidebar form {
+    position: inherit;
+    bottom: 0;
+}
+
 .docs {
 	margin-top: 50px;
 	margin-left: 200px;
