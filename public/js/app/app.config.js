@@ -21,5 +21,7 @@
       url: '/',
       component: 'docs'
     })
+
+
   }
 }());

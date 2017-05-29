@@ -69,3 +69,13 @@ body {
 	/*overflow: scroll;*/
 	/*float: right;*/
 }
+
+.infoWindow {
+	float: right;
+	margin-top: 50px;
+	margin-left: 60vw;
+	height: 90%;
+	overflow: scroll;
+	position: static;
+
+}
