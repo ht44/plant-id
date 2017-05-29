@@ -2,11 +2,11 @@
   'use strict'
 
   angular.module('app')
-    .component('navBar', {
-      // require: {
-      //   layout: '^app'
-      // },
-      templateUrl: '/js/navbar/navbar.template.html',
+    .component('docs', {
+      require: {
+        layout: '^app'
+      },
+      templateUrl: '/js/docs/docs.template.html',
       controller: controller
     })
 

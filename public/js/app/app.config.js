@@ -16,10 +16,10 @@
       component: 'app',
     })
     .state({
-      name: 'navbar',
+      name: 'docs',
       parent: 'app',
       url: '/',
-      component: 'navBar',
+      component: 'docs'
     })
   }
 }());
