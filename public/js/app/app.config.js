@@ -22,10 +22,17 @@
       component: 'identify'
     })
     .state({
+      name: 'visualize',
+      parent: 'app',
+      url: '/visualize',
+      component: 'visualize'
+    })
+    .state({
       name: 'docs',
       parent: 'app',
       url: '/',
       component: 'docs'
     })
+
   }
 }());
