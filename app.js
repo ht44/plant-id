@@ -40,10 +40,10 @@ if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
 
+app.use('/api', require('./routes/api.js'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 
-// app.use('/api/navbar', require('./routes/navbar'))
 app.use('*', function(req, res, next) {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')})
 })

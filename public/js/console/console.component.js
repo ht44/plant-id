@@ -11,14 +11,20 @@
     })
 
     // controller.$inject = ['$http']
+    controller.$inject = ['$http', '$stateParams', '$state']
+    function controller($http, $stateParams, $state) {
+    // this.$onInit = onInit;
+    // this.myTest = myTest;
+    this.$onInit = () => {
+    }
 
-    function controller() {
-    const vm = this
-    vm.$onInit = onInit
-
-    function onInit($http) {
-      console.log('connecteddddddd');
+    this.upload = (ev) => {
+      ev.preventDefault();
+      $http.get('/api').then(response => {
+        console.log(response);
+      })
     }
   }
+
 
 }());

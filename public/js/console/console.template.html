@@ -3,7 +3,7 @@
     <img src="http://encyclopedian.artscape.us/ala-alm/albizia_julibrissin.jpg" alt="plant">
   </div>
   <div class-"image-form">
-    <form action="/api/classify" method="GET">
+    <form method="GET" ng-submit="$ctrl.upload($event)">
       <input type="file" name="payload">
       <input type="submit" value="Upload">
     </form>
