@@ -18,8 +18,14 @@
     .state({
       name: 'identify',
       parent: 'app',
-      url: '/',
+      url: '/identify',
       component: 'identify'
+    })
+    .state({
+      name: 'docs',
+      parent: 'app',
+      url: '/',
+      component: 'docs'
     })
   }
 }());

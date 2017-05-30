@@ -101,7 +101,7 @@ body {
 
 /* DOCS COMPONENT*/
 .docs {
-	margin-top: 50px;
-	margin-left: 200px;
-	float: right;
+	height: 100%;
+	width: 100%;
+	padding: 1em;
 }
