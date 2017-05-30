@@ -20,7 +20,8 @@
     "method-override": "2.3.x",
     "morgan": "1.6.x",
     "request": "^2.81.0",
-    "ui-router": "^1.0.0-alpha.3"
+    "ui-router": "^1.0.0-alpha.3",
+    "watson-developer-cloud": "^2.32.1"
   },
   "repository": {},
   "engines": {

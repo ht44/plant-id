@@ -16,15 +16,19 @@
     // this.$onInit = onInit;
     // this.myTest = myTest;
     this.$onInit = () => {
+      console.log('initttt');
     }
 
     this.upload = (ev) => {
       ev.preventDefault();
-      $http.get('/api').then(response => {
-        console.log(response);
+      let browse = document.querySelector('input[type=file]');
+      let upload = document.querySelector('input[type=submit]');
+      let file = browse.files[0];
+      let form = new FormData();
+      form.append("file", file);
+      $http.post('/api/classify', form, (response) => {
+        console.log('posted');
       })
     }
   }
-
-
 }());
