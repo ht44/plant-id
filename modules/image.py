@@ -1,4 +1,3 @@
-#
 import os
 import math
 import shutil
@@ -77,7 +76,7 @@ class ImageFactory:
             root = os.path.join(self.output_path,
                                 image_set.basename)
             shutil.make_archive(base, 'zip', root)
-#
+
 if __name__ == '__main__':
     import sys
 #
