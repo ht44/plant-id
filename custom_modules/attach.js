@@ -2,7 +2,7 @@ const attach = module.exports = (() => {
 
   'use strict';
   const fs = require('fs');
-  const util = require('../modules/util');
+  const util = require('../custom_modules/util');
   const createResponseData = util.createResponseData;
 
   return {

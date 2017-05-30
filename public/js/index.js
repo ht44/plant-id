@@ -4,7 +4,7 @@ const REST_DATA = '/api';
 
 const browse = document.querySelector('input[type=file]');
 const upload = document.querySelector('input[type=submit]');
-const docSelect = document.querySelector('select');
+// const docSelect = document.querySelector('select');
 
 upload.addEventListener('click', uploadFile);
 
@@ -21,10 +21,9 @@ function uploadFile() {
 
     form = new FormData();
     form.append("file", file);
-
     queryParams = `id=${docId}`
 
-    xhrPut(REST_DATA + "?" + queryParams, form, item => {
+    xhrPut(REST_DATA + '/classify', form, item => {
         console.log(item);
     }, function(err) {
         console.error(err);
