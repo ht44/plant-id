@@ -4,6 +4,7 @@ const fs = require('fs');
 const express = require('express');
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
+const bodyParser = require('body-parser');
 
 const router = express.Router();
 
@@ -14,9 +15,9 @@ const dbCredentials = {
 };
 
 // custom exports
-const util = require('../modules/util');
-const dbInit = require('../modules/db_init');
-const attach = require('../modules/attach');
+const util = require('../custom_modules/util');
+const dbInit = require('../custom_modules/db_init');
+const attach = require('../custom_modules/attach');
 
 // functions
 const insertAttachment = attach.insertAttachment;
@@ -41,8 +42,9 @@ db = cloudant.use(dbCredentials.dbName);
 
 
 
-router.get('/classify', (req, res) => {
-  res.json('weeee');
+router.post('/classify', multipartMiddleware, (req, res) => {
+  console.log(req.files);
+  res.json("hoooooooooo");
 });
 
 
