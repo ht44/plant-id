@@ -1,6 +1,3 @@
-// npm install exif
-// https://www.npmjs.com/package/exif
-
 var ExifImage = require('exif').ExifImage;
 try {
     new ExifImage({
