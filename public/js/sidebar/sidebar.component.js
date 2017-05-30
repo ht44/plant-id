@@ -10,20 +10,13 @@
       controller: controller
     })
 
-    // controller.$inject = ['$http']
-
-    function controller() {
-    const vm = this
-    vm.$onInit = onInit
-    vm.addToList = addToList
-
-    function onInit($http) {
-      console.log('connecteddddddd');
-    }
-
-    function addToList() {
-        console.log(vm.email.userEmail)
-    }
+  function controller() {
+      this.$onInit = () => {
+        console.log('sidebar loaded');
+      }
+      this.addToList = () => {
+          console.log(vm.email.userEmail)
+      }
   }
 
 }());

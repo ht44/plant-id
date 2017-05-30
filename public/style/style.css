@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Rubik');
 
 * {
 	margin: 0;
@@ -9,12 +10,28 @@
 body {
 	width: 100vw;
 	height: 100vh;
-	font-family: 'Roboto', sans-serif;
-	border-bottom: 2px outset grey;
+	font-family: 'Quicksand', sans-serif;
+	/*border-bottom: 2px outset grey;*/
+}
+
+a:link {
+	color: white;
+	text-decoration: none;
+}
+a:visited {
+	color: white;
+}
+a:hover {
+	color: green;
+}
+a:active{
+	color: pink;
 }
 
 /* NAVBAR COMPONENT*/
 .navbar {
+	padding: 1em;
+	padding-right: 2em;
 	/*border: 3px outset grey;*/
 	width: 100%;
 	height: 50px;
@@ -24,51 +41,56 @@ body {
 	top: 0;
 	color: white;
 }
-
+.navbar p {
+	font-size: 32px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	/*margin-top: -0.5em;*/
+	/*margin-left: -0.5em;*/
+}
 .navbar > ul > li {
 	display: inline;
 	float: right;
-	margin-right: 2em;
-}
-
-.navbar a:link {
-	color: white;
-	text-decoration: none;
-}
-.navbar a:visited {
-	color: white;
-}
-.navbar a:hover {
-	color: green;
-}
-.navbar a:active{
-	color: pink;
+	margin-left: 2em;
 }
 
 /* SIDEBAR COMPONENT*/
 .sidebar {
+	font-size: 16px;
 	height: 100%;
 	width: 150px;
+	min-height: 760px;
 	/*margin-top: 50px;*/
 	border-right: 2px outset grey;
 	position: fixed;
   /*left: 0;*/
+	background-color: rgb(26, 53, 45);
 }
 .sidebar ul {
-	top: auto;
-	overflow: scroll;
+	padding: 1.5em;
+	/*top: auto;*/
+	/*overflow: scroll;*/
 	height: 80%;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: space-between;
 }
+
 .sidebar form {
-    position: inherit;
-    bottom: 0;
+		/*padding: 1em;*/
+		margin: 0.5em;
+    /*position: relative;
+    bottom: 0;*/
 }
 
 /* VIEWPORT COMPONENT*/
 .viewport {
+	font-family: 'Roboto', sans-serif;
 	margin-left: 150px;
 	margin-top: 50px;
 	display: flex;
+	/*background-color: rgba(219, 184, 149, 0.5);*/
 }
 
 /* IDENTIFY COMPONENT*/
@@ -81,6 +103,8 @@ body {
 
 /* CONSOLE COMPONENT*/
 .console {
+	background-color: rgba(12, 58, 55, 0.03);
+	min-width: 500px;
 	width: 50%;
 	height: 100%;
 	border-right: 2px outset grey;
