@@ -16,12 +16,10 @@
       component: 'app',
     })
     .state({
-      name: 'console',
+      name: 'identify',
       parent: 'app',
       url: '/',
-      component: 'console'
+      component: 'identify'
     })
-
-
   }
 }());
