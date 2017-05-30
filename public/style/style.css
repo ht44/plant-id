@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Quicksand');
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Kumar+One|Quantico');
 
 * {
 	margin: 0;
@@ -105,7 +105,7 @@ a:active{
 /* CONSOLE COMPONENT*/
 .console {
 	background-color: rgba(12, 58, 55, 0.03);
-	min-width: 500px;
+	/*min-width: 500px;*/
 	width: 60%;
 	height: 100%;
 	border-right: 2px outset grey;
@@ -132,4 +132,5 @@ a:active{
 	width: 100%;
 	padding: 1em;
 	overflow: scroll;
+
 }
