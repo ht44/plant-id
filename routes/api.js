@@ -73,27 +73,10 @@ db = cloudant.use(dbCredentials.dbName);
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
-    console.log('got thereeee');
-    console.log(req.file.path);
-    let results;
-    // const params = {
-    //     image_file: fs.createReadStream(req.file.path),
-    //     classifier_ids: 'TexasInvasives_190947980'
-    // }
-
-    let file = fs.createReadStream(req.file.path);
-
-    request({
-      url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.file.filename}`,
-      method: 'PUT', headers: {
-        'X-Auth-Token': req.app.get('storageToken'),
-        'Content-type': 'application/octet-stream',
-        'Content-length': req.file.size
-      }, body: file
-    }, (err, response) => {
-      console.log(response.headers);
-    });
-
+    const params = {
+        image_file: fs.createReadStream(req.file.path),
+        classifier_ids: 'TexasInvasives_190947980'
+    }
     const temp = {
         "custom_classes": 24,
         "images": [
@@ -103,7 +86,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
                         "classes": [
                             {
                                 "class": "Ligustrum lucidum",
-                                "score": 0.502155
+                                "score": 0.992155
                             }, {
                                 "class": "Ligustrum quihoui",
                                 "score": 0.664165
@@ -112,7 +95,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
                                 "score": 0.560582
                             }, {
                                 "class": "Rapistrum rugosum",
-                                "score": 0.586212
+                                "score": 0.986212
                             }, {
                                 "class": "Torilis arvensis",
                                 "score": 0.989952
@@ -127,7 +110,24 @@ router.post('/classify', upload.single('file'), (req, res) => {
         ],
         "images_processed": 1
     }
-    res.json(temp);
+
+    let classScore = temp.images[0].classifiers[0].classes
+    let highestScore = 0;
+    let speciesMatch = '';
+    classScore.forEach(imageClass => {
+
+        if (imageClass.score > highestScore) {
+            highestScore = imageClass.score
+            speciesMatch = imageClass.class
+        }
+    });
+
+    console.log(speciesMatch);
+    console.log(highestScore);
+
+
+
+    res.json(speciesMatch);
 
     // visual_recognition.classify(params, (error, results) => {
     //   if (error) {
@@ -138,6 +138,25 @@ router.post('/classify', upload.single('file'), (req, res) => {
     //   }
     // });
 });
+
+router.post('/store', upload.single('file'), (req, res) => {
+    console.log('got thereeee');
+    // console.log(req.file.path);
+    let file = fs.createReadStream(req.file.path);
+    let results;
+    request({
+      url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.file.filename}`,
+      method: 'PUT', headers: {
+        'X-Auth-Token': req.app.get('storageToken'),
+        'Content-type': 'application/octet-stream',
+        'Content-length': req.file.size
+      }, body: file
+    }, (err, response) => {
+    //   console.log(response.headers);
+    });
+    res.json('image sent to storage')
+});
+
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////

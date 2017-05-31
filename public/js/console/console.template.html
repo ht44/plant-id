@@ -4,9 +4,13 @@
   </div>
   <div class-"image-form">
     <!-- <form action="/api/classify" method="POST" enctype="multipart/form-data"> -->
-    <form name="upload" ng-submit="$ctrl.submitFile()" novalidate>
+    <form ng-show="$ctrl.displayed" ng-hide="!$ctrl.displayed" name="upload" ng-submit="$ctrl.submitFile()" novalidate>
       <input id="file" name="file" type="file">
       <input name="upload" type="submit" value="Upload">
     </form>
+    <form ng-show="!$ctrl.displayed" ng-hide="$ctrl.displayed" ng-submit="$ctrl.uploadFile()" novalidate>
+      <input type="submit" value="add to our database">
+    </form>
+
   </div>
 </div>
