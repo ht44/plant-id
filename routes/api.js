@@ -1,9 +1,31 @@
+//
 'use strict';
+require('dotenv').load();
+
+const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
+const visual_recognition = new VisualRecognitionV3({
+  api_key: process.env.API_KEY,
+  version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20
+});
 
 const fs = require('fs');
 const express = require('express');
-const multipart = require('connect-multiparty');
-const multipartMiddleware = multipart();
+const request = require('request');
+const multer = require('multer');
+const crypto = require('crypto');
+const mime = require('mime');
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb) {
+        crypto.pseudoRandomBytes(16, function(err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+        });
+    }
+});
+
+const upload = multer({storage: storage});
 const bodyParser = require('body-parser');
 
 const router = express.Router();
@@ -17,99 +39,88 @@ const dbCredentials = {
 // custom exports
 const util = require('../custom_modules/util');
 const dbInit = require('../custom_modules/db_init');
-const attach = require('../custom_modules/attach');
 
 // functions
-const insertAttachment = attach.insertAttachment;
-const createResponseData = util.createResponseData;
 const sanitizeInput = util.sanitizeInput;
-const saveDocument = util.saveDocument;
 const initDBConnection = dbInit.initDBConnection;
 const getDBCredentialsUrl = dbInit.getDBCredentialsUrl;
-
 dbCredentials.url = initDBConnection(getDBCredentialsUrl);
 cloudant = require('cloudant')(dbCredentials.url);
-
 // check if DB exists if not create
 cloudant.db.create(dbCredentials.dbName, (err, res) => {
     if (err)
         console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
-});
-
+    }
+);
 db = cloudant.use(dbCredentials.dbName);
 
 ///////////////////////////////////////////////////////////////////////////////
 
+router.post('/classify', upload.single('file'), (req, res) => {
+    console.log('got thereeee');
+    console.log(req.file.path);
+    let results;
+    // const params = {
+    //     image_file: fs.createReadStream(req.file.path),
+    //     classifier_ids: 'TexasInvasives_190947980'
+    // }
 
+    let file = fs.createReadStream(req.file.path);
 
-router.post('/classify', multipartMiddleware, (req, res) => {
-  console.log(req.files);
-  res.json("hoooooooooo");
+    request({
+      url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.file.filename}`,
+      method: 'PUT', headers: {
+        'X-Auth-Token': req.app.get('storageToken'),
+        'Content-type': 'application/octet-stream',
+        'Content-length': req.file.size
+      }, body: file
+    }, (err, response) => {
+      console.log(response.headers);
+    });
+
+    const temp = {
+        "custom_classes": 24,
+        "images": [
+            {
+                "classifiers": [
+                    {
+                        "classes": [
+                            {
+                                "class": "Ligustrum lucidum",
+                                "score": 0.502155
+                            }, {
+                                "class": "Ligustrum quihoui",
+                                "score": 0.664165
+                            }, {
+                                "class": "Melia azedarach",
+                                "score": 0.560582
+                            }, {
+                                "class": "Rapistrum rugosum",
+                                "score": 0.586212
+                            }, {
+                                "class": "Torilis arvensis",
+                                "score": 0.989952
+                            }
+                        ],
+                        "classifier_id": "TexasInvasives_190947980",
+                        "name": "Texas Invasives"
+                    }
+                ],
+                "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
+            }
+        ],
+        "images_processed": 1
+    }
+    res.json(temp);
+
+    // visual_recognition.classify(params, (error, results) => {
+    //   if (error) {
+    //     console.error(error);
+    //   } else {
+    //     // result = JSON.stringify(results);
+    //     res.json(results);
+    //   }
+    // });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.get('/attach', (request, response) => {
-//     var doc = request.query.id;
-//     var key = request.query.key;
-//
-//     db.attachment.get(doc, key, (err, body) => {
-//         if (err) {
-//             response.status(500);
-//             response.setHeader('Content-Type', 'text/plain');
-//             response.write('Error: ' + err);
-//             response.end();
-//             return;
-//         }
-//
-//         response.status(200);
-//         response.setHeader("Content-Disposition", 'inline; filename="' + key + '"');
-//         response.write(body);
-//         response.end();
-//         return;
-//     });
-// });
-
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
-// router.put('/attach', multipartMiddleware, (request, response) => {
-//     console.log("Upload File Invoked..");
-//     let id;
-//
-//     db.get(request.query.id, (err, doc) => {
-//         let name;
-//         let value;
-//         let file;
-//         let newPath;
-//
-//         if (!doc) {
-//             id = '-1';
-//         } else {
-//             id = doc.id;
-//         }
-//
-//         name = sanitizeInput(request.query.name);
-//         value = sanitizeInput(request.query.value);
-//
-//         file = request.files.file;
-//         newPath = './public/uploads/' + file.name;
-//
-//         insertAttachment(db, file, doc._id, doc._rev, name, value, response);
-//     });
-//
-// });
 
 module.exports = router;
