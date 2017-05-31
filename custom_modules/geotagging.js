@@ -1,41 +1,40 @@
-function createGeoJson (userImagePath, userImageSpecies) {
-    var ExifImage = require('exif').ExifImage;
-    try {
-        new ExifImage({
-            image: userImagePath
-        }, function(error, exifData) {
-            if (error) {
-                console.log(error);
-            } else {
-                rawLng = exifData.gps.GPSLongitude
-                rawLat = exifData.gps.GPSLatitude
-                latDD = dmtToDD(rawLat)
-                if (exifData.gps.GPSLongitudeRef === 'W') {
-                    lngDD = dmtToDD(rawLng) * -1
-                } else {
-                    lngDD = dmtToDD(rawLng);
-                }
-                let geoJson = {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [latDD, lngDD]
-                    },
-                    "properties": {
-                        "date": new Date(),
-                        "symbol": "ULPU",
-                        "species": userImageSpecies,
-                        "valid_name": 'userVarified'
-                    }
-                }
-                return geoJson
-            }
-        });
-    } catch (error) {
-        console.log('Error: ' + error.message);
+const createGeoJson = module.exports = (() => {
+  'use strict';
+  const ExifImage = require('exif').ExifImage;
+
+  return {
+    extractData: extractData,
+    extractLatLng: extractLatLng
+  };
+
+  function dmToDD(latLng) {
+    let deger = (((latLng[2] / 60) + latLng[1]) / 60);
+    return latLng[0] + deger
+  }
+
+  function extractData(userImagePath) {
+    let extract = new Promise((resolve, reject) => {
+      new ExifImage({
+        image: userImagePath
+      }, (error, exifData) => {
+        resolve(exifData)
+      });
+    })
+    return extract;
+  }
+
+  function extractLatLng(data) {
+    let rawLng = data.gps.GPSLongitude;
+    let rawLat = data.gps.GPSLatitude;
+    let latDD;
+    let lngDD;
+    latDD = dmToDD(rawLat);
+    if (data.gps.GPSLongitudeRef === 'W') {
+      lngDD = dmToDD(rawLng) * -1;
+    } else {
+      lngDD = dmToDD(rawLng);
     }
-    function dmtToDD(latLgn) {
-        let deger = (((latLgn[2] / 60) + latLgn[1]) / 60);
-        return latLgn[0] + deger
-    }
-}
+    return [latDD, lngDD];
+  }
+
+})();

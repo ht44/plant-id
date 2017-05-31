@@ -9,9 +9,10 @@ const crypto = require('crypto');
 const mime = require('mime');
 const bodyParser = require('body-parser');
 
+
 // MINI-APP
 const router = express.Router();
-
+const geoJson = require('../custom_modules/geotagging');
 ///////////////////////////////////////////////////////////////////////////////
 // WATSON
 ///////////////////////////////////////////////////////////////////////////////
@@ -111,23 +112,25 @@ router.post('/classify', upload.single('file'), (req, res) => {
         "images_processed": 1
     }
 
-    let classScore = temp.images[0].classifiers[0].classes
-    let highestScore = 0;
-    let speciesMatch = '';
-    classScore.forEach(imageClass => {
+    // let classScore = temp.images[0].classifiers[0].classes
+    // let highestScore = 0;
+    // let speciesMatch = '';
+    // classScore.forEach(imageClass => {
+    //
+    //     if (imageClass.score > highestScore) {
+    //         highestScore = imageClass.score
+    //         speciesMatch = imageClass.class
+    //     }
+    // });
 
-        if (imageClass.score > highestScore) {
-            highestScore = imageClass.score
-            speciesMatch = imageClass.class
-        }
+    // console.log(speciesMatch);
+    // console.log(highestScore);
+
+    let wait = geoJson.extractData(req.file.path).then((data) => {
+      let result = geoJson.extractLatLng(data);
+      console.log(result);
     });
-
-    console.log(speciesMatch);
-    console.log(highestScore);
-
-
-
-    res.json(speciesMatch);
+    // res.json(speciesMatch);
 
     // visual_recognition.classify(params, (error, results) => {
     //   if (error) {

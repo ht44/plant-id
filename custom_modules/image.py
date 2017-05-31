@@ -53,13 +53,35 @@ class ImageFactory:
             os.mkdir(os.path.join(self.output_path,
                                   image_set.basename))
         os.mkdir(os.path.join(self.output_path, 'zips'))
+
+
+
+
+
     def conform(self, image, max_w):
         w, h = image.size
-        if w > max_w:
+        if w >= max_w:
             new_size = max_w, math.floor(h * (max_w / w))
             return image.resize(new_size)
         else:
             return image
+
+    def conform_h(self, image, max_h):
+        w, h = image.size
+        if h > max_h:
+            new_size = math.floor(w * (max_h / h))
+            return image.resize(new_size)
+        else:
+            return image
+
+    def read_sizes(self):
+        result = []
+        for image_set in self.data_set:
+            for child in image_set.children:
+                image = Image.open(child)
+                result.append(image.size)
+                image.close()
+        return sorted(result)
     def batch_conform(self, max_w, kind='jpeg'):
         for image_set in self.data_set:
             destination = os.path.join(self.output_path,
