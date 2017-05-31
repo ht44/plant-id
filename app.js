@@ -13,7 +13,7 @@ const methodOverride = require('method-override');
 const logger = require('morgan');
 const errorHandler = require('errorhandler');
 const request = require('request');
-const initStorage = fs.readFile('./temp.json', (err, data) => {
+fs.readFile('./temp.json', (err, data) => {
   request({
     url: 'https://identity.open.softlayer.com/v3/auth/tokens',
     body: data,
