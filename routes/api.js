@@ -1,6 +1,20 @@
 //
 'use strict';
 require('dotenv').load();
+const fs = require('fs');
+const express = require('express');
+const request = require('request');
+const multer = require('multer');
+const crypto = require('crypto');
+const mime = require('mime');
+const bodyParser = require('body-parser');
+
+// MINI-APP
+const router = express.Router();
+
+///////////////////////////////////////////////////////////////////////////////
+// WATSON
+///////////////////////////////////////////////////////////////////////////////
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 const visual_recognition = new VisualRecognitionV3({
@@ -8,12 +22,10 @@ const visual_recognition = new VisualRecognitionV3({
   version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20
 });
 
-const fs = require('fs');
-const express = require('express');
-const request = require('request');
-const multer = require('multer');
-const crypto = require('crypto');
-const mime = require('mime');
+///////////////////////////////////////////////////////////////////////////////
+// STORAGE
+///////////////////////////////////////////////////////////////////////////////
+
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './uploads/')
@@ -26,14 +38,16 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({storage: storage});
-const bodyParser = require('body-parser');
 
-const router = express.Router();
+
+///////////////////////////////////////////////////////////////////////////////
+// DATABASE
+///////////////////////////////////////////////////////////////////////////////
 
 let db,
-    cloudant;
+cloudant;
 const dbCredentials = {
-    dbName: 'my_sample_db'
+  dbName: 'my_sample_db'
 };
 
 // custom exports
@@ -54,6 +68,8 @@ cloudant.db.create(dbCredentials.dbName, (err, res) => {
 );
 db = cloudant.use(dbCredentials.dbName);
 
+///////////////////////////////////////////////////////////////////////////////
+// API
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
@@ -122,5 +138,9 @@ router.post('/classify', upload.single('file'), (req, res) => {
     //   }
     // });
 });
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 module.exports = router;
