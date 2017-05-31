@@ -3,9 +3,10 @@
     <img src="https://davisla6.files.wordpress.com/2015/08/arundo-donax-leaf.jpg" alt="plant">
   </div>
   <div class-"image-form">
-    <form method="POST" enctype="multipart/form-data" name="upload" action="/api/classify">
-      <input type="file" name="payload">
-      <input type="submit" value="Upload">
+    <!-- <form action="/api/classify" method="POST" enctype="multipart/form-data"> -->
+    <form name="upload" ng-submit="$ctrl.submitFile()" novalidate>
+      <input id="file" name="file" type="file">
+      <input name="upload" type="submit" value="Upload">
     </form>
   </div>
 </div>
