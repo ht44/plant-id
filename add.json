@@ -1,23 +1,33 @@
-{
-    "head": {
-        "family": "",
-        "synonyms": "",
-        "duration": "",
-        "habit": "",
-        "common": ""
-    },
-    "description": {
-        "main": "",
-        "ecological_threat": "",
-        "biology_and_spread": "",
-        "history": "",
-        "us_habitat": ""
-    },
-    "distribution": {
-        "us_nativity": "",
-        "native_origin": "",
-        "us_present": "",
-        "distribution": ""
-    },
-    "management": ""
-},
+"data": {
+  "head": {
+    "name": "",
+    "common": "",
+    "family": "",
+    "synonyms": [],
+    "duration": "",
+    "habit": "",
+    "listed_by": []
+  },
+  "description": {
+    "main": "",
+    "ecological_threat": "",
+    "biology_and_spread": "",
+    "history": "",
+    "us_habitat": ""
+  },
+  "distribution": {
+    "us_nativity": "",
+    "native_origin": "",
+    "us_present": "",
+    "distribution": ""
+  },
+  "resembles": {
+    "main": "",
+    "alternatives": []
+  },
+  "management": {
+    "main": ""
+  },
+  "text_references": [],
+  "online_resources": []
+}

@@ -10,6 +10,7 @@
     controller.$inject = ['$http', '$stateParams', '$state']
     function controller($http, $stateParams, $state) {
     this.$onInit = () => {
+      this.response = undefined;
       console.log('initttt');
     }
     this.displayed = true;
@@ -18,6 +19,7 @@
         this.displayed = !this.displayed;
     };
     this.uploadFile = () => {
+    console.log(this.response);
     this.togglePost()
       const xhr = new XMLHttpRequest();
       const formData = new FormData();
@@ -37,6 +39,7 @@
     };
 
     this.submitFile = () => {
+    console.log(this.response);
     this.togglePost()
       const xhr = new XMLHttpRequest();
       const formData = new FormData();
@@ -54,8 +57,8 @@
       return false;
     };
 
-    function handleResponse(response) {
-      console.log(response);
+    this.handleResponse = (response) => {
+      this.response = response;
     }
   }
 }());

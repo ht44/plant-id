@@ -47,10 +47,12 @@ const upload = multer({
 // DATABASE
 ///////////////////////////////////////////////////////////////////////////////
 
-let db,
+let db_obs,
+    db_classes,
     cloudant;
 const dbCredentials = {
-  dbName: 'classes'
+  classDB: 'classes',
+  obsDB: 'test'
 };
 
 // custom exports
@@ -68,7 +70,9 @@ cloudant.db.create(dbCredentials.dbName, (err, res) => {
     if (err)
         console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
 });
-db = cloudant.use(dbCredentials.dbName);
+
+db_classes = cloudant.use(dbCredentials.classDB);
+db_obs = cloudant.use(dbCredentials.obsDB);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API
@@ -115,7 +119,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
           console.error(error);
         } else {
           match = util.calcMatch(results);
-          db.get('Pistacia chinensis', (err, body) => {
+          db_classes.get('Pistacia chinensis', (err, body) => {
             res.json({
               coordinates: coordinates,
               properties: body.data,
@@ -145,9 +149,7 @@ router.post('/store', upload.single('file'), (req, res) => {
         //   console.log(response.headers);
     });
 
-
-    db.insert({
-            "_id": "testPost",
+    db_obs.insert({
             "type": "Feature",
             "geometry": {
                 "type": "Point",
