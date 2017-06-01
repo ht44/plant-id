@@ -76,42 +76,42 @@ db_test = cloudant.use(dbCredentials.testDB);
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
+    const temp = {
+      "custom_classes": 24,
+      "images": [
+        {
+          "classifiers": [
+            {
+              "classes": [
+                {
+                  "class": "Ligustrum lucidum",
+                  "score": 0.992155
+                }, {
+                  "class": "Ligustrum quihoui",
+                  "score": 0.664165
+                }, {
+                  "class": "Melia azedarach",
+                  "score": 0.560582
+                }, {
+                  "class": "Rapistrum rugosum",
+                  "score": 0.986212
+                }, {
+                  "class": "Torilis arvensis",
+                  "score": 0.989952
+                }
+              ],
+              "classifier_id": "TexasInvasives_190947980",
+              "name": "Texas Invasives"
+            }
+          ],
+          "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
+        }
+      ],
+      "images_processed": 1
+    }
     const params = {
         image_file: fs.createReadStream(req.file.path),
         classifier_ids: 'TexasInvasives_190947980'
-    }
-    const temp = {
-        "custom_classes": 24,
-        "images": [
-            {
-                "classifiers": [
-                    {
-                        "classes": [
-                            {
-                                "class": "Ligustrum lucidum",
-                                "score": 0.992155
-                            }, {
-                                "class": "Ligustrum quihoui",
-                                "score": 0.664165
-                            }, {
-                                "class": "Melia azedarach",
-                                "score": 0.560582
-                            }, {
-                                "class": "Rapistrum rugosum",
-                                "score": 0.986212
-                            }, {
-                                "class": "Torilis arvensis",
-                                "score": 0.989952
-                            }
-                        ],
-                        "classifier_id": "TexasInvasives_190947980",
-                        "name": "Texas Invasives"
-                    }
-                ],
-                "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
-            }
-        ],
-        "images_processed": 1
     }
 
     let extraction = geoJson.extractData(req.file.path).then((data) => {
@@ -120,19 +120,20 @@ router.post('/classify', upload.single('file'), (req, res) => {
             coordinates = geoJson.extractLatLng(data);
         }
         let match;
-        visual_recognition.classify(params, (error, results) => {
-            if (error) {
-                console.error(error);
-            } else {
-                match = util.calcMatch(results);
-                db_class.get('Pistacia_chinensis', (err, body) => {
+        // visual_recognition.classify(params, (error, results) => {
+            // if (error) {
+            //     console.error(error);
+            // } else {
+                match = util.calcMatch(temp);
+                db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
                 });
-            }
-        });
+            // }
+        // });
     }).catch((error) => {
         res.json(error);
     });
+});
 
 router.post('/store', upload.single('file'), (req, res) => {
 console.log('got thereeee');
