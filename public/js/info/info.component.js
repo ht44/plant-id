@@ -9,10 +9,10 @@
         controller: controller
     })
 
-    controller.$inject = ['haydenService'];
-    function controller(haydenService) {
+    controller.$inject = ['service'];
+    function controller(service) {
         this.$onInit = () => {
-          console.log(haydenService);
+          console.log(service);
         }
     }
 

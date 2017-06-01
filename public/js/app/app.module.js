@@ -4,7 +4,7 @@
   angular.module('app', ['ui.router']).service('service', service);
 
   function service() {
-      this.name = null;
+      this.name = 'HAYDEN';
   }
 
 }());

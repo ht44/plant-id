@@ -7,14 +7,12 @@
         },
         templateUrl: '/js/console/console.template.html',
         controller: controller
-<<<<<<< HEAD
     })
 
     controller.$inject = ['$http', '$stateParams', '$state', 'service']
     function controller($http, $stateParams, $state, service) {
         this.$onInit = () => {
             this.response = undefined;
-            this.hayden = 'hayden';
             this.parsedRes = undefined;
             this.displayed = true;
             console.log('initttt');
