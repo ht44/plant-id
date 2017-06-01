@@ -19,8 +19,8 @@ const geoJson = require('../custom_modules/geotagging');
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 const visual_recognition = new VisualRecognitionV3({
-  api_key: process.env.API_KEY,
-  version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20
+    api_key: process.env.API_KEY,
+    version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,9 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage});
+const upload = multer({
+    storage: storage
+});
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,7 +48,7 @@ const upload = multer({storage: storage});
 ///////////////////////////////////////////////////////////////////////////////
 
 let db,
-cloudant;
+    cloudant;
 const dbCredentials = {
   dbName: 'classes'
 };
@@ -65,8 +67,7 @@ cloudant = require('cloudant')(dbCredentials.url);
 cloudant.db.create(dbCredentials.dbName, (err, res) => {
     if (err)
         console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
-    }
-);
+});
 db = cloudant.use(dbCredentials.dbName);
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -80,35 +81,29 @@ router.post('/classify', upload.single('file'), (req, res) => {
     }
     const temp = {
         "custom_classes": 24,
-        "images": [
-            {
-                "classifiers": [
-                    {
-                        "classes": [
-                            {
-                                "class": "Ligustrum lucidum",
-                                "score": 0.992155
-                            }, {
-                                "class": "Ligustrum quihoui",
-                                "score": 0.664165
-                            }, {
-                                "class": "Melia azedarach",
-                                "score": 0.560582
-                            }, {
-                                "class": "Rapistrum rugosum",
-                                "score": 0.986212
-                            }, {
-                                "class": "Torilis arvensis",
-                                "score": 0.989952
-                            }
-                        ],
-                        "classifier_id": "TexasInvasives_190947980",
-                        "name": "Texas Invasives"
-                    }
-                ],
-                "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
-            }
-        ],
+        "images": [{
+            "classifiers": [{
+                "classes": [{
+                    "class": "Ligustrum lucidum",
+                    "score": 0.992155
+                }, {
+                    "class": "Ligustrum quihoui",
+                    "score": 0.664165
+                }, {
+                    "class": "Melia azedarach",
+                    "score": 0.560582
+                }, {
+                    "class": "Rapistrum rugosum",
+                    "score": 0.986212
+                }, {
+                    "class": "Torilis arvensis",
+                    "score": 0.989952
+                }],
+                "classifier_id": "TexasInvasives_190947980",
+                "name": "Texas Invasives"
+            }],
+            "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
+        }],
         "images_processed": 1
     }
 
@@ -138,15 +133,39 @@ router.post('/store', upload.single('file'), (req, res) => {
     let file = fs.createReadStream(req.file.path);
     let results;
     request({
-      url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.file.filename}`,
-      method: 'PUT', headers: {
-        'X-Auth-Token': req.app.get('storageToken'),
-        'Content-type': 'application/octet-stream',
-        'Content-length': req.file.size
-      }, body: file
+        url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.file.filename}`,
+        method: 'PUT',
+        headers: {
+            'X-Auth-Token': req.app.get('storageToken'),
+            'Content-type': 'application/octet-stream',
+            'Content-length': req.file.size
+        },
+        body: file
     }, (err, response) => {
-    //   console.log(response.headers);
+        //   console.log(response.headers);
     });
+
+
+    db.insert({
+            "_id": "testPost",
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [31.0, 90]
+            },
+            "properties": {
+                'date': new Date(),
+                'species': 'Ligustrum lucidum',
+                'confidence': 0.992155,
+                'valid_name': 'user_verified'
+            }
+        },
+        function(err, body) {
+            console.log('working?');
+            if (!err)
+                console.log(body)
+        })
+
     res.json('image sent to storage')
 });
 
