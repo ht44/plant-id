@@ -127,14 +127,12 @@ router.post('/classify', upload.single('file'), (req, res) => {
                 match = util.calcMatch(results);
                 db_class.get('Pistacia_chinensis', (err, body) => {
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
-                })
+                });
             }
         });
-    } else {
-        res.json('notgoingin')
-    }}).catch((error) => {
-    res.json(error)
-});});
+    }).catch((error) => {
+        res.json(error);
+    });
 
 router.post('/store', upload.single('file'), (req, res) => {
 console.log('got thereeee');
