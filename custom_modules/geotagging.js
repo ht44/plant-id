@@ -17,7 +17,12 @@ const createGeoJson = module.exports = (() => {
       new ExifImage({
         image: userImagePath
       }, (error, exifData) => {
-        resolve(exifData)
+        if (error){
+            reject(error)
+        }
+        else{
+            resolve(exifData)
+        }
       });
     })
     return extract;

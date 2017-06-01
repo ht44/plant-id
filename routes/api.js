@@ -117,23 +117,30 @@ router.post('/classify', upload.single('file'), (req, res) => {
     }
 
     let extraction = geoJson.extractData(req.file.path).then((data) => {
-      let coordinates = geoJson.extractLatLng(data);
-      let match;
-      visual_recognition.classify(params, (error, results) => {
-        if (error) {
-          console.error(error);
-        } else {
-          match = util.calcMatch(results);
-          db_class.get('Pistacia chinensis', (err, body) => {
-            res.json({
-              coordinates: coordinates,
-              properties: body.data,
-              confidence: match.score
+        if (data.gps.GPSLongitude) {
+            let coordinates = geoJson.extractLatLng(data);
+            let match;
+            visual_recognition.classify(params, (error, results) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    match = util.calcMatch(results);
+                    db_class.get('Pistacia_chinensis', (err, body) => {
+                        res.json({
+                            coordinates: coordinates,
+                            properties: body.data,
+                            confidence: match.score
+                        });
+                    })
+                }
             });
-          })
         }
-      });
-    });
+        else{
+            res.json('notgoingin')
+        }
+  }).catch((error)=>{
+      res.json(error)
+  });
 });
 
 router.post('/store', upload.single('file'), (req, res) => {
