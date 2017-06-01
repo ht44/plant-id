@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Quicksand');
 @import url('https://fonts.googleapis.com/css?family=Kumar+One|Quantico');
+@import url('https://fonts.googleapis.com/css?family=Electrolize');
+@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil');
 
 * {
 	margin: 0;
@@ -10,7 +12,8 @@
 body {
 	width: 100vw;
 	height: 100vh;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Electrolize', sans-serif;
+	/*font-family: 'Quicksand', sans-serif;*/
 	/*border-bottom: 2px outset grey;*/
 	overflow: hidden;
 }
@@ -41,6 +44,7 @@ a:active{
 	position: fixed;
 	top: 0;
 	color: white;
+	box-shadow: 1px 1px 26px 0px rgba(0,0,0,0.75);
 }
 .navbar p {
 	font-size: 32px;
@@ -87,7 +91,7 @@ a:active{
 
 /* VIEWPORT COMPONENT*/
 .viewport {
-	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
 	margin-left: 150px;
 	margin-top: 50px;
 	display: flex;

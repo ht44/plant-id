@@ -51,8 +51,9 @@ let db_obs,
     db_classes,
     cloudant;
 const dbCredentials = {
-  dbName: 'classes',
-  otherName: 'observations'
+
+  classDB: 'classes',
+  obsDB: 'test'
 };
 
 // custom exports
@@ -70,8 +71,10 @@ cloudant.db.create(dbCredentials.dbName, (err, res) => {
     if (err)
         console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
 });
-db_classes = cloudant.use(dbCredentials.dbName);
-db_obs = cloudant.use(dbCredentials.otherName);
+
+
+db_classes = cloudant.use(dbCredentials.classDB);
+db_obs = cloudant.use(dbCredentials.obsDB);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API
@@ -170,7 +173,6 @@ router.post('/store', upload.single('file'), (req, res) => {
 
     res.json('image sent to storage')
 });
-
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
