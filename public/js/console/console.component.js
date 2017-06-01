@@ -19,7 +19,8 @@
         this.displayed = !this.displayed;
     };
     this.uploadFile = () => {
-    this.togglePost()
+
+      this.togglePost()
       const xhr = new XMLHttpRequest();
       const formData = new FormData();
       const file = document.getElementById('file').files[0];
@@ -55,8 +56,9 @@
       return false;
     };
 
-    function handleResponse(response) {
-        console.log(response);
+
+    function handleResponse(response){
+      console.log(response);
     }
   }
 }());
