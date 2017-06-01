@@ -5,10 +5,26 @@ const util = module.exports = (() => {
   return {
     sanitizeInput: sanitizeInput,
     createResponseData: createResponseData,
-    saveDocument: saveDocument
+    saveDocument: saveDocument,
+    calcMatch: calcMatch
   };
 
   /////////////////////////////////////////////////////////////////////////////
+  function calcMatch(temp) {
+    let classScore = temp.images[0].classifiers[0].classes
+    let highestScore = 0;
+    let speciesMatch = '';
+    classScore.forEach(imageClass => {
+      if (imageClass.score > highestScore) {
+        highestScore = imageClass.score
+        speciesMatch = imageClass.class
+      }
+    });
+    return {
+      class: speciesMatch,
+      score: highestScore
+    };
+  }
 
   function sanitizeInput(str) {
       return String(str).replace(/&(?!amp;|lt;|gt;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -24,14 +40,13 @@ const util = module.exports = (() => {
       };
 
 
-      attachments.forEach((item, index) => {
+    attachments.forEach((item, index) => {
           var attachmentData = {
               content_type: item.type,
               key: item.key,
               url: '/api/favorites/attach?id=' + id + '&key=' + item.key
           };
           responseData.attachements.push(attachmentData);
-
       });
       return responseData;
   }

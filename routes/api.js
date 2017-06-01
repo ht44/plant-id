@@ -48,7 +48,7 @@ const upload = multer({storage: storage});
 let db,
 cloudant;
 const dbCredentials = {
-  dbName: 'my_sample_db'
+  dbName: 'classes'
 };
 
 // custom exports
@@ -112,34 +112,24 @@ router.post('/classify', upload.single('file'), (req, res) => {
         "images_processed": 1
     }
 
-    // let classScore = temp.images[0].classifiers[0].classes
-    // let highestScore = 0;
-    // let speciesMatch = '';
-    // classScore.forEach(imageClass => {
-    //
-    //     if (imageClass.score > highestScore) {
-    //         highestScore = imageClass.score
-    //         speciesMatch = imageClass.class
-    //     }
-    // });
-
-    // console.log(speciesMatch);
-    // console.log(highestScore);
-
-    let wait = geoJson.extractData(req.file.path).then((data) => {
-      let result = geoJson.extractLatLng(data);
-      console.log(result);
+    let extraction = geoJson.extractData(req.file.path).then((data) => {
+      let coordinates = geoJson.extractLatLng(data);
+      let match;
+      visual_recognition.classify(params, (error, results) => {
+        if (error) {
+          console.error(error);
+        } else {
+          match = util.calcMatch(results);
+          db.get('Pistacia chinensis', (err, body) => {
+            res.json({
+              coordinates: coordinates,
+              properties: body.data,
+              confidence: match.score
+            });
+          })
+        }
+      });
     });
-    // res.json(speciesMatch);
-
-    // visual_recognition.classify(params, (error, results) => {
-    //   if (error) {
-    //     console.error(error);
-    //   } else {
-    //     // result = JSON.stringify(results);
-    //     res.json(results);
-    //   }
-    // });
 });
 
 router.post('/store', upload.single('file'), (req, res) => {

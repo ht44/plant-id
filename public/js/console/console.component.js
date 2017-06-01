@@ -54,11 +54,7 @@
       return false;
     };
 
-
-
     function handleResponse(response) {
-      let result = new Object();
-    //   let parsed = JSON.parse(response);
       console.log(response);
     }
   }
