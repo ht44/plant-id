@@ -20,6 +20,6 @@
         };
         this.update = () => {
             this.confidence = myService.parsedRes.confidence;
-        }
+        };
     }
 }());
