@@ -135,7 +135,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
         //     if (error) {
         //         console.error(error);
         //     } else {
-                match = util.calcMatch(results);
+                match = util.calcMatch(temp);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     console.log('DIDWE GET INDF');
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
