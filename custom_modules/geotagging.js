@@ -29,6 +29,7 @@ const createGeoJson = module.exports = (() => {
   }
 
   function extractLatLng(data) {
+    console.log(data);
     let rawLng = data.gps.GPSLongitude;
     let rawLat = data.gps.GPSLatitude;
     let latDD;

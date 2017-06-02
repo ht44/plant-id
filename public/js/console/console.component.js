@@ -43,11 +43,12 @@
           xhr.onreadystatechange = () => {
             if (xhr.readyState == 4) {
               if (xhr.status == 200) {
+                console.log('something');
                 let payload = JSON.parse(xhr.response);
                 this.payload = payload;
-                console.log(payload);
+                // console.log(payload);
                 $scope.$apply();
-                console.log(xhr.response);
+                // console.log(xhr.response);
               }
             }
           };
@@ -56,7 +57,7 @@
         };
 
         // POST /api/store
-        this.uploadFile = (event) => {
+        this.uploadFile = () => {
             this.togglePost();
             const xhr = new XMLHttpRequest();
             const formData = new FormData();
@@ -83,7 +84,7 @@
             xhr.onreadystatechange = () => {
               if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                  handleResponse(xhr.response);
+                  console.log(xhr.response);
                 }
               }
             };
@@ -93,7 +94,6 @@
 
 
         function handleResponse(response) {
-            // let payload = JSON.parse(response);
             console.log(response);
         }
     }

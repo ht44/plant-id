@@ -97,7 +97,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
                                 "score": 0.986212
                             }, {
                                 "class": "Albizia julibrissin",
-                                "score": 1.989952
+                                "score": 0.989952
                             }
                         ],
                         "classifier_id": "TexasInvasives_190947980",
@@ -114,8 +114,9 @@ router.post('/classify', upload.single('file'), (req, res) => {
         classifier_ids: 'TexasInvasives_190947980'
     }
     let extraction = geoJson.extractData(req.file.path).then((data) => {
+      console.log('we got in hereeee');
         let match;
-        let coordinates = geoJson.extractLatLng(data);
+        let coordinates = geoJson.extractLatLng(data) || '';
         // visual_recognition.classify(params, (error, results) => {
         //     if (error) {
         //         console.error(error);
@@ -128,8 +129,9 @@ router.post('/classify', upload.single('file'), (req, res) => {
         //     }
         // });
     }).catch((error) => {
+      console.log('naw in hereeee');
         console.error(error);
-        let coordinates;
+        let coordinates = '';
         let match;
         // visual_recognition.classify(params, (error, results) => {
         //     if (error) {
