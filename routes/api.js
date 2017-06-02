@@ -117,33 +117,33 @@ router.post('/classify', upload.single('file'), (req, res) => {
       console.log('we got in hereeee');
         let match;
         let coordinates = geoJson.extractLatLng(data) || '';
-        // visual_recognition.classify(params, (error, results) => {
-        //     if (error) {
-        //         console.error(error);
-        //     } else {
-                match = util.calcMatch(temp);
+        visual_recognition.classify(params, (error, results) => {
+            if (error) {
+                console.error(error);
+            } else {
+                match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     console.log('DIDWE GET INDF');
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
                 });
-        //     }
-        // });
+            }
+        });
     }).catch((error) => {
       console.log('naw in hereeee');
         console.error(error);
         let coordinates = '';
         let match;
-        // visual_recognition.classify(params, (error, results) => {
-        //     if (error) {
-        //         console.error(error);
-        //     } else {
-                match = util.calcMatch(temp);
+        visual_recognition.classify(params, (error, results) => {
+            if (error) {
+                console.error(error);
+            } else {
+                match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     console.log('DIDWE GET INDF');
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
                 });
-        //     }
-        // });
+            }
+        });
     });
 });
 
