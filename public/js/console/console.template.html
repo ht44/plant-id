@@ -15,6 +15,13 @@
             <button id="no" ng-click="$ctrl.togglePost()">No</button>
         </div>
 
+        <div ng-show="!$ctrl.displayed" ng-hide="$ctrl.displayed">
+            <h3>your image's geolocation</h3>
+            <div class="geolocation" >{{$ctrl.payload.coordinates[1]}}, {{$ctrl.payload.coordinates[0]}}</div>
+        </div>
+
+
+
     </div>
 </div>
 <article class="info">
