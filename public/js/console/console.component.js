@@ -7,7 +7,6 @@
         },
         templateUrl: '/js/console/console.template.html',
         controller: controller
-<<<<<<< HEAD
     })
 
     controller.$inject = ['$http', '$stateParams', '$state', 'service']

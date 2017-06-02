@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="app">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Plant ID</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
-		<link rel="stylesheet" href="/style/style.css">
-  </head>
-  <body>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
 
+<body>
+    <!-- <div id="map" style='width: 400px; height: 300px;'></div> -->
     <ui-view></ui-view>
+    <!-- <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiamFwcm9ldHQiLCJhIjoiY2ozYzV6M3Y2MDAxNTJ3bnQydDlndWE1ayJ9.bERvxZ5ou7uPxVWtO-4XKA';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            center: [-96.343, 31.081],
+            style: 'mapbox://styles/japroett/cj3f4srix00022spykiebttki',
+            zoom: 5
+        });
+    </script> -->
+
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/angular/angular.min.js"></script>
     <script src="/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -25,5 +39,6 @@
     <script src="/js/info/info.component.js"></script>
     <script src="/js/identify/identify.component.js"></script>
     <script src="/js/visualize/visualize.component.js"></script>
-  </body>
+</body>
+
 </html>

@@ -160,7 +160,7 @@ router.post('/store', upload.single('file'), (req, res) => {
         "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [req.body.lat, req.body.lng]
+            "coordinates": [req.body.lng, req.body.lat]
         },
         "properties": {
             'date': new Date(),
