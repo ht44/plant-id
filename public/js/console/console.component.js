@@ -16,7 +16,6 @@
             // this.response = undefined;
             this.payload = {
               confidence: 99,
-              coordinates: [50, 50],
               properties: {
                 "head": {
                   "name": "Triadica sebifera",

@@ -16,8 +16,9 @@
         </div>
 
         <div ng-show="!$ctrl.displayed" ng-hide="$ctrl.displayed">
-            <h3>your image's geolocation</h3>
-            <div class="geolocation" >{{$ctrl.payload.coordinates[1]}}, {{$ctrl.payload.coordinates[0]}}</div>
+            <h3>Geotagged location: </h3>
+            <div ng-if="$ctrl.payload.coordinates[0]" class="geolocation" >{{$ctrl.payload.coordinates[1]}}, {{$ctrl.payload.coordinates[0]}}</div>
+            <div ng-if="!$ctrl.payload.coordinates[0]">Image not geotagged</div>
         </div>
 
 
