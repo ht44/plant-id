@@ -17,7 +17,7 @@ const geoJson = require('../custom_modules/geotagging');
 ///////////////////////////////////////////////////////////////////////////////
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
-const visual_recognition = new VisualRecognitionV3({api_key: process.env.API_KEY, version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20});
+const visual_recognition = new VisualRecognitionV3({api_key: 'b7d2a60bfb012236082e06186d6e651617590640', version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20});
 
 ///////////////////////////////////////////////////////////////////////////////
 // STORAGE
