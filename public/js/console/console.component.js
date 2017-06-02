@@ -9,18 +9,40 @@
         controller: controller
     })
 
-    controller.$inject = ['$http', '$stateParams', '$state', 'service']
-    function controller($http, $stateParams, $state, service) {
+    controller.$inject = ['$http', '$stateParams', '$state', '$scope', 'myService', '$rootScope']
+    function controller($http, $stateParams, $state, $scope, myService, $rootScope) {
         this.$onInit = () => {
             this.response = undefined;
             this.parsedRes = undefined;
             this.displayed = true;
-            console.log('initttt');
+            // console.log('initttt');
         }
 
         this.togglePost = () => {
             this.displayed = !this.displayed;
         };
+
+        // POST /api/classify
+        this.submitFile = () => {
+          this.togglePost()
+          const xhr = new XMLHttpRequest();
+          const formData = new FormData();
+          const file = document.getElementById('file').files[0];
+          formData.append('file', file);
+          xhr.open('POST', '/api/classify');
+          xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4) {
+              if (xhr.status == 200) {
+                console.log(xhr.response);
+                myService.parsedRes = JSON.parse(xhr.response);
+              }
+            }
+          };
+          xhr.send(formData);
+          return false;
+        };
+
+        // POST /api/store
         this.uploadFile = () => {
             this.togglePost()
             const xhr = new XMLHttpRequest();
@@ -57,27 +79,10 @@
             return false;
         };
 
-        this.submitFile = () => {
-            this.togglePost()
-            const xhr = new XMLHttpRequest();
-            const formData = new FormData();
-            const file = document.getElementById('file').files[0];
-            formData.append('file', file);
-            xhr.open('POST', '/api/classify');
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        this.parsedRes = JSON.parse(xhr.response);
-                    }
-                }
-            };
-            xhr.send(formData);
-            return false;
-        };
 
         function handleResponse(response) {
             let parsedRes = JSON.parse(response);
-            console.log(parsedRes);
+            // console.log(parsedRes);
         }
     }
 }());

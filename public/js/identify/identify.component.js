@@ -10,15 +10,9 @@
       controller: controller
     })
 
-    // controller.$inject = ['$http']
+    // controller.$inject = ['$scope', '$http', 'myService']
+    function controller($scope, $http, myService) {
 
-    function controller() {
-    const vm = this
-    vm.$onInit = onInit
-
-    function onInit($http) {
-      console.log('connecteddddddd');
     }
-  }
-  
+
 }());

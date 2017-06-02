@@ -2,18 +2,24 @@
     'use strict'
 
     angular.module('app').component('info', {
-        // require: {
-        //   appConsole: '^console'
-        // },
+        require: {
+            parent: '^identify'
+        },
+        bindings: {
+            fuck: '<'
+        },
         templateUrl: '/js/info/info.template.html',
         controller: controller
     })
 
-    controller.$inject = ['service'];
-    function controller(service) {
+    controller.$inject = ['$scope', 'myService', '$rootScope'];
+    function controller($scope, myService, $rootScope) {
+        this.parsedRes = myService.parsedRes;
         this.$onInit = () => {
-          console.log(service);
+            this.confidence = 'weeeee';
+        };
+        this.update = () => {
+            this.confidence = myService.parsedRes.confidence;
         }
     }
-
 }());
