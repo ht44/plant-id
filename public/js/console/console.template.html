@@ -1,8 +1,9 @@
 <div class="console">
     <div class="image-view">
-        <img src="https://davisla6.files.wordpress.com/2015/08/arundo-donax-leaf.jpg" alt="plant">
+        <!-- <img ng-if="$ctrl.payload.properties.head.name !== Ligustrum lucidum" src="https://davisla6.files.wordpress.com/2015/08/arundo-donax-leaf.jpg" alt="plant"> -->
+        <img ng-src="/images/{{$ctrl.payload.properties.head.name.replace(' ', '_') + '.jpg'}}" alt="plant">
     </div>
-    <div class- "image-form">
+    <div class="image-form">
         <!-- <form action="/api/classify" method="POST" enctype="multipart/form-data"> -->
         <form ng-show="$ctrl.displayed" ng-hide="!$ctrl.displayed" name="upload" ng-submit="$ctrl.submitFile()" novalidate>
             <input id="file" name="file" type="file">
@@ -14,3 +15,49 @@
 
     </div>
 </div>
+<article class="info">
+  <h1>{{$ctrl.payload.properties.head.name}}</h1>
+  <h2>{{$ctrl.payload.properties.head.common}}</h2>
+  <br>
+  <p>{{$ctrl.payload.properties.head.duration}}</p>
+  <p>{{$ctrl.payload.properties.head.habit}}</p>
+  <p>{{$ctrl.payload.properties.head.family}}</p>
+  <br>
+  <br>
+
+  <hr>
+  <h2>Description: </h2>
+  <p>{{$ctrl.payload.properties.description.main}}</p>
+  <br>
+  <h3>Biology and Spread:</h3>
+  <p>{{$ctrl.payload.properties.description.biology_and_spread}}</p>
+  <br>
+  <h3>Ecological Threat:</h3>
+  <p>{{$ctrl.payload.properties.description.ecological_threat}}</p>
+  <br>
+  <h3>US Habitat: </h3>
+  <p>{{$ctrl.payload.properties.description.us_habitat}}</p>
+  <br>
+  <h3>History: </h3>
+  <p>{{$ctrl.payload.properties.description.history}}</p>
+  <hr>
+  <br>
+  <h2>Distribution:</h2>
+  <br>
+  <br>
+
+  <p>{{$ctrl.payload.properties.distribution.distribution}}</p>
+  <p>{{$ctrl.payload.properties.distribution.native_origin}}</p>
+  <p>{{$ctrl.payload.properties.distribution.us_nativity}}</p>
+  <p>{{$ctrl.payload.properties.distribution.us_present}}</p>
+  <br>
+  <br>
+  <br>
+  <hr>
+  <h2>Management: </h2>
+  <br>
+  <p>{{$ctrl.payload.properties.management.main}}</p>
+
+  <button ng-click="$ctrl.weenar()">asldifjhm</button>
+</article>
+<!-- <info parsed="$ctrl.parsedRes"></info> -->

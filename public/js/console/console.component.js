@@ -11,9 +11,16 @@
 
     controller.$inject = ['$http', '$stateParams', '$state', '$scope', 'myService', '$rootScope']
     function controller($http, $stateParams, $state, $scope, myService, $rootScope) {
+        const vm = this;
         this.$onInit = () => {
             this.response = undefined;
-            this.parsedRes = undefined;
+            this.payload = {
+              properties: {
+                head: {
+                  name: "Triadica sebifera"
+                }
+              }
+            };
             this.displayed = true;
             // console.log('initttt');
         }
@@ -21,6 +28,16 @@
         this.togglePost = () => {
             this.displayed = !this.displayed;
         };
+
+        this.weenar = () => {
+            console.log('weenar ran');
+            console.log(this);
+            console.log($scope);
+        };
+
+        this.update = (payload) => {
+          this.fuck = payload.confidence;
+        }
 
         // POST /api/classify
         this.submitFile = () => {
@@ -33,8 +50,11 @@
           xhr.onreadystatechange = () => {
             if (xhr.readyState == 4) {
               if (xhr.status == 200) {
+                let payload = JSON.parse(xhr.response);
+                this.payload = payload;
+                console.log(payload);
+                $scope.$apply();
                 console.log(xhr.response);
-                myService.parsedRes = JSON.parse(xhr.response);
               }
             }
           };
@@ -54,16 +74,21 @@
             // const resHead = this.responseObj;
             // console.log(JSON.parse(resHead));
             // const species = resHead;
-            let lat = this.parsedRes.coordinates[0];
-            let lng = this.parsedRes.coordinates[1];
-            let confidence = this.parsedRes.confidence;
-            let name = this.parsedRes.properties.name;
-            // console.log(this.parsedRes.properties.head.common);
-            // console.log(this.parsedRes.confidence);
-            // console.log(this.parsedRes.coordinates);
+            console.log(this.payload);
+            if (this.payload.coordinates) {
+              let lat = this.payload.coordinates[0];
+              let lng = this.payload.coordinates[1];
+              formData.append('lat', lat);
+              formData.append('lng', lng);
+            }
+
+            let confidence = this.payload.confidence;
+            let name = this.payload.properties.head.name;
+            // console.log(this.payload.properties.head.common);
+            // console.log(this.payload.confidence);
+            // console.log(this.payload.coordinates);
             formData.append('file', file);
-            formData.append('lat', lat);
-            formData.append('lng', lng);
+
             formData.append('confidence', confidence);
             formData.append('name', name);
             xhr.open('POST', '/api/store');
@@ -81,8 +106,8 @@
 
 
         function handleResponse(response) {
-            let parsedRes = JSON.parse(response);
-            // console.log(parsedRes);
+            // let payload = JSON.parse(response);
+            console.log(response);
         }
     }
 }());

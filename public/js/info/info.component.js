@@ -3,10 +3,10 @@
 
     angular.module('app').component('info', {
         require: {
-            parent: '^identify'
+          parent: '^console'
         },
         bindings: {
-            fuck: '<'
+            parsed: '<'
         },
         templateUrl: '/js/info/info.template.html',
         controller: controller
@@ -17,9 +17,14 @@
         this.parsedRes = myService.parsedRes;
         this.$onInit = () => {
             this.confidence = 'weeeee';
+            this.parsed = JSON.stringify({name: 'hayden'});
         };
-        this.update = () => {
-            this.confidence = myService.parsedRes.confidence;
+        this.test = () => {
+            console.log(this);
+            console.log($scope);
         };
+
+
+
     }
 }());

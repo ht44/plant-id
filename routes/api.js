@@ -17,10 +17,7 @@ const geoJson = require('../custom_modules/geotagging');
 ///////////////////////////////////////////////////////////////////////////////
 
 const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
-const visual_recognition = new VisualRecognitionV3({
-    api_key: process.env.API_KEY,
-    version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20
-});
+const visual_recognition = new VisualRecognitionV3({api_key: process.env.API_KEY, version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20});
 
 ///////////////////////////////////////////////////////////////////////////////
 // STORAGE
@@ -37,9 +34,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({
-    storage: storage
-});
+const upload = multer({storage: storage});
 
 ///////////////////////////////////////////////////////////////////////////////
 // DATABASE
@@ -70,7 +65,8 @@ cloudant = require('cloudant')(dbCredentials.url);
 cloudant.db.create(dbCredentials.dbName, (err, res) => {
     if (err)
         console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
-});
+    }
+);
 
 db_class = cloudant.use(dbCredentials.classDB);
 db_obs = cloudant.use(dbCredentials.obsDB);
@@ -81,61 +77,71 @@ db_test = cloudant.use(dbCredentials.testDB);
 
 router.post('/classify', upload.single('file'), (req, res) => {
     const temp = {
-      "custom_classes": 24,
-      "images": [
-        {
-          "classifiers": [
+        "custom_classes": 24,
+        "images": [
             {
-              "classes": [
-                {
-                  "class": "Ligustrum lucidum",
-                  "score": 0.992155
-                }, {
-                  "class": "Ligustrum quihoui",
-                  "score": 0.664165
-                }, {
-                  "class": "Melia azedarach",
-                  "score": 0.560582
-                }, {
-                  "class": "Rapistrum rugosum",
-                  "score": 0.986212
-                }, {
-                  "class": "Torilis arvensis",
-                  "score": 0.989952
-                }
-              ],
-              "classifier_id": "TexasInvasives_190947980",
-              "name": "Texas Invasives"
+                "classifiers": [
+                    {
+                        "classes": [
+                            {
+                                "class": "Ailanthus altissima",
+                                "score": 0.992155
+                            }, {
+                                "class": "Ligustrum quihoui",
+                                "score": 0.664165
+                            }, {
+                                "class": "Melia azedarach",
+                                "score": 0.560582
+                            }, {
+                                "class": "Rapistrum rugosum",
+                                "score": 0.986212
+                            }, {
+                                "class": "Albizia julibrissin",
+                                "score": 1.989952
+                            }
+                        ],
+                        "classifier_id": "TexasInvasives_190947980",
+                        "name": "Texas Invasives"
+                    }
+                ],
+                "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
             }
-          ],
-          "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
-        }
-      ],
-      "images_processed": 1
+        ],
+        "images_processed": 1
     }
     const params = {
         image_file: fs.createReadStream(req.file.path),
         classifier_ids: 'TexasInvasives_190947980'
     }
-
     let extraction = geoJson.extractData(req.file.path).then((data) => {
-        let coordinates;
-        if (data.gps.GPSLongitude) {
-            coordinates = geoJson.extractLatLng(data);
-        }
         let match;
-        // visual_recognition.classify(params, (error, results) => {
-            // if (error) {
-            //     console.error(error);
-            // } else {
-                match = util.calcMatch(temp);
+        let coordinates = geoJson.extractLatLng(data);
+        visual_recognition.classify(params, (error, results) => {
+            if (error) {
+                console.error(error);
+            } else {
+                match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
+                    console.log('DIDWE GET INDF');
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
                 });
-            // }
-        // });
+            }
+        });
     }).catch((error) => {
-        res.json(error);
+        console.error(error);
+        let coordinates;
+        let match;
+        visual_recognition.classify(params, (error, results) => {
+            if (error) {
+                console.error(error);
+            } else {
+                match = util.calcMatch(results);
+                db_class.get(match.class.replace(' ', '_'), (err, body) => {
+                    console.log('DIDWE GET INDF');
+                    res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
+                });
+            }
+        });
     });
 });
 
@@ -155,24 +161,45 @@ router.post('/store', upload.single('file'), (req, res) => {
     }, (err, response) => {
         console.log(err);
     });
-
-    db_test.insert({
-        "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [req.body.lng, req.body.lat]
-        },
-        "properties": {
-            'date': new Date(),
-            'species': req.body.name,
-            'confidence': req.body.confidence,
-            'valid_name': 'user_verified'
-        }
-    }, function(err, body) {
-        console.log(err);
-        if (!err)
-            res.json(body);
-    })
+    if (req.body.lng) {
+        db_test.insert({
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [req.body.lng, req.body.lat]
+            },
+            "properties": {
+                'date': new Date(),
+                'species': req.body.name,
+                'confidence': req.body.confidence,
+                'valid_name': 'user_verified'
+            }
+        }, function(err, body) {
+            console.log(err);
+            if (!err)
+                res.json(body);
+            }
+        )
+    } else {
+        db_test.insert({
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": ""
+            },
+            "properties": {
+                'date': new Date(),
+                'species': req.body.name,
+                'confidence': req.body.confidence,
+                'valid_name': 'user_verified'
+            }
+        }, function(err, body) {
+            console.log(err);
+            if (!err)
+                res.json(body);
+            }
+        )
+    }
 });
 
 ///////////////////////////////////////////////////////////////////////////////
