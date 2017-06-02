@@ -26,15 +26,16 @@
 </div>
 <article class="info">
   <h1>{{$ctrl.payload.properties.head.name}}</h1>
-  <h2>{{$ctrl.payload.properties.head.common}}</h2>
+  <h2>Common: {{$ctrl.payload.properties.head.common}}</h2>
   <br>
-  <p>{{$ctrl.payload.properties.head.duration}}</p>
-  <p>{{$ctrl.payload.properties.head.habit}}</p>
-  <p>{{$ctrl.payload.properties.head.family}}</p>
+  <p>Duration: {{$ctrl.payload.properties.head.duration}}</p>
+  <p>Habit: {{$ctrl.payload.properties.head.habit}}</p>
+  <p>Family: {{$ctrl.payload.properties.head.family}}</p>
   <br>
   <br>
 
   <hr>
+  <br>
   <h2>Description: </h2>
   <p>{{$ctrl.payload.properties.description.main}}</p>
   <br>
@@ -49,24 +50,33 @@
   <br>
   <h3>History: </h3>
   <p>{{$ctrl.payload.properties.description.history}}</p>
+  <br>
   <hr>
   <br>
   <h2>Distribution:</h2>
   <br>
   <br>
-
   <p>{{$ctrl.payload.properties.distribution.distribution}}</p>
+  <br>
+  <h3>Native Origin: </h3>
+  <br>
   <p>{{$ctrl.payload.properties.distribution.native_origin}}</p>
+  <br>
+  <h3>US Nativity: </h3>
+  <br>
   <p>{{$ctrl.payload.properties.distribution.us_nativity}}</p>
+  <br>
+  <h3>US Presence: </h3>
+  <br>
   <p>{{$ctrl.payload.properties.distribution.us_present}}</p>
-  <br>
-  <br>
   <br>
   <hr>
   <h2>Management: </h2>
   <br>
   <p>{{$ctrl.payload.properties.management.main}}</p>
-
-  <button ng-click="$ctrl.weenar()">asldifjhm</button>
+  <br>
+  <br>
+  <br>
+  <br>
 </article>
 <!-- <info parsed="$ctrl.parsedRes"></info> -->
