@@ -121,9 +121,20 @@ a:active{
 	border-right: 2px outset grey;
 	float: left;
 }
+
 .console img {
 	border-bottom: 2px outset grey;
 	width: 100%;
+}
+
+.console form {
+	width: 100%;
+	display: flex;
+}
+
+.console input {
+	height: 300px;
+	width: 500px;
 }
 .console input:focus {
 	outline: 0;
