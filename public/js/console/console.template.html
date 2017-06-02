@@ -9,9 +9,11 @@
             <input id="file" name="file" type="file">
             <input name="upload" type="submit" value="Upload">
         </form>
-        <form ng-show="!$ctrl.displayed" ng-hide="$ctrl.displayed" ng-submit="$ctrl.uploadFile()" novalidate>
-            <input type="submit" value="add to our database">
-        </form>
+        <div ng-show="!$ctrl.displayed" ng-hide="$ctrl.displayed">
+            <h3>Add to database?</h3>
+            <button id="yes" ng-click="$ctrl.uploadFile()">Yes</button>
+            <button id="no" ng-click="$ctrl.togglePost()">No</button>
+        </div>
 
     </div>
 </div>

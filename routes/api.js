@@ -116,32 +116,32 @@ router.post('/classify', upload.single('file'), (req, res) => {
     let extraction = geoJson.extractData(req.file.path).then((data) => {
         let match;
         let coordinates = geoJson.extractLatLng(data);
-        visual_recognition.classify(params, (error, results) => {
-            if (error) {
-                console.error(error);
-            } else {
-                match = util.calcMatch(results);
+        // visual_recognition.classify(params, (error, results) => {
+        //     if (error) {
+        //         console.error(error);
+        //     } else {
+                match = util.calcMatch(temp);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     console.log('DIDWE GET INDF');
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
                 });
-            }
-        });
+        //     }
+        // });
     }).catch((error) => {
         console.error(error);
         let coordinates;
         let match;
-        visual_recognition.classify(params, (error, results) => {
-            if (error) {
-                console.error(error);
-            } else {
+        // visual_recognition.classify(params, (error, results) => {
+        //     if (error) {
+        //         console.error(error);
+        //     } else {
                 match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     console.log('DIDWE GET INDF');
                     res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
                 });
-            }
-        });
+        //     }
+        // });
     });
 });
 

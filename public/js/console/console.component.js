@@ -9,8 +9,8 @@
         controller: controller
     })
 
-    controller.$inject = ['$http', '$stateParams', '$state', '$scope', 'myService', '$rootScope']
-    function controller($http, $stateParams, $state, $scope, myService, $rootScope) {
+    controller.$inject = ['$http', '$stateParams', '$state', '$scope', '$rootScope']
+    function controller($http, $stateParams, $state, $scope, $rootScope) {
         const vm = this;
         this.$onInit = () => {
             this.response = undefined;
@@ -29,22 +29,15 @@
             this.displayed = !this.displayed;
         };
 
-        this.weenar = () => {
-            console.log('weenar ran');
-            console.log(this);
-            console.log($scope);
-        };
-
-        this.update = (payload) => {
-          this.fuck = payload.confidence;
-        }
-
         // POST /api/classify
         this.submitFile = () => {
+          const file = document.getElementById('file').files[0];
+          if (!file) {
+            return;
+          }
           this.togglePost()
           const xhr = new XMLHttpRequest();
           const formData = new FormData();
-          const file = document.getElementById('file').files[0];
           formData.append('file', file);
           xhr.open('POST', '/api/classify');
           xhr.onreadystatechange = () => {
@@ -63,18 +56,13 @@
         };
 
         // POST /api/store
-        this.uploadFile = () => {
-            this.togglePost()
+        this.uploadFile = (event) => {
+            this.togglePost();
             const xhr = new XMLHttpRequest();
             const formData = new FormData();
             const file = document.getElementById('file').files[0];
-            // const lat = this.responseObj.coordinates[0];
-            // const lng = this.responseObj.coordinates[1];
-            // const confidence = this.responseObj.confidence;
-            // const resHead = this.responseObj;
-            // console.log(JSON.parse(resHead));
-            // const species = resHead;
-            console.log(this.payload);
+            document.getElementById('file').value = null;
+            console.log('WINNNNNNNN');
             if (this.payload.coordinates) {
               let lat = this.payload.coordinates[0];
               let lng = this.payload.coordinates[1];
@@ -93,13 +81,12 @@
             formData.append('name', name);
             xhr.open('POST', '/api/store');
             xhr.onreadystatechange = () => {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        handleResponse(xhr.response);
-                    }
+              if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                  handleResponse(xhr.response);
                 }
+              }
             };
-
             xhr.send(formData);
             return false;
         };

@@ -12,9 +12,8 @@
         controller: controller
     })
 
-    controller.$inject = ['$scope', 'myService', '$rootScope'];
-    function controller($scope, myService, $rootScope) {
-        this.parsedRes = myService.parsedRes;
+    controller.$inject = ['$scope', '$rootScope'];
+    function controller($scope, $rootScope) {
         this.$onInit = () => {
             this.confidence = 'weeeee';
             this.parsed = JSON.stringify({name: 'hayden'});
