@@ -40,7 +40,7 @@ const vr = new VR3({
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './public/uploads/')
+        cb(null, './uploads/')
     },
     filename: function(req, file, cb) {
         crypto.pseudoRandomBytes(16, function(err, raw) {
