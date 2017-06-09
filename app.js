@@ -24,7 +24,6 @@ fs.readFile('./temp.json', (err, data) => {
     body: data,
     method: 'POST'
   }, (err, response) => {
-    console.log(response.headers['x-subject-token']);
     app.set('storageToken', response.headers['x-subject-token']);
   });
 });

@@ -1,6 +1,8 @@
 //
 'use strict';
 require('dotenv').load();
+//
+
 const fs = require('fs');
 const express = require('express');
 const request = require('request');
@@ -9,15 +11,28 @@ const crypto = require('crypto');
 const mime = require('mime');
 const bodyParser = require('body-parser');
 
-// MINI-APP
-const router = express.Router();
+const util = require('../custom_modules/util');
 const geoJson = require('../custom_modules/geotagging');
-///////////////////////////////////////////////////////////////////////////////
-// WATSON
-///////////////////////////////////////////////////////////////////////////////
+const connect = require('../custom_modules/connect');
 
-const VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
-const visual_recognition = new VisualRecognitionV3({api_key: 'b7d2a60bfb012236082e06186d6e651617590640', version_date: VisualRecognitionV3.VERSION_DATE_2016_05_20});
+const credentials = connect.getCredentials();
+const sanitizeInput = util.sanitizeInput;
+const dbUrl = credentials.cloudantNoSQLDB[0].credentials.url;
+
+const cloudant = require('cloudant')(dbUrl);
+const db_class = cloudant.use('classes');
+const db_obs = cloudant.use('observations');
+const db_test = cloudant.use('test');
+
+const router = express.Router();
+router.use(bodyParser.urlencoded({extended: true}))
+router.use(bodyParser.json());
+
+const VR3 = require('watson-developer-cloud/visual-recognition/v3');
+const vr = new VR3({
+  api_key: credentials.watson_vision_combined[0].credentials.api_key,
+  version_date: VR3.VERSION_DATE_2016_05_20
+});
 
 ///////////////////////////////////////////////////////////////////////////////
 // STORAGE
@@ -25,7 +40,7 @@ const visual_recognition = new VisualRecognitionV3({api_key: 'b7d2a60bfb01223608
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads/')
+        cb(null, './public/uploads/')
     },
     filename: function(req, file, cb) {
         crypto.pseudoRandomBytes(16, function(err, raw) {
@@ -36,41 +51,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-///////////////////////////////////////////////////////////////////////////////
-// DATABASE
-///////////////////////////////////////////////////////////////////////////////
-
-let db_obs,
-    db_class,
-    db_test,
-    cloudant;
-const dbCredentials = {
-
-    classDB: 'classes',
-    obsDB: 'observations',
-    testDB: 'test'
-};
-
-// custom exports
-const util = require('../custom_modules/util');
-const dbInit = require('../custom_modules/db_init');
-
-// functions
-const sanitizeInput = util.sanitizeInput;
-const initDBConnection = dbInit.initDBConnection;
-const getDBCredentialsUrl = dbInit.getDBCredentialsUrl;
-dbCredentials.url = initDBConnection(getDBCredentialsUrl);
-cloudant = require('cloudant')(dbCredentials.url);
-// check if DB exists if not create
-cloudant.db.create(dbCredentials.dbName, (err, res) => {
-    if (err)
-        console.log('Could not create new db: ' + dbCredentials.dbName + ', it might already exist.');
-    }
-);
-
-db_class = cloudant.use(dbCredentials.classDB);
-db_obs = cloudant.use(dbCredentials.obsDB);
-db_test = cloudant.use(dbCredentials.testDB);
 ///////////////////////////////////////////////////////////////////////////////
 // API
 ///////////////////////////////////////////////////////////////////////////////
@@ -110,58 +90,71 @@ router.post('/classify', upload.single('file'), (req, res) => {
         "images_processed": 1
     }
     const params = {
-        image_file: fs.createReadStream(req.file.path),
+        image_file: fs.createReadStream('./' + req.file.path),
         classifier_ids: 'TexasInvasives_190947980'
     }
-    let extraction = geoJson.extractData(req.file.path).then((data) => {
-      console.log('we got in hereeee');
+    geoJson.extractData(req.file.path).then((data) => {
         let match;
         let coordinates = geoJson.extractLatLng(data) || '';
-        visual_recognition.classify(params, (error, results) => {
+        vr.classify(params, (error, results) => {
             if (error) {
                 console.error(error);
             } else {
                 match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
-                    console.log('DIDWE GET INDF');
-                    res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
+                    res.json({
+                      coordinates: coordinates,
+                      properties: body.data,
+                      confidence: match.score,
+                      path: req.file.path,
+                      filename: req.file.filename,
+                      size: req.file.size
+                    });
                 });
             }
         });
     }).catch((error) => {
-      console.log('naw in hereeee');
-        console.error(error);
         let coordinates = '';
         let match;
-        visual_recognition.classify(params, (error, results) => {
+        vr.classify(params, (error, results) => {
             if (error) {
                 console.error(error);
             } else {
                 match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
-                    console.log('DIDWE GET INDF');
-                    res.json({coordinates: coordinates, properties: body.data, confidence: match.score});
+                    res.json({
+                      coordinates: coordinates,
+                      properties: body.data,
+                      confidence: match.score,
+                      path: req.file.path,
+                      filename: req.file.filename,
+                      size: req.file.size
+                    });
                 });
             }
         });
     });
 });
 
-router.post('/store', upload.single('file'), (req, res) => {
-    console.log('got thereeee');
-    let file = fs.createReadStream(req.file.path);
+router.post('/store', (req, res) => {
+    console.log(req.body);
+    let file = fs.createReadStream('./' + req.body.path);
     let results;
     request({
-        url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.file.filename}`,
+        url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.body.filename}`,
         method: 'PUT',
         headers: {
             'X-Auth-Token': req.app.get('storageToken'),
             'Content-type': 'application/octet-stream',
-            'Content-length': req.file.size
+            'Content-length': req.body.size
         },
         body: file
     }, (err, response) => {
-        console.log(err);
+        if (err) {
+          console.error(err);
+        } else {
+          fs.unlink('./' + req.body.path);
+        }
     });
     if (req.body.lng) {
         db_test.insert({
@@ -205,7 +198,6 @@ router.post('/store', upload.single('file'), (req, res) => {
 });
 
 ///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
+// FIN
 module.exports = router;
+///////////////////////////////////////////////////////////////////////////////

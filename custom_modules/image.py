@@ -53,11 +53,6 @@ class ImageFactory:
             os.mkdir(os.path.join(self.output_path,
                                   image_set.basename))
         os.mkdir(os.path.join(self.output_path, 'zips'))
-
-
-
-
-
     def conform(self, image, max_w):
         w, h = image.size
         if w >= max_w:

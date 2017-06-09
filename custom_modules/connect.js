@@ -5,7 +5,8 @@ const dbInit = module.exports = (() => {
 
   return {
     initDBConnection: initDBConnection,
-    getDBCredentialsUrl: getDBCredentialsUrl
+    getDBCredentialsUrl: getDBCredentialsUrl,
+    getCredentials: getCredentials
   };
 
   /////////////////////////////////////////////////////////////////////////////
@@ -23,5 +24,15 @@ const dbInit = module.exports = (() => {
   function getDBCredentialsUrl(jsonData) {
       var vcapServices = JSON.parse(jsonData);
       return vcapServices.cloudantNoSQLDB[0].credentials.url;
+  }
+
+  function getCredentials(jsonData) {
+    if (process.env.VCAP_SERVICES) {
+        return JSON.parse(process.env.VCAP_SERVICES);
+    } else {
+        // Alternately you could point to a local database here instead of Bluemix
+        // url will be in this format: https://username:password@xxxxxxxxx-bluemix.cloudant.com
+        return JSON.parse(fs.readFileSync("vcap-local.json", "utf-8"));
+    }
   }
 })();
