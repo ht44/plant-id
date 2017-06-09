@@ -7,9 +7,10 @@
         },
         templateUrl: '/js/console/console.template.html',
         controller: controller
-    })
+    });
+    controller.$inject = ['$http', '$stateParams',
+                          '$state', '$scope', '$rootScope'];
 
-    controller.$inject = ['$http', '$stateParams', '$state', '$scope', '$rootScope']
     function controller($http, $stateParams, $state, $scope, $rootScope) {
         const vm = this;
         this.$onInit = () => {
@@ -66,6 +67,7 @@
         }
 
         this.togglePost = () => {
+            document.getElementById('file').value = null;
             this.displayed = !this.displayed;
         };
 
@@ -96,9 +98,7 @@
         // POST /api/store
         this.uploadFile = () => {
             this.togglePost();
-            let hayden = JSON.stringify(this.payload);
             const xhr = new XMLHttpRequest();
-            document.getElementById('file').value = null;
 
             // if (this.payload.coordinates !== '') {
             //   let lat = this.payload.coordinates[0];
@@ -127,6 +127,5 @@
             }));
             return false;
         };
-
     }
 }());
