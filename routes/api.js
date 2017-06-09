@@ -56,39 +56,7 @@ const upload = multer({storage: storage});
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
-    const temp = {
-        "custom_classes": 24,
-        "images": [
-            {
-                "classifiers": [
-                    {
-                        "classes": [
-                            {
-                                "class": "Ailanthus altissima",
-                                "score": 0.992155
-                            }, {
-                                "class": "Ligustrum quihoui",
-                                "score": 0.664165
-                            }, {
-                                "class": "Melia azedarach",
-                                "score": 0.560582
-                            }, {
-                                "class": "Rapistrum rugosum",
-                                "score": 0.986212
-                            }, {
-                                "class": "Albizia julibrissin",
-                                "score": 0.989952
-                            }
-                        ],
-                        "classifier_id": "TexasInvasives_190947980",
-                        "name": "Texas Invasives"
-                    }
-                ],
-                "image": "b8772d41b377800b9769ba4deb22b5921496212536439.jpeg"
-            }
-        ],
-        "images_processed": 1
-    }
+
     const params = {
         image_file: fs.createReadStream('./' + req.file.path),
         classifier_ids: 'TexasInvasives_190947980'

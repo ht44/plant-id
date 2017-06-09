@@ -18,7 +18,7 @@ const app = express();
 // GET STORAGE TOKEN
 ///////////////////////////////////////////////////////////////////////////////
 
-fs.readFile('./temp.json', (err, data) => {
+fs.readFile('./storage_auth.json', (err, data) => {
   request({
     url: 'https://identity.open.softlayer.com/v3/auth/tokens',
     body: data,

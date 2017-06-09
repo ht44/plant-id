@@ -14,9 +14,6 @@
       this.$onInit = () => {
         console.log('sidebar loaded');
       }
-      this.addToList = () => {
-          console.log(vm.email.userEmail)
-      }
   }
 
 }());

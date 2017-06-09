@@ -1,6 +1,6 @@
 node_modules
 vcap-local.json
 .env
-init_storage.sh
-catalog.js
+storage_auth.json
+filler.js
 .DS_Store
