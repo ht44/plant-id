@@ -61,7 +61,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
         image_file: fs.createReadStream('./' + req.file.path),
         classifier_ids: 'TexasInvasives_190947980'
     }
-    geoJson.extractData(req.file.path).then((data) => {
+    geoJson.extractData('./' + req.file.path).then((data) => {
         let match;
         let coordinates = geoJson.extractLatLng(data) || '';
         vr.classify(params, (error, results) => {
