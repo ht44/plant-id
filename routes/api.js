@@ -136,6 +136,16 @@ router.post('/classify', upload.single('file'), (req, res) => {
     });
 });
 
+router.delete('/store', (req, res) => {
+  fs.unlink('./' + req.body.path, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.json(200);
+    }
+  });
+});
+
 router.post('/store', (req, res) => {
     console.log(req.body);
     let file = fs.createReadStream('./' + req.body.path);
@@ -152,6 +162,7 @@ router.post('/store', (req, res) => {
     }, (err, response) => {
         if (err) {
           console.error(err);
+          fs.unlink('./' + req.body.path);
         } else {
           fs.unlink('./' + req.body.path);
         }

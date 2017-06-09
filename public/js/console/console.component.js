@@ -95,6 +95,26 @@
             return false;
         };
 
+        // DELETE /api/store
+
+        this.deleteFile = () => {
+          this.togglePost();
+          const xhr = new XMLHttpRequest();
+          xhr.open('DELETE', '/api/store');
+          xhr.setRequestHeader("Content-type", "application/json");
+          xhr.onreadystatechange = () => {
+              if (xhr.readyState == 4) {
+                  if (xhr.status == 200) {
+                      console.log(xhr.status);
+                  }
+              }
+          };
+          xhr.send(JSON.stringify({
+              path: this.payload.path
+          }));
+          return false;
+        }
+
         // POST /api/store
         this.uploadFile = () => {
             this.togglePost();
