@@ -116,7 +116,8 @@ router.delete('/store', (req, res) => {
 
 router.post('/store', (req, res) => {
     console.log(req.body);
-    let file = fs.createReadStream('./' + req.body.path);
+    console.log(req.body.path);
+    let file = fs.createReadStream(req.body.path);
     let results;
     request({
         url: `https://dal.objectstorage.open.softlayer.com/v1/AUTH_7defd160d60c4e43b5f9dd6691e7e1a0/images/${req.body.filename}`,

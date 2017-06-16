@@ -86,6 +86,7 @@
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
                         this.payload = JSON.parse(xhr.response);
+                        console.log(this.payload);
                         $scope.$apply();
                         console.log(xhr.status);
                     }
