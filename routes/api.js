@@ -58,7 +58,7 @@ const upload = multer({storage: storage});
 router.post('/classify', upload.single('file'), (req, res) => {
 
     const params = {
-        image_file: fs.createReadStream(req.file.path),
+        image_file: fs.createReadStream('./' + req.file.path),
         classifier_ids: 'TexasInvasives_190947980'
     }
     geoJson.extractData('./' + req.file.path).then((data) => {
