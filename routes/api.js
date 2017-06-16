@@ -75,7 +75,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
                       coordinates: coordinates,
                       properties: body.data,
                       confidence: match.score,
-                      path: req.file.path,
+                      path: newPath,
                       filename: req.file.filename,
                       size: req.file.size
                     });
@@ -95,7 +95,7 @@ router.post('/classify', upload.single('file'), (req, res) => {
                       coordinates: coordinates,
                       properties: body.data,
                       confidence: match.score,
-                      path: req.file.path,
+                      path: newPath,
                       filename: req.file.filename,
                       size: req.file.size
                     });
