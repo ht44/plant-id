@@ -56,12 +56,13 @@ const upload = multer({storage: storage});
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
-
+    let newPath = './' + req.file.path;
+    console.log(newPath);
     const params = {
-        image_file: fs.createReadStream('./' + req.file.path),
+        image_file: fs.createReadStream(newPath),
         classifier_ids: 'TexasInvasives_190947980'
     }
-    geoJson.extractData('./' + req.file.path).then((data) => {
+    geoJson.extractData(newPath).then((data) => {
         let match;
         let coordinates = geoJson.extractLatLng(data) || '';
         vr.classify(params, (error, results) => {
