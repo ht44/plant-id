@@ -24,10 +24,8 @@ class DataSet:
                 continue
             self.memory.append(ImageSet(root, files))
         return self
-    def get_name(self):
-        return self.basename.replace('_', ' ')
     def get_names(self):
-        return list(map(lambda s: s.replace('_', ' '),
+        return list(map(lambda s: os.path.basename(s).replace('_', ' '),
                         self.children))
 
 class ImageSet(DataSet):
@@ -42,17 +40,19 @@ class ImageSet(DataSet):
         del image
         return self
 
-class ImageFactory:
+class ImageProcessor:
     def __init__(self, data_set, output_path):
         self.memory = []
         self.data_set = data_set[:]
         self.output_path = output_path
+
     def gen_tree(self):
         os.mkdir(self.output_path)
         for image_set in self.data_set:
             os.mkdir(os.path.join(self.output_path,
                                   image_set.basename))
         os.mkdir(os.path.join(self.output_path, 'zips'))
+
     def conform(self, image, max_w):
         w, h = image.size
         if w >= max_w:
@@ -61,15 +61,7 @@ class ImageFactory:
         else:
             return image
 
-    def conform_h(self, image, max_h):
-        w, h = image.size
-        if h > max_h:
-            new_size = math.floor(w * (max_h / h))
-            return image.resize(new_size)
-        else:
-            return image
-
-    def read_sizes(self):
+    def read_dimensions(self):
         result = []
         for image_set in self.data_set:
             for child in image_set.children:
@@ -77,6 +69,7 @@ class ImageFactory:
                 result.append(image.size)
                 image.close()
         return sorted(result)
+
     def batch_conform(self, max_w, kind='jpeg'):
         for image_set in self.data_set:
             destination = os.path.join(self.output_path,
@@ -86,6 +79,7 @@ class ImageFactory:
                 filename = os.path.basename(image.filename)
                 self.conform(image, max_w).save(os.path.join(destination, filename), kind)
                 image.close()
+
     def batch_compress(self):
         for image_set in self.data_set:
             base = os.path.join(self.output_path,
