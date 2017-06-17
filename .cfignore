@@ -1,6 +1,5 @@
 node_modules
 vcap-local.json
 .env
-storage_auth.json
 filler.js
 .DS_Store

@@ -8,3 +8,4 @@ applications:
   disk_quota: 1024M
   services:
   - plant-id-cloudantNoSQLDB
+  - Object Storage-56
