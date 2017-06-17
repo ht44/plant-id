@@ -30,10 +30,7 @@ router.use(bodyParser.urlencoded({extended: true}))
 router.use(bodyParser.json());
 
 const VR3 = require('watson-developer-cloud/visual-recognition/v3');
-const vr = new VR3({
-  api_key: credentials.watson_vision_combined[0].credentials.api_key,
-  version_date: VR3.VERSION_DATE_2016_05_20
-});
+const vr = new VR3({api_key: credentials.watson_vision_combined[0].credentials.api_key, version_date: VR3.VERSION_DATE_2016_05_20});
 
 ///////////////////////////////////////////////////////////////////////////////
 // STORAGE
@@ -73,12 +70,12 @@ router.post('/classify', upload.single('file'), (req, res) => {
                 match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     res.json({
-                      coordinates: coordinates,
-                      properties: body.data,
-                      confidence: match.score,
-                      path: newPath,
-                      filename: req.file.filename,
-                      size: req.file.size
+                        coordinates: coordinates,
+                        properties: body.data,
+                        confidence: match.score,
+                        path: newPath,
+                        filename: req.file.filename,
+                        size: req.file.size
                     });
                 });
             }
@@ -93,19 +90,18 @@ router.post('/classify', upload.single('file'), (req, res) => {
                 match = util.calcMatch(results);
                 db_class.get(match.class.replace(' ', '_'), (err, body) => {
                     res.json({
-                      coordinates: coordinates,
-                      properties: body.data,
-                      confidence: match.score,
-                      path: newPath,
-                      filename: req.file.filename,
-                      size: req.file.size
+                        coordinates: coordinates,
+                        properties: body.data,
+                        confidence: match.score,
+                        path: newPath,
+                        filename: req.file.filename,
+                        size: req.file.size
                     });
                 });
             }
         });
     });
 });
-
 
 router.post('/store', (req, res) => {
     console.log('here: ', req.body.path);
@@ -122,63 +118,64 @@ router.post('/store', (req, res) => {
         body: file
     }, (err, response) => {
         if (err) {
-          console.log(err);
-          fs.unlink(req.body.path);
-          res.json('hoooo')
+            console.error(err);
+            fs.unlink(req.body.path);
+            res.json(err);
         } else {
-          fs.unlink(req.body.path);
-          res.json(response);
+            fs.unlink(req.body.path);
+            if (req.body.lng) {
+                db_test.insert({
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [req.body.lng, req.body.lat]
+                    },
+                    "properties": {
+                        'date': new Date(),
+                        'species': req.body.name,
+                        'confidence': req.body.confidence,
+                        'valid_name': 'user_verified',
+                        'href': response.request.uri.href
+                    }
+                }, function(err, body) {
+                    console.log(err);
+                    if (!err)
+                        res.json(body);
+                    }
+                )
+            } else {
+                db_test.insert({
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": ""
+                    },
+                    "properties": {
+                        'date': new Date(),
+                        'species': req.body.name,
+                        'confidence': req.body.confidence,
+                        'valid_name': 'user_verified',
+                        'href': response.request.uri.href
+                    }
+                }, function(err, body) {
+                    console.log(err);
+                    if (!err)
+                        res.json(body);
+                    }
+                )
+            }
         }
     });
-    // if (req.body.lng) {
-    //     db_test.insert({
-    //         "type": "Feature",
-    //         "geometry": {
-    //             "type": "Point",
-    //             "coordinates": [req.body.lng, req.body.lat]
-    //         },
-    //         "properties": {
-    //             'date': new Date(),
-    //             'species': req.body.name,
-    //             'confidence': req.body.confidence,
-    //             'valid_name': 'user_verified'
-    //         }
-    //     }, function(err, body) {
-    //         console.log(err);
-    //         if (!err)
-    //             res.json(body);
-    //         }
-    //     )
-    // } else {
-    //     db_test.insert({
-    //         "type": "Feature",
-    //         "geometry": {
-    //             "type": "Point",
-    //             "coordinates": ""
-    //         },
-    //         "properties": {
-    //             'date': new Date(),
-    //             'species': req.body.name,
-    //             'confidence': req.body.confidence,
-    //             'valid_name': 'user_verified'
-    //         }
-    //     }, function(err, body) {
-    //         console.log(err);
-    //         if (!err)
-    //             res.json(body);
-    //         }
-    //     )
-    // }
 });
 
 router.delete('/store', (req, res) => {
-  fs.unlink('./' + req.body.path, (err) => {
-    if (err) {
-      console.error(err);
-    } else {
-      res.json(200);
-    }
-  });
+    fs.unlink(req.body.path, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            res.json(200);
+        }
+    });
 });
 
 ///////////////////////////////////////////////////////////////////////////////

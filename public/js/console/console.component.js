@@ -135,7 +135,7 @@
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
                         console.log(xhr.status);
-                        console.log(xhr.response);
+                        console.log(JSON.parse(xhr.response));
                     }
                 }
             };
