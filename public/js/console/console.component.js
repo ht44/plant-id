@@ -118,6 +118,7 @@
 
         // POST /api/store
         this.uploadFile = () => {
+            console.log(this.payload);
             this.togglePost();
             const xhr = new XMLHttpRequest();
 
@@ -134,6 +135,7 @@
                 if (xhr.readyState == 4) {
                     if (xhr.status == 200) {
                         console.log(xhr.status);
+                        console.log(xhr.response);
                     }
                 }
             };

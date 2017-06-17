@@ -4,6 +4,7 @@ require('dotenv').load();
 //
 
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const request = require('request');
 const multer = require('multer');
@@ -40,7 +41,7 @@ const vr = new VR3({
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads/')
+        cb(null, path.join(__dirname, 'uploads'))
     },
     filename: function(req, file, cb) {
         crypto.pseudoRandomBytes(16, function(err, raw) {
@@ -56,7 +57,7 @@ const upload = multer({storage: storage});
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
-    let newPath = './' + req.file.path;
+    let newPath = req.file.path;
     console.log(newPath);
     const params = {
         image_file: fs.createReadStream(newPath),
@@ -105,19 +106,9 @@ router.post('/classify', upload.single('file'), (req, res) => {
     });
 });
 
-router.delete('/store', (req, res) => {
-  fs.unlink('./' + req.body.path, (err) => {
-    if (err) {
-      console.error(err);
-    } else {
-      res.json(200);
-    }
-  });
-});
 
 router.post('/store', (req, res) => {
-    console.log(req.body);
-    console.log(req.body.path);
+    console.log('here: ', req.body.path);
     let file = fs.createReadStream(req.body.path);
     let results;
     request({
@@ -131,51 +122,63 @@ router.post('/store', (req, res) => {
         body: file
     }, (err, response) => {
         if (err) {
-          console.error(err);
-          fs.unlink('./' + req.body.path);
+          console.log(err);
+          fs.unlink(req.body.path);
+          res.json('hoooo')
         } else {
-          fs.unlink('./' + req.body.path);
+          fs.unlink(req.body.path);
+          res.json(response);
         }
     });
-    if (req.body.lng) {
-        db_test.insert({
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [req.body.lng, req.body.lat]
-            },
-            "properties": {
-                'date': new Date(),
-                'species': req.body.name,
-                'confidence': req.body.confidence,
-                'valid_name': 'user_verified'
-            }
-        }, function(err, body) {
-            console.log(err);
-            if (!err)
-                res.json(body);
-            }
-        )
+    // if (req.body.lng) {
+    //     db_test.insert({
+    //         "type": "Feature",
+    //         "geometry": {
+    //             "type": "Point",
+    //             "coordinates": [req.body.lng, req.body.lat]
+    //         },
+    //         "properties": {
+    //             'date': new Date(),
+    //             'species': req.body.name,
+    //             'confidence': req.body.confidence,
+    //             'valid_name': 'user_verified'
+    //         }
+    //     }, function(err, body) {
+    //         console.log(err);
+    //         if (!err)
+    //             res.json(body);
+    //         }
+    //     )
+    // } else {
+    //     db_test.insert({
+    //         "type": "Feature",
+    //         "geometry": {
+    //             "type": "Point",
+    //             "coordinates": ""
+    //         },
+    //         "properties": {
+    //             'date': new Date(),
+    //             'species': req.body.name,
+    //             'confidence': req.body.confidence,
+    //             'valid_name': 'user_verified'
+    //         }
+    //     }, function(err, body) {
+    //         console.log(err);
+    //         if (!err)
+    //             res.json(body);
+    //         }
+    //     )
+    // }
+});
+
+router.delete('/store', (req, res) => {
+  fs.unlink('./' + req.body.path, (err) => {
+    if (err) {
+      console.error(err);
     } else {
-        db_test.insert({
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": ""
-            },
-            "properties": {
-                'date': new Date(),
-                'species': req.body.name,
-                'confidence': req.body.confidence,
-                'valid_name': 'user_verified'
-            }
-        }, function(err, body) {
-            console.log(err);
-            if (!err)
-                res.json(body);
-            }
-        )
+      res.json(200);
     }
+  });
 });
 
 ///////////////////////////////////////////////////////////////////////////////
