@@ -15,7 +15,7 @@ This application demonstrates how to use the Bluemix Cloudant NoSQL DB service. 
 
 [Install Node.js]: https://nodejs.org/en/download/
 
-```
+```python
 import os
 import math
 import shutil
