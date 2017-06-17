@@ -159,3 +159,7 @@ a:active{
 .image-form > geolocation {
  margin: 0 auto;
 }
+
+#technologies {
+	width: 100%;
+}
