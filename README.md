@@ -110,3 +110,104 @@ if __name__ == '__main__':
     import sys
 #
 ```
+
+Texas Invasives
+
+```javascript
+'use strict';
+const fs = require('fs');
+const request = require('request');
+
+class GeoJson {
+    constructor(vectorType, obsId, date, symbol, species, lat, lng, abundence, validName) {
+        this.type = "Feature";
+        this.geometry = {
+            type: vectorType,
+            coordinates: [lat, lng]
+        };
+        this.properties = {
+            obs_id: obsId,
+            date: date,
+            symbol: symbol,
+            species: species,
+            abundence: abundence,
+            valid_name: validName
+        };
+    }
+};
+
+// recursive throttle to beat Cloudant throughput limitation
+let counter = 0;
+function slowWrite(arr) {
+    setTimeout(() => {
+        request({
+          uri: 'https://aa9b789f-b131-4bda-b585-912ff49352c8-bluemix:d9b31194f2bcc43c8c5205fba618330c90bd113feb22095d1faa3c6cfaea2791@aa9b789f-b131-4bda-b585-912ff49352c8-bluemix.cloudant.com/observations',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(arr[counter])
+        });
+        if ((arr[counter + 1]) !== undefined) {
+            ++counter;
+            slowWrite(arr);
+        }
+    }, 151);
+}
+
+// collect ids for cURL scraping, write GeoJson to Cloudant
+fs.readdir('./csv_files/', 'utf8', (err, files) => {
+    let output = [];
+    files.forEach(filename => {
+        let contents = fs.readFileSync(`./csv_files/${filename}`, 'utf8');
+        let result;
+
+        contents.split('\n').forEach(record => {
+            if (/^\d+$/.test((record.split(',')[0]))) {
+                let arr = record.split(',');
+                result = new GeoJson('Point', arr[0], arr[1], arr[2], arr[3], arr[7], arr[8], arr[13], arr[15]);
+                output.push(result);
+                result = null;
+            }
+        });
+    });
+    fs.writeFile('./temp.json', JSON.stringify(output), (err, data) => {
+      console.log('done');
+    })
+    slowWrite(output);
+});
+```
+
+Wildflower
+
+```javascript
+'use strict';
+
+const TRUE_DIMENSIONS = '640x480'
+
+const fs = require('fs');
+const output = new Array();
+const pattern = /160x120(.*?)JPG/ig;
+let normal = new Array();
+
+// cURL for each page, write to ./raw_html, run the following:
+fs.readdir('./raw_html', 'utf8', (err, files) => {
+  files.forEach(filename => {
+    let contents = fs.readFileSync(`./raw_html/${filename}`, 'utf8');
+    let result = contents.match(pattern).join(',');
+    output.push(result);
+  })
+
+  output.join(',').split(',').forEach(key => {
+    key = key.replace('160x120', TRUE_DIMENSIONS);
+    normal.push(key.substring(0, key.length - 4));
+  })
+
+// then glob the output with cURL
+  console.log(normal.join(','));
+  fs.writeFile('./output.txt', normal.join(','), (err) => {
+    if (err) console.error(err);
+    // console.log(output);
+  });
+});
+```

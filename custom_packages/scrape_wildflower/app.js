@@ -1,17 +1,14 @@
 'use strict';
 const fs = require('fs');
 const request = require('request');
-let counter = 0;
 
 class GeoJson {
-
     constructor(vectorType, obsId, date, symbol, species, lat, lng, abundence, validName) {
         this.type = "Feature";
         this.geometry = {
             type: vectorType,
             coordinates: [lat, lng]
         };
-
         this.properties = {
             obs_id: obsId,
             date: date,
@@ -21,12 +18,12 @@ class GeoJson {
             valid_name: validName
         };
     }
-
 };
 
+// recursive throttle to beat Cloudant throughput limitation
+let counter = 0;
 function slowWrite(arr) {
     setTimeout(() => {
-        console.log('RAN');
         request({
           uri: 'https://aa9b789f-b131-4bda-b585-912ff49352c8-bluemix:d9b31194f2bcc43c8c5205fba618330c90bd113feb22095d1faa3c6cfaea2791@aa9b789f-b131-4bda-b585-912ff49352c8-bluemix.cloudant.com/observations',
           method: 'POST',
@@ -42,6 +39,7 @@ function slowWrite(arr) {
     }, 151);
 }
 
+// collect ids for cURL scraping, write GeoJson to Cloudant
 fs.readdir('./csv_files/', 'utf8', (err, files) => {
     let output = [];
     files.forEach(filename => {
@@ -60,5 +58,5 @@ fs.readdir('./csv_files/', 'utf8', (err, files) => {
     fs.writeFile('./temp.json', JSON.stringify(output), (err, data) => {
       console.log('done');
     })
-    // slowWrite(output);
+    slowWrite(output);
 });
