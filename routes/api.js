@@ -1,7 +1,5 @@
-//
 'use strict';
 require('dotenv').load();
-//
 
 const fs = require('fs');
 const path = require('path');
