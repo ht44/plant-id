@@ -1,4 +1,5 @@
-# Node.js Cloudant Sample
+# Plant ID (Galvanize q3 Project)
+## by Hayden Turek and James Proett
 
 This application demonstrates how to use the Bluemix Cloudant NoSQL DB service.  It helps users organize their favorite files. The UI talks to a RESTful Express CRUD backend API.
 
@@ -14,6 +15,8 @@ This application demonstrates how to use the Bluemix Cloudant NoSQL DB service. 
 + Access the running app in a browser at <http://localhost:6001>
 
 [Install Node.js]: https://nodejs.org/en/download/
+
+Here is the python module we wrote to handle our image processing and training calls. Notice that although we were unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and REPL interactivity.
 
 ```python
 import os
@@ -111,7 +114,7 @@ if __name__ == '__main__':
 #
 ```
 
-Texas Invasives
+This is the helper program we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite and GeoJson object construction thru JavaScript "classes".
 
 ```javascript
 'use strict';
@@ -178,7 +181,7 @@ fs.readdir('./csv_files/', 'utf8', (err, files) => {
 });
 ```
 
-Wildflower
+While TexasInvasives.org opened themselves to web indexing by exposing sequential, public-facing ids for every image on their site (making things easy for us), Wildflower.org had no such vulnerability. The helper program below exploits a pattern we discovered that says the path for each of their true image files can be derived by altering the dimensions in the path to the associated thumbnail.
 
 ```javascript
 'use strict';
