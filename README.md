@@ -103,7 +103,7 @@ if __name__ == '__main__':
 #
 ```
 
-This is the helper program we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite and GeoJson object construction thru JavaScript "classes".
+Now follows the helper program we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite and GeoJson object construction thru JavaScript "classes".
 
 ```javascript
 'use strict';
@@ -170,7 +170,7 @@ fs.readdir('./csv_files/', 'utf8', (err, files) => {
 });
 ```
 
-While TexasInvasives.org opened themselves to web indexing by exposing sequential, public-facing ids for every image on their site (making things easy for us), Wildflower.org had no such vulnerability. The helper program below exploits a pattern we discovered that says the path for each of their true image files can be derived by altering the dimensions in the path to the associated thumbnail.
+While TexasInvasives.org opened themselves to web indexing by exposing sequential, public-facing ids for every image on their site (making things easy for us), Wildflower.org featured no such vulnerability. The helper program below exploits a pattern we discovered that says the path for each of their true image files can be derived by altering the dimensions in the path to the associated thumbnail.
 
 ```javascript
 'use strict';
