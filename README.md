@@ -7,11 +7,17 @@ This application was developed by Hayden Turek and James Proett as their "Quarte
 
 ![Technologies](./public/images/bestone.png?raw=true)
 
-"Plant ID" did not originate as an idea; it began as a simple desire to use IBM Watson Visual Recognition for plant taxonomy. The idea itself - train an instance of the service to identify invasive plant species in the state of Texas - was born after much research.
+"Plant ID" did not originate as an idea; it began simply as a desire to use IBM Watson Visual Recognition for plant taxonomy. The idea itself - train an instance of the service to identify invasive plant species prolific in the state of Texas - was derived from much research.
 
-Special thanks to Louis René Barrera (Environmental Conservation Information Specialist, City of Austin Natural Resources Division), Christopher Ryan Sanchez (Culture and Arts Education Specialist, Austin Parks & Recreation Natural Resources Management - Zilker Botanical Gardens), Cynthia D. Klemmer, Ph.D. (Environmental Conservation Program Manager, Austin Parks & Recreation Nature Based Programs), Kayla Miloy (Environmental Specialist, Travis County Transportation and Natural Resources), Allison Hardy (Senior IT Geospatial Analyst, Austin Parks & Recreation) and Kimberly McNeeley (Acting Director, Austin Parks & Recreation Office of the Director).
+It was the kind of research that gets inspired by constraint and creativity. Unless you are willing to incur overhead, which we were not, IBM limits Bluemix developers to one Watson Visual Recognition custom classifier and a maximum of 5,000 training images for that classifier.
 
-Here is the python module we wrote to handle our image processing and training calls. Notice that although we were unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and REPL interactivity.
+Having found the out-of-the-box wrapper lacking and wishing to train our own classifier, limiting the scope was thus mission critical.
+
+Special thanks to Louis René Barrera (Environmental Conservation Information Specialist, City of Austin Natural Resources Division), Christopher Ryan Sanchez (Culture and Arts Education Specialist, Austin Parks & Recreation Natural Resources Management - Zilker Botanical Gardens), Cynthia D. Klemmer, Ph.D. (Environmental Conservation Program Manager, Austin Parks & Recreation Nature Based Programs), Kayla Miloy (Environmental Specialist, Travis County Transportation and Natural Resources), Allison Hardy (Senior IT Geospatial Analyst, Austin Parks & Recreation) and Kimberly McNeeley (Acting Director, Austin Parks & Recreation Office of the Director) for their help, time and kindness.
+
+Faced with the logical management of such a large dataset (60,000 images), we quickly realized that small "helper" programs would need to be written in order to automate as much of the process as possible.
+
+For example, here is a python module we wrote to handle our image processing and training calls. Notice that although we were entirely unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and modular REPL compatibility.
 
 ```python
 import os
@@ -104,12 +110,13 @@ class ImageProcessor:
                                 image_set.basename)
             shutil.make_archive(base, 'zip', root)
 
+# Plans to make the module executable
 if __name__ == '__main__':
     import sys
 #
 ```
 
-Now follows the helper program we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite as well as GeoJson object construction thru JavaScript "classes".
+This is the script we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite as well as GeoJson object construction thru JavaScript "classes".
 
 ```javascript
 'use strict';
