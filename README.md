@@ -1,20 +1,9 @@
 # Plant ID (Galvanize q3 Project)
 ## by Hayden Turek and James Proett
 
-This application demonstrates how to use the Bluemix Cloudant NoSQL DB service.  It helps users organize their favorite files. The UI talks to a RESTful Express CRUD backend API.
-
 [https://plant-id.mybluemix.net/](https://plant-id.mybluemix.net/)
 
-## Run the app locally
-
-1. [Install Node.js][]
-+ cd into this project's root directory
-+ Copy the value for the VCAP_SERVICES envirionment variable from the application running in Bluemix and paste it in a `vcap-local.json` file
-+ Run `npm install` to install the app's dependencies
-+ Run `npm start` to start the app
-+ Access the running app in a browser at <http://localhost:6001>
-
-[Install Node.js]: https://nodejs.org/en/download/
+This application was developed as our "Quarter Three Project" for Galvanize Austin's Web Development Immersive program and is primarily intended to be understood as proof of our competence.
 
 Here is the python module we wrote to handle our image processing and training calls. Notice that although we were unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and REPL interactivity.
 
