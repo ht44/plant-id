@@ -10,9 +10,17 @@
 
 It was the kind of research that gets inspired by constraint and creativity. Unless you are willing to incur overhead, which we were not, IBM limits Bluemix developers to one Watson Visual Recognition custom classifier and a maximum of 5,000 training images for that classifier.
 
-Having found the out-of-the-box wrapper lacking and wishing to train our own classifier, limiting the scope was thus mission critical.
+Having found the default classifier lacking and wishing to train our own, limiting the scope was thus mission critical, and so we two laypeople set out in search of education.
+
+Our initial thought was to approach the University of Texas, but it was made clear early on that they would not help us. Though this was disheartening, we did not give up, deciding then to visit a number of government buildings in downtown Austin where we met and talked with a whole host of insightful civil servants.
 
 Special thanks to Louis René Barrera (Environmental Conservation Information Specialist, City of Austin Natural Resources Division), Christopher Ryan Sanchez (Culture and Arts Education Specialist, Austin Parks & Recreation Natural Resources Management - Zilker Botanical Gardens), Cynthia D. Klemmer, Ph.D. (Environmental Conservation Program Manager, Austin Parks & Recreation Nature Based Programs), Kayla Miloy (Environmental Specialist, Travis County Transportation and Natural Resources), Allison Hardy (Senior IT Geospatial Analyst, Austin Parks & Recreation) and Kimberly McNeeley (Acting Director, Austin Parks & Recreation Office of the Director) for their help, time and kindness.
+
+Ultimately, we, drawing on the things we learned from those friendly folks, decided to go with invasive plant species in Texas, mostly because it checked every box important to us: relevant, useful, and feasible. Because there are only a few species actively threatening the state ecosystem at a given time, we were able to provide a greater number of training examples for each species, making each class highly accurate.
+
+So we determined the scope of our project. Indeed, all that effort was exerted just to formulate our idea, and even still, the hard part was yet to come.
+
+Talk about data mining.
 
 Faced with the logical management of such a large dataset (60,000 images), we quickly realized that small "helper" programs would need to be written in order to automate as much of the process as possible.
 
@@ -37,6 +45,7 @@ class DataSet:
         self.children = []
         self.path = os.path.abspath(path)
         self.basename = os.path.basename(self.path)
+
     def populate(self):
         for root, dirs, files in os.walk(self.path):
             if (root == self.path):
@@ -45,6 +54,7 @@ class DataSet:
                 continue
             self.memory.append(ImageSet(root, files))
         return self
+
     def get_names(self):
         return list(map(lambda s: os.path.basename(s).replace('_', ' '),
                         self.children))
@@ -54,6 +64,7 @@ class ImageSet(DataSet):
         super().__init__(root)
         self.children.extend(list(map(
             lambda f: os.path.join(root, f), files[1:])))
+
     def populate(self):
         for f in self.children:
             image = Image.open(f)
@@ -207,11 +218,10 @@ fs.readdir('./raw_html', 'utf8', (err, files) => {
     normal.push(key.substring(0, key.length - 4));
   })
 
-// then glob the output with cURL
+// then glob the stdout with cURL
   console.log(normal.join(','));
   fs.writeFile('./output.txt', normal.join(','), (err) => {
     if (err) console.error(err);
-    // console.log(output);
   });
 });
 ```
