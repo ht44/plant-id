@@ -103,7 +103,7 @@ if __name__ == '__main__':
 #
 ```
 
-Now follows the helper program we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite and GeoJson object construction thru JavaScript "classes".
+Now follows the helper program we wrote to collect the identification strings necessary for scraping TexasInvasives.org and to recreate that database in Cloudant. Some noteworthy features here include a recursive throttle designed to beat the throughput limitation imposed by Cloudant Lite as well as GeoJson object construction thru JavaScript "classes".
 
 ```javascript
 'use strict';
