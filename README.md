@@ -24,11 +24,25 @@ Perhaps the most interesting facet of this admittedly overly ambitious undertaki
 
 Those familiar with cognitive will know that the type of images needed for high confidence are not the kind typically kept by governments or universities. The image set for each class needed to be large and visibly diverse for us to have any hope of developing an application halfway usable.
 
-After days scouring the web for publicly available datasets and finding none, we came across something interesting: a website called TexasInvasives.org and the "Invaders of Texas" program.
+After days scouring the web for publicly available datasets and finding none, we came across something interesting: a website called TexasInvasives.org and the "Invaders of Texas" program...
 
 According to the site, "The Invaders of Texas Program is an innovative campaign whereby volunteer 'citizen scientists' are trained to detect the arrival and dispersal of invasive species in their own local areas. That information is delivered into a statewide mapping database and to those who can do something about it. The premise is simple. The more trained eyes watching for invasive species, the better our chances of lessening or avoiding damage to our native landscape."
 
-"That information" **included images:** crowd-collected, expert-validated images shot with different cameras, in different locations, with different lighting, from different angles, by different people - *all* hosted at TexasInvasives.org. It wasn't a coherent dataset, but we knew almost instantly that if we could mine and organize it, it wouldn't just be a dataset; it would be the *ultimate* dataset.
+Then it hit us: "That information" **included images:** crowd-collected, expert-validated images shot with different cameras, in different locations, with different lighting, from different angles, by different people - *all* hosted at TexasInvasives.org. It wasn't a coherent dataset, but we knew almost instantly that if we could mine and organize it, it wouldn't just be a dataset; it would be the *ultimate* dataset.
+
+It was off to the races at this point, and before long we had scraped 15,000 images as well as associated metadata that included the location of each observation (which we would later use to compile an insight map). Not only that, but we did the same @ Wildflower.org for a total haul of 60,000 images: 15,000 positive examples and 45,000 negative. * We did not have time to train negative examples, but it is important to note that we took it into thought and collected all the data necessary to do so in the future.
+
+That said, from our 15,000-image harvest, we were able to get just enough examples to train an instance of Watson Visual Recognition Version 3 to quite accurately identify Ailanthus altissima, Albizia julibrissin, Arundo donax, Bothriochloa ischaemum var. songarica, Cynodon dactylon, Lantana camara, Ligustrum lucidum, Ligustrum quihoui, Ligustrum sinense, Lonicera japonica, Macfadyena unguis cati, Melia azedarach, Paspalum dilatatum, Paspalum notatum, Paspalum urvillei, Photinia serratifolia, Phyllostachys aurea, Pistacia chinensis, Pyracantha coccinea, Rapistrum rugosum, Sorghum halepense, Tamarex ramosissima, Torilis arvensis, and Triadica sebifera.
+
+As was said, we did not have time to train negative examples (we only had one week to develop the software) and so if you want to test it out, try grabbing a picture of, say, Ailanthus altissima off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles. When we do find the time to retrain the instance with negative examples we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.
+
+The discovery of TexasInvasives.org and the Invaders of Texas program not only saved our project; it made our project what it is. We now see a plethora of uses for the software that includes
+
+### Unseen challenges
+
+
+
+### Mini Apps
 
 Faced with the management of such a large dataset (60,000 images), we quickly realized that small "helper" programs would need to be written in order to automate as much of the process as possible.
 
