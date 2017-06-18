@@ -3,9 +3,13 @@
 
 [https://plant-id.mybluemix.net/](https://plant-id.mybluemix.net/)
 
-This application was developed as our "Quarter Three Project" for Galvanize Austin's Web Development Immersive program and is primarily intended to be understood as proof of our competence.
+This application was developed by Hayden Turek and James Proett as their "Quarter Three Project" for Galvanize Austin's Web Development Immersive program and is primarily intended to be understood as proof of their competence.
 
 ![Technologies](./public/images/bestone.png?raw=true)
+
+"Plant ID" did not originate as an idea; it began as a simple desire to use IBM Watson Visual Recognition for plant taxonomy. The idea itself - train an instance of the service to identify invasive plant species in the state of Texas - was born after much research.
+
+Special thanks to Louis René Barrera (Environmental Conservation Information Specialist, City of Austin Natural Resources Division), Christopher Ryan Sanchez (Culture and Arts Education Specialist, Austin Parks & Recreation Natural Resources Management - Zilker Botanical Gardens), Cynthia D. Klemmer, Ph.D. (Environmental Conservation Program Manager, Austin Parks & Recreation Nature Based Programs), Kayla Miloy (Environmental Specialist, Travis County Transportation and Natural Resources), Allison Hardy (Senior IT Geospatial Analyst, Austin Parks & Recreation) and Kimberly McNeeley (Acting Director, Austin Parks & Recreation Office of the Director).
 
 Here is the python module we wrote to handle our image processing and training calls. Notice that although we were unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and REPL interactivity.
 
