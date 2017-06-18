@@ -5,6 +5,8 @@
 
 This application was developed as our "Quarter Three Project" for Galvanize Austin's Web Development Immersive program and is primarily intended to be understood as proof of our competence.
 
+![Technologies](/public/images/method-draw-image (3).svg?raw=true)
+
 Here is the python module we wrote to handle our image processing and training calls. Notice that although we were unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and REPL interactivity.
 
 ```python
