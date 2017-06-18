@@ -1,11 +1,10 @@
 # Plant ID (Galvanize q3 Project)
+
+![Technologies](./public/images/bestone.png?raw=true)
+
 #### by Hayden Turek and James Proett
 
 [https://plant-id.mybluemix.net/](https://plant-id.mybluemix.net/)
-
-This application was developed by Hayden Turek and James Proett as their "Quarter Three Project" for Galvanize Austin's Web Development Immersive program and is primarily intended to be understood as proof of their competence.
-
-![Technologies](./public/images/bestone.png?raw=true)
 
 "Plant ID" did not originate as an idea; it began simply as a desire to use IBM Watson Visual Recognition for plant taxonomy. The idea itself - train an instance of the service to identify invasive plant species prolific in the state of Texas - was derived from much research.
 
