@@ -32,10 +32,6 @@ router.use(bodyParser.json());
 const VR3 = require('watson-developer-cloud/visual-recognition/v3');
 const vr = new VR3({api_key: credentials.watson_vision_combined[0].credentials.api_key, version_date: VR3.VERSION_DATE_2016_05_20});
 
-///////////////////////////////////////////////////////////////////////////////
-// STORAGE
-///////////////////////////////////////////////////////////////////////////////
-
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, path.join(__dirname, 'uploads/'))
@@ -50,7 +46,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 ///////////////////////////////////////////////////////////////////////////////
-// API
+// API start
 ///////////////////////////////////////////////////////////////////////////////
 
 router.post('/classify', upload.single('file'), (req, res) => {
@@ -178,7 +174,4 @@ router.delete('/store', (req, res) => {
     });
 });
 
-///////////////////////////////////////////////////////////////////////////////
-// FIN
 module.exports = router;
-///////////////////////////////////////////////////////////////////////////////
