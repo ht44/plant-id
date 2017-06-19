@@ -249,3 +249,47 @@ fs.readdir('./raw_html', 'utf8', (err, files) => {
   });
 });
 ```
+
+### Draft Intro
+The intention of Plant-ID is to classify and map instances of invasive plant species in the Austin area (and more broadly the entire state of Texas). Currently efforts to mitigate non-native plant species is a task limited to specialists who have an understanding of native/non-native plants and their diverse morphology at different developmental as well as seasonal stages. This project seeks lower the barrier of entry for contributing to mitigation efforts by incorporating image recognition technology. A layperson can now go out and run an image of a plant trough Plant-ID and with relative confidence classify an instance of an invasive plant. If the description and image provided match the field observation, the user can submit their photo where the location, species name, and confidence of the match is stored in our database. This crowd sourced approach to identifying and chronicling instances of invasive plants can take a great deal of strain off the Parks Department resources, by having a single database of verified citing’s of invasive plants that every citizen can easily use.
+
+A key challenge in creating this service was having a robust image classifier. IBM’s Watson Visual Recognition software is utilized for this project. In order to yield accurate responses from this service on such a specific desired output, training a custom classifier is necessary. In order to train a classifier, numerous images of each class are required (IBM suggests a minimum of 50 images per class). In the case of this project each class represents an individual plant species. It is also advantageous to train the classifier with negative images of native plants in order to reduce the occurrence of false positives.
+
+In order to accomplish the goal of training a robust classifier, the problem arises of how one can get a diverse set of images, that is numerous enough to distinguish between (in many cases) similar plants. An invaluable resource to this project was TexasInvasives.org. This website is a collection of ~20,000 verified images of ~70 different invasive plant species common to Texas. Each species has downloadable CSV file with each image’s: location (in latitude, longitude), specie’s common name, scientific name, date each recording was made, abundance a crucially an index corresponding to each image file. The CSV files for each species were parsed and converted into geoJSON format, so they could be stored in our database for mapping purposes (explained in greater detail in the “Mini apps” section). The indexes of each image file for a particular species is used to construct a cURL script that writes every image to a file. All ~20,000 images were stored and saved for processing. Additionally, several other available government resources were exploited to get the desired negative images (40,000 native images were collected using similar cURL requests for that of the invasive images).
+
+Based on the quality and quantity of invasive images for each of the ~70 species the list is shorted to 24 of the best quality image sets, where the number of images is over 100. The species the classifier will recognize are as follows:
+
+Ailanthus altissima
+Albizia julibrissin
+Arundo donax
+Bothriochloa ischaemum var. songarica
+Cynodon dactylon
+Lantana camara
+Ligustrum lucidum
+Ligustrum quihoui
+Ligustrum sinense
+Lonicera japonica
+Macfadyena unguis cati
+Melia azedarach
+Paspalum dilatatum
+Paspalum notatum
+Paspalum urvillei
+Photinia serratifolia
+Phyllostachys aurea
+Pistacia chinensis
+Pyracantha coccinea
+Rapistrum rugosum
+Sorghum halepense
+Tamarex ramosissima
+Torilis arvensis
+Triadica sebifera
+
+### Walk through
+
+[](./public/images/Presentation1/Slide1.jpg?raw=true)
+[](./public/images/Presentation1/Slide2.jpg?raw=true)
+[](./public/images/Presentation1/Slide3.jpg?raw=true)
+[](./public/images/Presentation1/Slide4.jpg?raw=true)
+[](./public/images/Presentation1/Slide5.jpg?raw=true)
+[](./public/images/Presentation1/Slide6.jpg?raw=true)
+[](./public/images/Presentation1/Slide7.jpg?raw=true)
