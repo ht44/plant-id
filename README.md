@@ -286,10 +286,10 @@ Triadica sebifera
 
 ### Walk through
 
-[Home/DOCS](./public/images/Presentation1/Slide1.jpg?raw=true)
-[Classify](./public/images/Presentation1/Slide2.jpg?raw=true)
-[Click Upload](./public/images/Presentation1/Slide3.jpg?raw=true)
-[Upload](./public/images/Presentation1/Slide4.jpg?raw=true)
-[Returns guess](./public/images/Presentation1/Slide5.jpg?raw=true)
-[Add to DB](./public/images/Presentation1/Slide6.jpg?raw=true)
-[Visualize](./public/images/Presentation1/Slide7.jpg?raw=true)
+![Home/DOCS](./public/images/Presentation1/Slide1.jpg?raw=true)
+![Classify](./public/images/Presentation1/Slide2.jpg?raw=true)
+![Click Upload](./public/images/Presentation1/Slide3.jpg?raw=true)
+![Upload](./public/images/Presentation1/Slide4.jpg?raw=true)
+![Returns guess](./public/images/Presentation1/Slide5.jpg?raw=true)
+![Add to DB](./public/images/Presentation1/Slide6.jpg?raw=true)
+![Visualize](./public/images/Presentation1/Slide7.jpg?raw=true)
