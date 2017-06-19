@@ -1,9 +1,0 @@
-{
-  "services": [
-    {
-      "name": "interveiwDB",
-      "type": "DBAAS",
-      "username": "charliesharding@gmail.com",
-      "password": "Ach1z0#d"
-    }
-  ]}
