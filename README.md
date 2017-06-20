@@ -304,7 +304,7 @@ Triadica sebifera
 ![Add to DB](./public/images/Presentation1/Slide6.jpg?raw=true)
 ![Visualize](./public/images/Presentation1/Slide7.jpg?raw=true)
 
-###Refrences 
+### Refrences 
 
 Elias, T. 1980. The Complete Trees of North America: Field Guide and Natural History. Book Division, Times Mirror Magazines, Inc. New York. 
 
