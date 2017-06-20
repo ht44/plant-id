@@ -1,7 +1,7 @@
 # Plant ID (Galvanize q3 Project)
 ### by Hayden Turek and James Proett
 
-![Technologies](./public/images/bestone.png?raw=true)
+![Technologies](./public/images/withexpress.png?raw=true)
 
 
 [https://plant-id.mybluemix.net/](https://plant-id.mybluemix.net/)
