@@ -38,22 +38,22 @@ It was off to the races at this point, and before long we had scraped 15,000 ima
 
 That said, from our 15,000-image harvest, we were able to hand-select just enough (2,400) examples to train an instance of Watson Visual Recognition Version 3 to quite accurately identify:
 
-- **Ailanthus altissima**,
-- Albizia julibrissin
-- Arundo donax
-- Bothriochloa ischaemum var. songarica
-- Cynodon dactylon
-- Lantana camara
-- Ligustrum lucidum
-- Ligustrum quihoui
-- Ligustrum sinense
-- Lonicera japonica
-- Macfadyena unguis cati
-- Melia azedarach
-- Paspalum dilatatum
-- Paspalum notatum
-- Paspalum urvillei
-- Photinia serratifolia
+- **Ailanthus altissima**
+- **Albizia julibrissin**
+- **Arundo donax**
+- **Bothriochloa ischaemum var. songarica**
+- **Cynodon dactylon**
+- **Lantana camara**
+- **Ligustrum lucidum**
+- **Ligustrum quihoui**
+- **Ligustrum sinense**
+- **Lonicera japonica**
+- **Macfadyena unguis cati**
+- **Melia azedarach**
+- **Paspalum dilatatum**
+- **Paspalum notatum**
+- **Paspalum urvillei**
+- **Photinia serratifolia**
 - **Phyllostachys aurea**
 - **Pistacia chinensis**
 - **Pyracantha coccinea**
