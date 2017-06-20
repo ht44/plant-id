@@ -52,7 +52,7 @@ If a user so decides, the image they submitted in order to identify the plant th
 
 The reason why we didn't just store the images as attachments in Cloudant was because we wanted to be able to say, at the end of all this, that we developed our application with an eye towards improving the dataset. Storing the images without structure as large binary objects is cost-effective, and we wanted to pursue a scaleable model, such that, on the off chance someone with real resources did take an interest in our application, they could retrain our instance of Watson Visual Recognition with greater than 5,000 examples, using the images submitted by our users. 
 
-We take pride in the fact that we gave this kind of consideration to the future, and that we were less interested in making an application that presents well than we were in making something truly special.
+We take pride in the fact that we gave this kind of consideration to the future, and that we were less interested in making an application that presents well than we were in producing something truly special.
 
 ### Helper Programs
 
