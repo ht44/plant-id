@@ -46,7 +46,7 @@ As we worked, we began to view our project more and more as an extension of the 
 
 Well, what if those volunteers could spend their finite and valuable time confirming observcations that are already more likely to be accurate? What if observations that were likely to be false never made it to a human's desk?
 
-This thought in its conclusive form motivated us to willingly introduce one of the most challenging, rewarding, yet tragically inconspicuous components of our project: we engineered a conduit for storing the user-supplied images.
+This thought in its conclusive form motivated us to willingly undertake one of the most challenging, rewarding, yet tragically inconspicuous components of our project: we engineered a conduit for storing the user-supplied images.
 
 If a user so decides, the image they submitted in order to identify the plant they came accross in the wild gets placed in unstructured object storage, and a reference to that storage address is written (along with the date of photography, suggested species name, cognitive confidence, and the latitude and longitude of the sighting, if the image was geotagged) to our NoSQL database.
 
