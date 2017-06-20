@@ -20,7 +20,7 @@ Special thanks to Louis René Barrera (Environmental Conservation Information Sp
 
 Drawing on the things learned, we ultimately decided to go with invasive plant species in Texas, mostly because it checked every box important to us: relevant, useful, and feasible. Since there are only a few species actively threatening the state ecosystem at a given time, we were able to provide a greater number of training examples for each species, making each respective class highly accurate.
 
-### A Novel Solution
+#### A Novel Solution
 
 Perhaps the most interesting facet of this admittedly overly ambitious undertaking was the solution by which we solved the problem of the data.
 
@@ -38,7 +38,7 @@ That said, from our 15,000-image harvest, we were able to hand-select just enoug
 
 As was mentioned, we did not have time to train negative examples (we only had one week to develop the software) and so if you want to test it out, try grabbing a picture of, say, **Ailanthus altissima** off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles. When we do find the time to retrain the instance with negative examples (there's room for 2,600) we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.
 
-### A New Bearing
+#### A New Bearing
 
 The discovery of TexasInvasives.org and the Invaders of Texas program not only saved our project; it made our project what it is.
 
