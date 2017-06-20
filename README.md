@@ -6,7 +6,11 @@
 
 [https://plant-id.mybluemix.net/](https://plant-id.mybluemix.net/)
 
+### Abstract
+
 The intention of "Plant ID" is to classify and map instances of invasive plant species in the Austin area (and more broadly the entire state of Texas). The current effort to mitigate non-native plant species is a task limited to specialists who have an understanding of native/non-native plants and their diverse morphology at different developmental as well as seasonal stages. This project seeks lower the barrier of entry for contributing to mitigation efforts by incorporating image recognition technology. A layperson can now go out and run an image of a plant trough Plant-ID and with relative confidence classify an instance of an invasive plant. If the description and image provided match the field observation, the user can submit their photo where the location, species name, and confidence of the match is stored in our database, where it can later be accessed and validated by experts. We belive that this crowdsourced approach to identifying and chronicling instances of invasive plants can take a great deal of strain off the Parks Department resources.
+
+### Background
 
 "Plant ID" did not originate as an idea; it began simply as a desire to use IBM Watson Visual Recognition for plant taxonomy. The idea itself - train an instance of the service to identify invasive plant species prolific in the state of Texas - was derived from much research. It was the kind of research that gets inspired by constraint and creativity. Unless you are willing to incur overhead, which we were not, IBM limits Bluemix developers to one Watson Visual Recognition custom classifier and a maximum of 5,000 training images for that classifier. Having found the default classifier lacking and wishing to train our own, limiting the scope was thus mission critical, and so we set out in search of education.
 
@@ -26,27 +30,33 @@ After days scouring the web for publicly available datasets and finding none, we
 
 According to the site, "The Invaders of Texas Program is an innovative campaign whereby volunteer 'citizen scientists' are trained to detect the arrival and dispersal of invasive species in their own local areas. That information is delivered into a statewide mapping database and to those who can do something about it. The premise is simple. The more trained eyes watching for invasive species, the better our chances of lessening or avoiding damage to our native landscape."
 
-Then it hit us: "That information" **included images:** crowd-collected, expert-validated images shot with different cameras, in different locations, with different lighting, from different angles, by different people - *all* hosted at TexasInvasives.org. It wasn't a coherent dataset, but we knew almost instantly that if we could mine and organize it, it wouldn't just be a dataset; it would be the *ultimate* dataset.
+Then it hit us: "That information" **included images:** crowd-collected, expert-validated images shot with different cameras, in different locations, with different lighting, from different angles, by different people - *all* hosted at TexasInvasives.org. It wasn't a coherent dataset, but we knew almost instantly that if we could only mine and organize it, it wouldn't just be a dataset; it would be the *ultimate* dataset.
 
 It was off to the races at this point, and before long we had scraped 15,000 images as well as associated metadata that included the location of each observation (which we would later use to compile an insight map). Not only that, but we did the same @ Wildflower.org for a total haul of 60,000 images: 15,000 positive examples and 45,000 negative. * We did not have time to train negative examples, but it is important to note that we took it into thought and collected all the data necessary to do so in the future.
 
 That said, from our 15,000-image harvest, we were able to hand-select just enough (2,400) examples to train an instance of Watson Visual Recognition Version 3 to quite accurately identify **Ailanthus altissima, Albizia julibrissin, Arundo donax, Bothriochloa ischaemum var. songarica, Cynodon dactylon, Lantana camara, Ligustrum lucidum, Ligustrum quihoui, Ligustrum sinense, Lonicera japonica, Macfadyena unguis cati, Melia azedarach, Paspalum dilatatum, Paspalum notatum, Paspalum urvillei, Photinia serratifolia, Phyllostachys aurea, Pistacia chinensis, Pyracantha coccinea, Rapistrum rugosum, Sorghum halepense, Tamarex ramosissima, Torilis arvensis, and Triadica sebifera.**
 
-As was mentioned, we did not have time to train negative examples (we only had one week to develop the software) and so if you want to test it out, try grabbing a picture of, say, Ailanthus altissima off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles. When we do find the time to retrain the instance with negative examples (there's room for 2,600) we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.
+As was mentioned, we did not have time to train negative examples (we only had one week to develop the software) and so if you want to test it out, try grabbing a picture of, say, **Ailanthus altissima** off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles. When we do find the time to retrain the instance with negative examples (there's room for 2,600) we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.
 
-### Yeah
+### A New Bearing
 
 The discovery of TexasInvasives.org and the Invaders of Texas program not only saved our project; it made our project what it is.
 
-As we worked, we began to view our project more and more as an extension of the effort. We started to imagine how much money, how many man-hours it must require, to validate 15,000 amateur plant observations. Because that's how TexasInvasives.org works: users - amateur "citizen scientists" - sign up and get a pamphlet to help them identify the plants. They go around and report invasive plant occurrences by taking pictures and uploading them to the site. Then, an expert looks at the pictures and determines whether or not the plant is what it was thought to have been, and it is dealt with accordingly.
+As we worked, we began to view our project more and more as an extension of the effort. We started to imagine how much money, how many man-hours it must require, to validate 15,000 amateur plant observations, because that's how TexasInvasives.org works: users - amateur "citizen scientists" - sign up and get a pamphlet to help them identify the plants. They go around and report invasive plant occurrences by taking pictures and uploading them to the site. Then, an expert looks at the pictures and determines whether or not the plant is what it was thought to have been, and it is dealt with accordingly.
 
-Then here I was gonn a talk about well what if you could weed out the duds? What if experts could validate the ones with the higher cnfidence first? save time and money, yada yada. Working on it now.
+Well, what if those volunteers could spend their finite and valuable time confirming observcations that are already more likely to be accurate? What if observations that were likely to be false never made it to a human's desk?
 
-### Mini Apps
+This thought in its conclusive form motivated us to willingly introduce one of the most challenging, rewarding, yet tragically inconspicuous components of our project: we engineered a conduit for storing the user-supplied images.
+
+If a user so decides, the image they used to identify the plant they saw in the wild gets placed in unstructured object storage, and a reference to its storage address is written (along with the date of photography, suggested species name, cognitive confidence, and the latitude and longitude of the sighting, if the image was geotagged) to our NoSQL database.
+
+
+
+### Helper Programs
 
 Faced with the management of such a large dataset (60,000 images), we quickly realized that small "helper" programs would need to be written in order to automate as much of the process as possible.
 
-For example, here is a python module we wrote to handle our image processing and training calls. Notice that although we were entirely unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and modular REPL compatibility.
+For example, here is a python module we wrote to handle our image processing and training calls. Notice that although we were entirely unfamiliar with the language, we nevertheless implemented advanced object-oriented programming concepts such as classical inheritance and modularity.
 
 ```python
 import os
