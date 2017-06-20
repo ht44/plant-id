@@ -48,9 +48,11 @@ Well, what if those volunteers could spend their finite and valuable time confir
 
 This thought in its conclusive form motivated us to willingly introduce one of the most challenging, rewarding, yet tragically inconspicuous components of our project: we engineered a conduit for storing the user-supplied images.
 
-If a user so decides, the image they used to identify the plant they saw in the wild gets placed in unstructured object storage, and a reference to its storage address is written (along with the date of photography, suggested species name, cognitive confidence, and the latitude and longitude of the sighting, if the image was geotagged) to our NoSQL database.
+If a user so decides, the image they submitted in order to identify the plant they came accross in the wild gets placed in unstructured object storage, and a reference to that storage address is written (along with the date of photography, suggested species name, cognitive confidence, and the latitude and longitude of the sighting, if the image was geotagged) to our NoSQL database.
 
+The reason why we didn't just store the images as attachments in Cloudant was because we wanted to be able to say, at the end of all this, that we developed our application with an eye towards improving the dataset. Storing the images without structure as large binary objects is cost-effective, and we wanted to pursue a scaleable model, such that, on the off chance someone with real resources did take an interest in our application, they could continue to improve the dataset in the same way it was created: through crowdsourced submissions.
 
+We take pride in the fact that we gave this kind of consideration to the future, and that we were less interested in making an application that presents well than we were in making something truly special.
 
 ### Helper Programs
 
