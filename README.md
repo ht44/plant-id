@@ -294,7 +294,7 @@ Tamarex ramosissima
 Torilis arvensis
 Triadica sebifera
 
-### Walk through
+### Walkthrough
 
 ![Home/DOCS](./public/images/Presentation1/Slide1.jpg?raw=true)
 ![Classify](./public/images/Presentation1/Slide2.jpg?raw=true)
