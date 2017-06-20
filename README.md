@@ -303,3 +303,135 @@ Triadica sebifera
 ![Returns guess](./public/images/Presentation1/Slide5.jpg?raw=true)
 ![Add to DB](./public/images/Presentation1/Slide6.jpg?raw=true)
 ![Visualize](./public/images/Presentation1/Slide7.jpg?raw=true)
+
+###Refrences 
+
+Elias, T. 1980. The Complete Trees of North America: Field Guide and Natural History. Book Division, Times Mirror Magazines, Inc. New York. 
+
+Gleason, H.A., and A. Cronquist. 1991. Manual of Vascular Plants of Northeastern United States and Adjacent Canada. New York Botanical Garden. Bronx, New York. 
+
+Hu, S.Y. 1979. Ailanthus. Arnoldia 39(2): 29-50. 
+
+Mergen, F. 1959. A toxic principle in the leaves of Ailanthus. Bot. Gazette 121: 32-36. 
+
+Pannill, Philip. 1995. Tree-of-Heaven Control. Maryland Department of Natural Resources Forest Service Stewardship Bulletin. 8 pp. 
+
+Randall, J.M. and J. Marinelli. 1996. Invasive Plants: Weeds of the Global Garden. Brooklyn Botanic Garden, Handbook #149. 111 pp. 
+
+Stipes, J. And M. Daughtery. 1998. Personal communication. 
+
+Tennessee Exotic Pest Plant Council. Tree of Heaven. Tennessee Exotic Plant Management Manual. 1996 
+
+The Nature Conservancy, California Regional Office. November 1988. Ailanthus altissima Element Stewardship Abstract Report (prepared by Marc Hoshovsky). Arlington, Virginia. 
+
+Virginia Department of Conservation and Recreation and Virginia Native Plant Society. 1996. Invasive Alien Plant Species of Virginia: Tree-of-Heaven (Ailanthus altissima (Miller) Swingle).
+
+Bonner, F.T., M.S. Hooda, D.P. Singh. 1992. Moisture determination on seeds of honey locust and mimosa. Tree Plant Note, USDA Forest Service 43(3):72-75. 
+
+Bransby, D.I., S.E. Sladden, G.E. Aiken. 1992. Mimosa as a forage plant: a preliminary evaluation. Proceedings of the Forage Grasslands Conference. Georgetown, Texas; American Forage and Grassland Council 1:28-31. 
+
+Gleason, H.A., A. Cronquist. 1991. Manual of vascular plants of northeastern United States and adjacent Canada. 2nd ed. The New York Botanical Garden, 910. 
+
+Hartel, P.G., B.L. Haines. 1992. Effects of potential plant CO2 emissions of bacterial growth in the rhizosphere. Journal of Soil Biological Biochemistry and Science 24(3). 
+
+Panizzi, A.R., F. Slansky, Jr. 1991. Suitability of selected legumes and the effect of nymphal and adult nutrition in the southern green stink bug (Hemiptera: Heteroptera: Pentatomidea). Journal of Econ-Entomology 84(1):103-113.
+
+Miller, J.H. 2003. Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp
+
+Hoshovsky, Marc. 1996. Element Stewardship Abstract: Arundo donax. The Nature Conservancy, Arlington, Virginia. 
+
+Perdue, R.E. 1958. Arundo donax - source of musical reeds and industrial cellulose. Economic Botany 12(4):368-404. 
+
+The Nature Conservancy. Giant Reed: Element Stewardship Abstract. In: Wildland Weeds Management & Research Program, Weeds on the Web. 
+
+Tidwell, B. 1995. Native Habitat Restoration: Controlling Arundo donax. Monsanto Company.
+
+Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp
+
+USDA, NRCS. 2006. The PLANTS Database (http://plants.usda.gov, 7 November 2006). National Plant Data Center, Baton Rouge, LA 70874-4490 USA. (http://plants.usda.gov/java/profile?symbol=BOISS)
+
+Langeland, K.A., et al. 2008. Identification and Biology of Nonnative Plants in Florida’s Natural Areas, Second Edition. University of Florida-IFAS Pub SP 257. 
+
+University of Florida: Center for Aquatic and Invasive Plants (http://plants.ifas.ufl.edu/node/223)
+
+Auckland Regional Council (ARC) 2002. Auckland Regional Pest Management Strategy 2002-2007
+
+Henderson State University. Ligustrum quihoui. Accessed 19 August 2010 (http://www.hsu.edu/default.aspx?id=47318). 
+
+Alfred Rehder, Manual of Cultivated Trees and Shrubs: Hardy in North America, The MacMillan Co., New York (1967), Bailey, L.H. and E.Z. Bailey, Hortus Third: A Concise Dictionary of Plants Cultivated in the United States and Canada, MacMillan Publishing Co., Inc., New York , (1977).)
+
+Miller, James H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 
+
+Swearingen, J., K. Reshetiloff, B. Slattery, and S. Zwicker. 2002. Plant Invaders of Mid-Atlantic Natural Areas. National Park Service and U.S. Fish & Wildlife Service, 82 pp.
+
+Barden, L. S. and J. F. Matthews. 1980. Change in abundance of honeysuckle (Lonicera japonica) and other ground flora after prescribed burning of a piedmont pine forest. Castanea 45: 257-260. 
+
+Dillenberg L.R., D.F. Whigham, A.H. Teramura, I.N. Forseth. 1993. Effects of below- and aboveground competition from the vines Lonicera japonica and Parthenocissus quinquefolia on the growth of the tree host Liquadambar stryraciflua. Oecologia 93:48-54. 
+
+Fernald, M. L. 1989. Grays Manual of Botany. Biosystematics, Floristic and Phylogeny Series. Volume 2. T. R. Dudley, Editor. Dioscorides Press. Portland, OR. 1,632 pp. 
+
+Gleason H. A. and A. Cronquist. The Illustrated Companion to Gleason and Cronquist's Manual of Vascular Plants of Northeastern United States and adjacent Canada. New York Botanic Garden, New York, NY. 937 pp. 
+
+Kartesz, J. and C. Meacham Synthesis of the North American Flora. 
+
+Nuzzo, V. Japanese honeysuckle. Element stewardship abstract for Lonicera japonica. The Nature Conservancy. 1815 North Lynn Street, Arlington VA, 22209. www.tncweeds.ucdavis.edu/esadocs.documnts/lonijap.html. Last updated April 15, 1997. 
+
+Regehr, D. L. and D. R. Frey. 1988. Selective control of Japanese honeysuckle (Lonicera japonica). Weed Technology 2:139-143. 
+
+Rhoads, A. F. and T. H. Block. 2002. The Plants of Pennsylvania, An Illustrated Manual. Morris Arboretum of the University of Pennsylvania. University of Pennsylvania Press, Philadelphia, PA. 1060 pp. 
+
+Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp (USDA SRS).
+
+Florida Exotic Pest and Plant Council. Macfadyena unguis-cati (L.) A. Gentry. Accessed 5 December 2008: http://www.fleppc.org/ID_book/Macfadyena%20unguis-cati.pdf. 
+
+MacDonald, G., B. Sellers, K. Langeland, T. Duperron-Bond, and E. Ketterer-Guest. 2008. Cats Claw Vine. Center for Aquatic and Invasive Plants, University of Florida. Accessed 5 December 2008: http://aquat1.ifas.ufl.edu/node/259.
+
+The Quiet Invasion: A Guide to Invasive Plants of the Galveston Bay Area (www.galvbayinvasives.org). Lisa Gonzalez and Jeff DallaRosa. Houston Advanced Research Center, 2006.
+
+Lorence, David/Flynn, Tim. 1999. New naturalized plant records for the Hawaiian Islands. In: Evenhuis, Neal L. and Eldredge, Lucius G., eds. Records of the Hawaii Biological Survey for 1998. Part 2: Notes. Bishop Museum Occasional Papers. 59:3-6. 
+
+Wagner, Warren L./Herbst, Derral R./Sohmer, S. H. 1999. Manual of the flowering plants of Hawaii. Revised edition. Bernice P. Bishop Museum special publication. University of Hawaii Press/Bishop Museum Press, Honolulu. 1919 pp. (two volumes).
+
+USDA PLANTS Database. Accessed Dec. 2009: http://plants.usda.gov/java/profile?symbol=PHSE17.
+
+The Quiet Invasion: A Guide to Invasive Plants of the Galveston Bay Area. Lisa Gonzalez and Jeff DallaRosa. Houston Advanced Research Center, 2006.
+
+Swearingen, J., K. Reshetiloff, B. Slattery, and S. Zwicker. 2002. Plant Invaders of Mid-Atlantic Natural Areas. National Park Service and U.S. Fish & Wildlife Service, 82 pp.
+
+Diggs, Jr., G. M., Lipscomb, B.L., and O'Kennon, R. J. Shinners and Mahler's Illustrated Flora of North Central Texas. Fort Worth, TX: Botanical Research Institute; 1999; p. 476. 
+
+Hashem, A., Bowran, D., Piper, T. and Dhammu, H. 2001. Resistance of wild radish (Raphanus raphanistrum) to acetolacetate synthase-inhibiting herbicides in the Western Australia wheat belt. Weed Technology 15:68-74. 
+
+Kartesz, J.T. and C.A. Meacham. 1999. Synthesis of the North American Flora. North Carolina Botanical Garden, University of North Carolina at Chapel Hill. Chapel Hill, NC. [CD] 
+
+Lemke, David E. and Worthington, Richard D. Brassica and Rapistrum (Brassicaceae) in Texas. The Southwestern Naturalist; June, 1991: pp. 194-196. 
+
+Neiman, Bill*. Personal conversation 4/9/2000. *President, Native American Seed. 
+
+Rollins, Reed C. The Cruciferae of Continental North America. Stanford, CA: Stanford University Press; 1993; p. 722. 
+
+USDA, ARS, National Genetic Resources Program. Germplasm Resources Information Network - (GRIN). [Online Database] National Germplasm Resources Laboratory, Beltsville, Maryland. (http://www.ars-grin.gov/var/apache/cgi-bin/npgs/html) 
+
+Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp (USDA SRS).
+
+Baum, B.R. 1978. The genus Tamarix. The Israel Academy of Sciences and Humanities, Jerusalem.
+Carman, J.G. and J.D. Brotherson. 1982. Comparisons of sites infested and not infested with saltcedar and Russian olive. Weed Science 30:360-364.
+DeLoach, C.J., M.J. Pitcairn, and D. Woods. 1996. Biological control of saltcedar in Southern California. In: Joe DiTomaso and Carl E. Bell, eds., Proceedings of the Saltcedar Management Workshop, Rancho Mirage, California, pp. 30-31.
+Howe, W.H. and F.L. Knopf. 1991. On the imminent decline of Rio Grande cottonwoods in central New Mexico. Southwestern Naturalist 36(2):218-224.
+Hudson, Laura E. 1999. Climatic and hydrologic effects on the establishment of Tamarix ramosissima in the cold desert of northern Wyoming (Bighorn Lake). M.S. Thesis, University of Montana, Missoula.
+Jackson, N.E. 1996. Chemical control of saltcedar (Tamarix ramosissima). In: Joe DiTomaso and Carl E. Bell, eds., Proceedings of the Saltcedar Management Workshop, Rancho Mirage, California, pp. 21-27.
+The Nature Conservancy. Tamarisk: Element Stewardship Abstract. In: Wildland Weeds Management & Research Program, Weeds on the Web.
+
+Brusati, E. and J.M. DiTomaso. 2005. Plant Assessment Form for Torilis arvensis. California Invasive Plant Inventory, California Invasive Plant Council. http://www.cal-ipc.org/paf/site/paf/440. [Accessed Dec 6 2014] 
+
+Constance, Lincoln and Margriet Wetherwax. 2013. Torilis, in Jepson Flora Project (eds.) Jepson eFlora, http://ucjeps.berkeley.edu/cgi-bin/get_IJM.pl?tid=46743 [Accessed on Dec 5 2014] 
+
+Dixon, Kiersten. July 2011. Hedge Parsley. Ninnescah Biology Field Station, Wichita State University. http://ninnescahlife.wichita.edu/node/323, [Accessed Dec 5 2014] 
+
+DiTomaso, J.M., G.B. Kyser et al. 2013. Hedgeparsley. In: Weed Control in Natural Areas in the Western United States. Weed Research and Information Center, University of California. 544 pp. http://wric.ucdavis.edu/information/natural%20areas/wr_T/Torilis.pdf. [Accessed Dec 6 2014] 
+
+Hilty, John. 2012. Common Hedge Parsley. In: Illinois Wildflowers, http://www.illinoiswildflowers.info/weeds/plants/hdg_parsley.htm. [Accessed Dec 6 2014] 
+
+DiTomaso, J.M., G.B. Kyser et al. 2013. Weed Control in Natural Areas in the Western United States.Weed Research and Information Center, University of California. 544 pp.
+
+Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp (USDA SRS). 
