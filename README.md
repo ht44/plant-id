@@ -63,7 +63,7 @@ That said, from our 15,000-image harvest, we were able to hand-select just enoug
 - **Torilis arvensis**
 - **Triadica sebifera**
 
-As was mentioned, we did not have time to train negative examples (we only had one week to develop the software) and so if you want to test it out, try grabbing a picture of, say, **Ailanthus altissima** off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles. When we do find the time to retrain the instance with negative examples (there's room for 2,600) we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.
+As was mentioned, we did not have time to train negative examples (as we only had one week to develop the software) and so if you would like to test it out, try grabbing a picture of, say, **Ailanthus altissima** off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles and return a false positive. When we do find the time to retrain the instance with negative examples (there's room for 2,600) we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.
 
 #### A New Bearing
 
