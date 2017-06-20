@@ -163,3 +163,7 @@ a:active{
 #technologies {
 	width: 100%;
 }
+
+#species-list {
+	list-style: none;
+}

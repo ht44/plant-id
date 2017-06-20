@@ -10,7 +10,7 @@
 
 The intention of "Plant ID" is to classify and map instances of invasive plant species in the Austin area (and more broadly the entire state of Texas). The current effort to mitigate non-native plant species is a task limited to specialists who have an understanding of native/non-native plants and their diverse morphology at different developmental as well as seasonal stages. This project seeks lower the barrier of entry for contributing to mitigation efforts by incorporating image recognition technology. A layperson can now go out and run an image of a plant trough Plant-ID and with relative confidence classify an instance of an invasive plant. If the description and image provided match the field observation, the user can submit their photo where the location, species name, and confidence of the match is stored in our database, where it can later be accessed and validated by experts. We belive that this crowdsourced approach to identifying and chronicling instances of invasive plants can take a great deal of strain off the Parks Department resources.
 
-### Acknowledgements 
+### Acknowledgements
 
 We would like to acknowledge: Louis René Barrera (Environmental Conservation Information Specialist, City of Austin Natural Resources Division), Christopher Ryan Sanchez (Culture and Arts Education Specialist, Austin Parks & Recreation Natural Resources Management - Zilker Botanical Gardens), Cynthia D. Klemmer, Ph.D. (Environmental Conservation Program Manager, Austin Parks & Recreation Nature Based Programs), Kayla Miloy (Environmental Specialist, Travis County Transportation and Natural Resources), Allison Hardy (Senior IT Geospatial Analyst, Austin Parks & Recreation) and Kimberly McNeeley (Acting Director, Austin Parks & Recreation Office of the Director) for their insights into the unfamiliar world of plant identification. The information we gained from taking with them, was crucial in the initial stages of the project.  
 
@@ -77,7 +77,7 @@ This thought in its conclusive form motivated us to willingly undertake one of t
 
 If a user so decides, the image they submitted in order to identify an invasive plant they came accross in the wild gets placed in unstructured object storage, and a reference to that storage address is written (along with the date of photography, suggested species name, cognitive confidence, and the latitude and longitude of the sighting, if the image was geotagged) to our NoSQL database.
 
-The reason why we didn't just store the images as attachments in Cloudant was because we wanted to be able to say, at the end of all this, that we developed our application with an eye towards improving the dataset. Storing the images without structure as large binary objects is cost-effective, and we wanted to pursue a scaleable model, such that, on the off chance someone with real resources did take an interest in our application, they could retrain our instance of Watson Visual Recognition with greater than 5,000 examples, using the images submitted by our users. 
+The reason why we didn't just store the images as attachments in Cloudant was because we wanted to be able to say, at the end of all this, that we developed our application with an eye towards improving the dataset. Storing the images without structure as large binary objects is cost-effective, and we wanted to pursue a scaleable model, such that, on the off chance someone with real resources did take an interest in our application, they could retrain our instance of Watson Visual Recognition with greater than 5,000 examples, using the images submitted by our users.
 
 We take pride in the fact that we gave this kind of consideration to the future, and that we were less interested in making an application that presents well than we were in producing something truly special.
 
@@ -296,7 +296,7 @@ fs.readdir('./raw_html', 'utf8', (err, files) => {
 ![Add to DB](./public/images/Presentation1/Slide6.jpg?raw=true)
 ![Visualize](./public/images/Presentation1/Slide7.jpg?raw=true)
 
-### Refrences 
+### Refrences
 
 Elias, T. 1980. The Complete Trees of North America: Field Guide and Natural History. Book Division, Times Mirror Magazines, Inc. New York. 
 
@@ -352,7 +352,7 @@ Henderson State University. Ligustrum quihoui. Accessed 19 August 2010 (http://w
 
 Alfred Rehder, Manual of Cultivated Trees and Shrubs: Hardy in North America, The MacMillan Co., New York (1967), Bailey, L.H. and E.Z. Bailey, Hortus Third: A Concise Dictionary of Plants Cultivated in the United States and Canada, MacMillan Publishing Co., Inc., New York , (1977).)
 
-Miller, James H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 
+Miller, James H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station.
 
 Swearingen, J., K. Reshetiloff, B. Slattery, and S. Zwicker. 2002. Plant Invaders of Mid-Atlantic Natural Areas. National Park Service and U.S. Fish & Wildlife Service, 82 pp.
 
@@ -398,7 +398,7 @@ Kartesz, J.T. and C.A. Meacham. 1999. Synthesis of the North American Flora. Nor
 
 Lemke, David E. and Worthington, Richard D. Brassica and Rapistrum (Brassicaceae) in Texas. The Southwestern Naturalist; June, 1991: pp. 194-196. 
 
-Neiman, Bill*. Personal conversation 4/9/2000. *President, Native American Seed. 
+Neiman, Bill\*. Personal conversation 4/9/2000. \*President, Native American Seed. 
 
 Rollins, Reed C. The Cruciferae of Continental North America. Stanford, CA: Stanford University Press; 1993; p. 722. 
 

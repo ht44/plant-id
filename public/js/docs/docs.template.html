@@ -2,113 +2,218 @@
     <img id="technologies" src="/images/withexpress.svg" alt="technologies">
     <br>
     <br>
-    <h1>Invaders of Texas</h1>
+    <h1>Plant ID (Galvanize q3 Project)</h1>
+    <h3>by Hayden Turek and James Proett</h3>
     <br>
-    <h4>A Citizen Science Program to Detect and Report Invasive Species</h4>
+    <h3>Abstract</h3>
     <br>
-    <hr>
+    <p>The intention of "Plant ID" is to classify and map instances of invasive plant species in the Austin area (and more broadly the entire state of Texas). The current effort to mitigate non-native plant species is a task limited to specialists who have an understanding of native/non-native plants and their diverse morphology at different developmental as well as seasonal stages. This project seeks lower the barrier of entry for contributing to mitigation efforts by incorporating image recognition technology. A layperson can now go out and run an image of a plant trough Plant-ID and with relative confidence classify an instance of an invasive plant. If the description and image provided match the field observation, the user can submit their photo where the location, species name, and confidence of the match is stored in our database, where it can later be accessed and validated by experts. We belive that this crowdsourced approach to identifying and chronicling instances of invasive plants can take a great deal of strain off the Parks Department resources.</p>
     <br>
-    <p>Citizen Scientists are volunteers who participate as field assistants in scientific studies. They are not paid, and most are not scientists. Many major and well-known programs have adopted the citizen scientist model such as the Cornell Lab of Ornithology’s
-        Backyard Bird Counts, Audubon’s Christmas Bird Counts and Texas Parks and Wildlife’s Nature Trackers. Currently, there are very few citizen science programs focused on invasive species, and the ones that do, usually focus on citizen-based eradication
-        efforts. Over the last five years we have developed a very successful citizen science program that emphasizes invasive species detection and reporting that has substantially improved our knowledge of the distribution of invasive plants in Texas.
-        In addition, this program provides much needed baseline data that supports rapid response, control and management and restoration efforts by federal, state and municipal resource managers. The Invaders program centers around a statewide network
-        of citizen scientist teams trained to seek out and report outbreaks of harmful invasive species in their local areas. These teams are organized geographically into regional satellite groups connected to local resource managers who coordinate appropriate
-        responses to control the spread of unwanted invaders. The program was piloted in 2005, and in 2006 and 2007 the program was introduced in twelve geographically distinct areas in Texas. In mid-2008 we received funding to hire a full-time coordinator
-        and in 2009 conducted 13 training workshops, almost doubling the number of satellites and citizen scientists.
-    </p>
+    <h3>Acknowledgements</h3>
     <br>
-    <p>II. The Satellite Network – http://www.texasinvasives.org/invaders/satellite_results.php Regional teams, called satellites, are the foundation of the Invaders of Texas program (Figure 1). Texas covers a vast amount of space; therefore it would be
-        impossible for a centralized organization to provide expert assistance to all citizen scientists. Satellites offer a local network connected with local experts to help with local issues and answer local questions. One of the lessons we have learned
-        is the importance of strong leadership within the satellites. The satellite leader is the main contact for the satellite, and is responsible for keeping the satellite organized, putting together field trips and work days, helping answer questions
-        from the individual citizen scientists, and recruiting more members to the satellite. Once satellite leaders feel comfortable with the program, they are allowed to conduct their own “mini-workshops” to recruit citizen scientists into their satellites.</p>
+    <p>We would like to acknowledge: Louis René Barrera (Environmental Conservation Information Specialist, City of Austin Natural Resources Division), Christopher Ryan Sanchez (Culture and Arts Education Specialist, Austin Parks & Recreation Natural Resources Management - Zilker Botanical Gardens), Cynthia D. Klemmer, Ph.D. (Environmental Conservation Program Manager, Austin Parks & Recreation Nature Based Programs), Kayla Miloy (Environmental Specialist, Travis County Transportation and Natural Resources), Allison Hardy (Senior IT Geospatial Analyst, Austin Parks & Recreation) and Kimberly McNeeley (Acting Director, Austin Parks & Recreation Office of the Director) for their insights into the unfamiliar world of plant identification. The information we gained from taking with them, was crucial in the initial stages of the project.</p>
     <br>
-    <p>III. Recruitment & Training A. Recruitment – http://www.texasinvasives.org/invaders/workshop_results.php Citizen Scientists are recruited through local volunteer based conservations organizations such as Texas Master Naturalist, Native Plant Societies
-        and Master Gardeners. The Texas Master Naturalist program provides most of our citizen scientists. Texas Master Naturalist chapters are well established throughout Texas and the volunteers are already versed in the local flora and fauna. The local
-        host is responsible for the bulk of recruiting and locating a venue for the workshop. The local host is also responsible for supplying a list and specimens of 10-12 local invasive plant species that are commonly found and easy to identify. We
-        have found this approach allows individuals to become familiar with invasive species in their area and reduces the anxiety associated with trying to learn a large number of invasive species in one day. B. Workshops – http://www.texasinvasives.org/invaders/toolkit.php
-        All workshops are organized by the local host and administered by personnel from the Wildflower Center or the Texas Forest Service. The workshop is a 1-2 day intensive training using the 33 page Invaders of Texas training manual. Individuals are
-        taught to identify local invasive plants, field safety, how to use a GPS, how to collect data, and how to submit the data into the online database (Appendix I). Once an individual has completed a workshop they are free to login and start making
-        species observations. To date, thirty-one workshops have been conducted throughout Texas (Appendix II) training over 700 citizen scientists (Figure 2).
-    </p>
+    <h3>Background</h3>
     <br>
-    <p>C. Online Training – http://www.texasinvasives.org/training/ In an effort to recruit more citizen scientists, an online training module was launched in 2009 to recruit outside the satellite network. The online training also serves as an enrichment
-        tool for existing citizen scientists and educates the public about invasive species in Texas. The online training includes eight modules modeled after the eight chapters in the Invaders of Texas training manual. Each module is accompanied by a
-        quiz. Once completed, individuals can create an account and start reporting species observations. To date, 108 individuals have gone through the online training.
-    </p>
+    <p>"Plant ID" did not originate as an idea; it began simply as a desire to use IBM Watson Visual Recognition for plant taxonomy. The idea itself - train an instance of the service to identify invasive plant species prolific in the state of Texas - was derived from much research. It was the kind of research that gets inspired by constraint and creativity. Unless you are willing to incur overhead, which we were not, IBM limits Bluemix developers to one Watson Visual Recognition custom classifier and a maximum of 5,000 training images for that classifier. Having found the default classifier lacking and wishing to train our own, limiting the scope was thus mission critical, and so we set out in search of education.</p>
     <br>
-    <p>D. High School Invaders In 2008, we began exporting the Invaders program into high school science classes. We have held one teacher-training workshop for 10 science teachers and two workshops (approximately 150 students) at area high schools. We have
-        found the Invaders program to be exceptionally popular with high school science teachers not only because it is an important environmental issue (invasive species), but also because it involves field work, data collection, GPS and mapping, digital
-        imaging and computer technology. The online training modules have become a particularly effective tool for recruiting students and teachers in high school science classes.
-    </p>
+    <p>Our initial thought was to approach the University of Texas, but it was made clear early on that they would not help us. Though this was disheartening, we did not give up, deciding then to visit a number of government buildings in downtown Austin where we met and talked with a whole host of helpful civil servants.</p>
     <br>
-    <hr>
+    <p>Drawing on the things learned, we ultimately decided to go with invasive plant species in Texas, mostly because it checked every box important to us: relevant, useful, and feasible. Since there are only a few species actively threatening the state ecosystem at a given time, we were able to provide a greater number of training examples for each species, making each respective class highly accurate.</p>
     <br>
-    <p>IV. Website Texasinvasives.org is home to the Invaders program and features an Invasive Plant Database, the Early Detection and Reporting Database (EDRD) containing species observations submitted by 4 citizen scientists and the Invaders Mapping Application.
-        The website also contains downloadable invasive species publications, links to national, regional, state and local invasive species initiatives and many other resources. Over the last five years, texasinvasives.org has positioned itself as the
-        number one clearinghouse for invasive species information in Texas (Figure 3).
-    </p>
+    <h4>A Novel Solution</h4>
     <br>
-    <p>Figure 3. – Total page hits at texasinvasives.org from 2005 to 2009. A. Invasive Plant Database – http://www.texasinvasives.org/invasives_database/ The invasive plant database features 140 plant species that occur in Texas and have been listed as
-        invasive in other states. The interactive database includes the Texas Department of Agriculture’s list of 33 noxious weed species and Texas Parks and Wildlife’s list of 13 prohibited aquatic plant species. Citizen scientists can report occurrences
-        of any species in the invasive plant database and new species can be added to the database as needed. For each species, the invasive plants database provides a description and image along with information on taxonomy, distribution, habitat, history
-        of introduction, ecological threat, management techniques and links to additional resources.
-    </p>
+    <p>Perhaps the most interesting facet of this admittedly overly ambitious undertaking was the solution by which we solved the problem of the data.</p>
     <br>
-    <p>B. Early Detection and Reporting Database – http://www.texasinvasives.org/observations Based on North American Weed Management Association (NAWMA) standards, the Early Detection and Reporting Database performs four functions: 1) It serves as the data
-        submission system for citizen scientists to report invasive species observations, 2) It includes a “behind the scenes” validation system so that validators can verify species observations submitted by the citizen scientists, 5 3) It provides
-        an easily accessible venue for government and non-government organizations to download species observations, and 4) It feeds GPS coordinates and species observations to the Invaders Mapping Application.</p>
+    <p>Those familiar with cognitive will know that the type of images needed for high confidence are not the kind typically kept by governments or universities. The image set for each class needed to be large and visibly diverse for us to have any hope of developing an application halfway usable.</p>
     <br>
-    <p>C. Invaders Mapping Application – http://www.texasinvasives.org/observations/mapping.php The Invaders Mapping Application uses a Google map interface to plot validated species observations submitted by citizen scientists. Visitors to the website can
-        map observations by satellite or by species or any combination of satellite and species. The mapping application includes all the functionality and ease of use provided by Google Maps and all map points are linked to individual records in the
-        Early Detection and Reporting Database. Because each map point is linked to an individual and satellite, we have found the maps act as a reward for the citizen scientists and have inspired lighthearted competition among satellite groups.
-    </p>
+    <p>After days scouring the web for publicly available datasets and finding none, we came across something interesting: a website called TexasInvasives.org and the "Invaders of Texas" program...</p>
     <br>
-    <hr>
+    <p>According to the site, "The Invaders of Texas Program is an innovative campaign whereby volunteer 'citizen scientists' are trained to detect the arrival and dispersal of invasive species in their own local areas. That information is delivered into a statewide mapping database and to those who can do something about it. The premise is simple. The more trained eyes watching for invasive species, the better our chances of lessening or avoiding damage to our native landscape."</p>
     <br>
-    <p>V. Data Collection, Validation and Sharing A. Species Observations For each invasive species occurrence, citizen scientists record the species, date observed, time spent in the field, GPS coordinates, amount of disturbance, patch type, species abundance
-        and notes about the location onto a field data sheet. These data, along with a digital image that they are required to upload for validation purposes, constitute a single species observation. Upon returning from the field, citizen scientists login
-        and enter their field data into the Early Detection and Reporting Database. There is a one-to-one correspondence between the field data sheet and the online data entry form to facilitate data entry. One of the lessons we learned is that citizen
-        scientists are uncomfortable making their own scientific decisions. Originally, citizen scientists were required to report numerous ecological parameters for each observation but this proved to be intimidating and resulted in fewer species observations.
-        Since the primary goal for the program is to develop baseline maps of targeted invasive species, we scaled back the collection criteria in favor of more observations while still meeting the minimum North American Weed Management Association (NAWMA)
-        standard. This change has proven effective and has increased the amount of species observations submitted by the citizen scientists.</p>
+    <p>Then it hit us: "That information" <b>included images:</b> crowd-collected, expert-validated images shot with different cameras, in different locations, with different lighting, from different angles, by different people - <b>all</b> hosted at TexasInvasives.org. It wasn't a coherent dataset, but we knew almost instantly that if we could only mine and organize it, it wouldn't just be a dataset; it would be the *ultimate* dataset.</p>
     <br>
-    <p>B. Validation Citizen science-based projects are often criticized for lacking the rigor of traditional scientific studies. For this reason, we validate all species observations submitted by citizen scientists. Species observations are validated using
-        the GPS coordinates, images and other information submitted by the citizen scientist. If, for some reason, a species observation does not pass the validation test (ex. GPS coordinates are off or the invasive species is misidentified), the citizen
-        scientist is contacted by the satellite leader or program coordinator and given the opportunity to correct the mistake. Only valid observations are made publicly available in the Early Detection and Reporting Database (http://www.texasinvasives.org/observations/)
-        the Mapping Application (http://www.texasinvasives.org/observations/mapping.php) or for export.
-    </p>
+    <p>It was off to the races at this point, and before long we had scraped 15,000 images as well as associated metadata that included the location of each observation (which we would later use to compile an insight map). Not only that, but we did the same @ Wildflower.org for a total haul of 60,000 images: 15,000 positive examples and 45,000 negative. * We did not have time to train negative examples, but it is important to note that we took it into thought and collected all the data necessary to do so in the future.</p>
     <br>
-    <p>C. Data Sharing All data in the Early Detection and Reporting Database is freely available for export to Microsoft Excel. Once exported, the data can be easily converted to KML, XML, CVS, or MDB files and imported into any Geographic Information System
-        for further analysis. In addition to the export feature, we share Invaders of Texas data with the Early Detection and Distribution Mapping System (EDDMapS) developed by the Center for Invasive Species and Ecosystem Health. EDDMapS is a national
-        effort to collate multiple datasets to map the spread of invasive species throughout the United States. As indicated in Figure 4 and at http://www.eddmaps.org/texas/, the species observations from the Invaders of Texas program are making a significant
-        contribution to this national effort. Figure 4. – County map of Arundo donax in the United States (EDDMapS). Most counties highlighted in Texas are contributions from the Invaders of Texas program.</p>
+    <p>That said, from our 15,000-image harvest, we were able to hand-select just enough (2,400) examples to train an instance of Watson Visual Recognition Version 3 to quite accurately identify:</p>
     <br>
-    <p>V. Outreach and Public Awareness The Invaders of Texas program and its companion website (http://www.texasinvasives.org/) have attracted statewide media attention appearing in newspapers, on radio shows and in local television news. In addition, we
-        and our partners have traveled the state and beyond giving professional and public presentations about the program (Appendix III). The website, www.texasinvasives.org, averages between 3,000 and 5,000 visitors per month with traffic from 225 Texas
-        cities, 1,140 cities in the U.S. and over 100 countries. The Invaders of Texas program 7 is taking the invasive species message to the general public and enlisting their aid to detect and report invasive species in their neighborhoods.</p>
+    <ul id="species-list">
+      <li><b>Ailanthus altissima</b></li>
+      <li><b>Albizia julibrissin</b></li>
+      <li><b>Arundo donax</b></li>
+      <li><b>Bothriochloa ischaemum var. songarica</b></li>
+      <li><b>Cynodon dactylon</b></li>
+      <li><b>Lantana camara</b></li>
+      <li><b>Ligustrum lucidum</b></li>
+      <li><b>Ligustrum quihoui</b></li>
+      <li><b>Ligustrum sinense</b></li>
+      <li><b>Lonicera japonica</b></li>
+      <li><b>Macfadyena unguis cati</b></li>
+      <li><b>Melia azedarach</b></li>
+      <li><b>Paspalum dilatatum</b></li>
+      <li><b>Paspalum notatum</b></li>
+      <li><b>Paspalum urvillei</b></li>
+      <li><b>Photinia serratifolia</b></li>
+      <li><b>Phyllostachys aurea</b></li>
+      <li><b>Pistacia chinensis</b></li>
+      <li><b>Pyracantha coccinea</b></li>
+      <li><b>Rapistrum rugosum</b></li>
+      <li><b>Sorghum halepense</b></li>
+      <li><b>Tamarex ramosissima</b></li>
+      <li><b>Torilis arvensis</b></li>
+      <li><b>Triadica sebifera</b></li>
+    </ul>
     <br>
-    <hr>
+    <p>As was mentioned, we did not have time to train negative examples (as we only had one week to develop the software) and so if you would like to test it out, try grabbing a picture of, say, <b>Ailanthus altissima</b> off of Google images, put it through and see if you get a match! Or, take a picture of one of the plants in the wild, just know that if the plant you photograph is not one of the species outlined above it will still register as the invasive species it most resembles and return a false positive. When we do find the time to retrain the instance with negative examples (there's room for 2,600) we intend to have the program make decisions based on threshold such that harmless plants are not mistaken for their invasive counterparts.</p>
     <br>
-    <p>VI. Summary The Invaders of Texas program is an unqualified success in Texas and we believe other states could and should enlist the aid of their citizens to detect and report invasive species. As the program has developed over the last five years,
-        we have had many successes and learned many lessons. Of all the lessons learned, four program features stand out as having contributed the most to the program’s success:</p>
+    <h4>A New Bearing</h4>
     <br>
-    <p>1) Network – The network of satellite groups with strong local leadership is essential in a state as big as Texas.</p>
+    <p>The discovery of TexasInvasives.org and the Invaders of Texas program not only saved our project; it made our project what it is.</p>
     <br>
-    <p>2) Technology – Seamless integration between all in situ program features (citizen scientists, satellites and workshops) and the web-based data entry and mapping systems allowed us to effectively manage a geographically distributed network.</p>
+    <p>As we worked, we began to view our project more and more as an extension of the effort. We started to imagine how much money, how many man-hours it must require, to validate 15,000 amateur plant observations, because that's how TexasInvasives.org works: users - amateur "citizen scientists" - sign up and get a pamphlet to help them identify the plants. They go around and report invasive plant occurrences by taking pictures and uploading them to the site. Then, an expert looks at the pictures and determines whether or not the plant is what it was thought to have been, and it is dealt with accordingly.</p>
     <br>
-    <p>3) Cooperation – Partnerships between satellite groups and local resource managers who can assist citizen scientists and coordinate appropriate responses to control the spread of unwanted invaders.</p>
+    <p>Well, what if those volunteers could spend their finite and valuable time confirming observcations that are already more likely to be accurate? What if observations that were likely to be false never made it to a human's desk?</p>
     <br>
-    <p>4) Support – Dependable and repeated funding from state and federal partners (Texas Forest Service, U.S. Forest Service Forest Health Protection, U.S. Forest Service National Forests and Grasslands in Texas, Texas Parks and Wildlife and others) gave
-        the program stability and provided for a full time coordinator to expand the program and respond to the needs of the citizen scientists and satellite leaders.</p>
+    <p>This thought in its conclusive form motivated us to willingly undertake one of the most challenging, rewarding, yet tragically inconspicuous components of our project: we engineered a conduit for storing the user-supplied images.</p>
     <br>
-    <hr>
+    <p>If a user so decides, the image they submitted in order to identify an invasive plant they came accross in the wild gets placed in unstructured object storage, and a reference to that storage address is written (along with the date of photography, suggested species name, cognitive confidence, and the latitude and longitude of the sighting, if the image was geotagged) to our NoSQL database.</p>
     <br>
-    <p>With these features as the foundation of the Invaders of Texas program over 700 citizen scientists have collectively logged some 3,000 hours and submitted over 8,000 species observations. This information is being used by resource managers to control
-        and eradicate invasive species, by scientists to predict their distributions and by policymakers to understand the scope of the invasive species problem in Texas. The Lady Bird Johnson Wildflower Center appreciates the opportunity to partner with
-        the U.S. Forest Service Forest Health Protection, U.S. Forest Service National Forests and Grasslands in Texas, Texas Forest Service, Texas Parks and Wildlife, Texas Master Naturalists and others on the Invaders of Texas Citizen Science program.
-        As described in this five-year report we have made significant progress along each of the program’s major dimensions including the number of citizen scientists engaged in the program, the number and quality of species observations, the amount
-        of territory covered by satellites, and the widespread participation by regional coordinators, volunteers, and cooperating agencies. Through this program, presentations, partnerships, and the website the Wildflower Center and its partners have
-        positioned themselves as the state leaders on this important issue threatening Texas’ natural heritage.</p>
-        <br>
-        <br>
+    <p>The reason why we didn't just store the images as attachments in Cloudant was because we wanted to be able to say, at the end of all this, that we developed our application with an eye towards improving the dataset. Storing the images without structure as large binary objects is cost-effective, and we wanted to pursue a scaleable model, such that, on the off chance someone with real resources did take an interest in our application, they could retrain our instance of Watson Visual Recognition with greater than 5,000 examples, using the images submitted by our users.</p>
+    <br>
+    <p>We take pride in the fact that we gave this kind of consideration to the future, and that we were less interested in making an application that presents well than we were in producing something truly special.</p>
+    <br>
+    <h3>Referecnes</h3>
+    <br>
+    <p>Elias, T. 1980. The Complete Trees of North America: Field Guide and Natural History. Book Division, Times Mirror Magazines, Inc. New York.</p>
+    <br>
+    <p>Gleason, H.A., and A. Cronquist. 1991. Manual of Vascular Plants of Northeastern United States and Adjacent Canada. New York Botanical Garden. Bronx, New York.</p>
+    <br>
+    <p>Hu, S.Y. 1979. Ailanthus. Arnoldia 39(2): 29-50.</p>
+    <br>
+    <p>Mergen, F. 1959. A toxic principle in the leaves of Ailanthus. Bot. Gazette 121: 32-36.</p>
+    <br>
+    <p>Pannill, Philip. 1995. Tree-of-Heaven Control. Maryland Department of Natural Resources Forest Service Stewardship Bulletin. 8 pp.</p>
+    <br>
+    <p>Randall, J.M. and J. Marinelli. 1996. Invasive Plants: Weeds of the Global Garden. Brooklyn Botanic Garden, Handbook #149. 111 pp.</p>
+    <br>
+    <p>Stipes, J. And M. Daughtery. 1998. Personal communication.</p>
+    <br>
+    <p>Tennessee Exotic Pest Plant Council. Tree of Heaven. Tennessee Exotic Plant Management Manual. 1996</p>
+    <br>
+    <p>The Nature Conservancy, California Regional Office. November 1988. Ailanthus altissima Element Stewardship Abstract Report (prepared by Marc Hoshovsky). Arlington, Virginia.</p>
+    <br>
+    <p>Virginia Department of Conservation and Recreation and Virginia Native Plant Society. 1996. Invasive Alien Plant Species of Virginia: Tree-of-Heaven (Ailanthus altissima (Miller) Swingle).</p>
+    <br>
+    <p>Bonner, F.T., M.S. Hooda, D.P. Singh. 1992. Moisture determination on seeds of honey locust and mimosa. Tree Plant Note, USDA Forest Service 43(3):72-75.</p>
+    <br>
+    <p>Bransby, D.I., S.E. Sladden, G.E. Aiken. 1992. Mimosa as a forage plant: a preliminary evaluation. Proceedings of the Forage Grasslands Conference. Georgetown, Texas; American Forage and Grassland Council 1:28-31.</p>
+    <br>
+    <p>Gleason, H.A., A. Cronquist. 1991. Manual of vascular plants of northeastern United States and adjacent Canada. 2nd ed. The New York Botanical Garden, 910.</p>
+    <br>
+    <p>Hartel, P.G., B.L. Haines. 1992. Effects of potential plant CO2 emissions of bacterial growth in the rhizosphere. Journal of Soil Biological Biochemistry and Science 24(3).</p>
+    <br>
+    <p>Panizzi, A.R., F. Slansky, Jr. 1991. Suitability of selected legumes and the effect of nymphal and adult nutrition in the southern green stink bug (Hemiptera: Heteroptera: Pentatomidea). Journal of Econ-Entomology 84(1):103-113.</p>
+    <br>
+    <p>Miller, J.H. 2003. Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp</p>
+    <br>
+    <p>Hoshovsky, Marc. 1996. Element Stewardship Abstract: Arundo donax. The Nature Conservancy, Arlington, Virginia.</p>
+    <br>
+    <p>Perdue, R.E. 1958. Arundo donax - source of musical reeds and industrial cellulose. Economic Botany 12(4):368-404.</p>
+    <br>
+    <p>The Nature Conservancy. Giant Reed: Element Stewardship Abstract. In: Wildland Weeds Management & Research Program, Weeds on the Web.</p>
+    <br>
+    <p>Tidwell, B. 1995. Native Habitat Restoration: Controlling Arundo donax. Monsanto Company.</p>
+    <br>
+    <p>Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp</p>
+    <br>
+    <p>USDA, NRCS. 2006. The PLANTS Database (http://plants.usda.gov, 7 November 2006). National Plant Data Center, Baton Rouge, LA 70874-4490 USA. (http://plants.usda.gov/java/profile?symbol=BOISS)</p>
+    <br>
+    <p>Langeland, K.A., et al. 2008. Identification and Biology of Nonnative Plants in Florida’s Natural Areas, Second Edition. University of Florida-IFAS Pub SP 257.</p>
+    <br>
+    <p>University of Florida: Center for Aquatic and Invasive Plants (http://plants.ifas.ufl.edu/node/223)</p>
+    <br>
+    <p>Auckland Regional Council (ARC) 2002. Auckland Regional Pest Management Strategy 2002-2007</p>
+    <br>
+    <p>Henderson State University. Ligustrum quihoui. Accessed 19 August 2010 (http://www.hsu.edu/default.aspx?id=47318).</p>
+    <br>
+    <p>Alfred Rehder, Manual of Cultivated Trees and Shrubs: Hardy in North America, The MacMillan Co., New York (1967), Bailey, L.H. and E.Z. Bailey, Hortus Third: A Concise Dictionary of Plants Cultivated in the United States and Canada, MacMillan Publishing Co., Inc., New York , (1977).)</p>
+    <br>
+    <p>Miller, James H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station.</p>
+    <br>
+    <p>Swearingen, J., K. Reshetiloff, B. Slattery, and S. Zwicker. 2002. Plant Invaders of Mid-Atlantic Natural Areas. National Park Service and U.S. Fish & Wildlife Service, 82 pp.</p>
+    <br>
+    <p>Barden, L. S. and J. F. Matthews. 1980. Change in abundance of honeysuckle (Lonicera japonica) and other ground flora after prescribed burning of a piedmont pine forest. Castanea 45: 257-260.</p>
+    <br>
+    <p>Dillenberg L.R., D.F. Whigham, A.H. Teramura, I.N. Forseth. 1993. Effects of below- and aboveground competition from the vines Lonicera japonica and Parthenocissus quinquefolia on the growth of the tree host Liquadambar stryraciflua. Oecologia 93:48-54.</p>
+    <br>
+    <p>Fernald, M. L. 1989. Grays Manual of Botany. Biosystematics, Floristic and Phylogeny Series. Volume 2. T. R. Dudley, Editor. Dioscorides Press. Portland, OR. 1,632 pp.</p>
+    <br>
+    <p>Gleason H. A. and A. Cronquist. The Illustrated Companion to Gleason and Cronquist's Manual of Vascular Plants of Northeastern United States and adjacent Canada. New York Botanic Garden, New York, NY. 937 pp.</p>
+    <br>
+    <p>Kartesz, J. and C. Meacham Synthesis of the North American Flora.</p>
+    <br>
+    <p>Nuzzo, V. Japanese honeysuckle. Element stewardship abstract for Lonicera japonica. The Nature Conservancy. 1815 North Lynn Street, Arlington VA, 22209. www.tncweeds.ucdavis.edu/esadocs.documnts/lonijap.html. Last updated April 15, 1997.</p>
+    <br>
+    <p>Regehr, D. L. and D. R. Frey. 1988. Selective control of Japanese honeysuckle (Lonicera japonica). Weed Technology 2:139-143.</p>
+    <br>
+    <p>Rhoads, A. F. and T. H. Block. 2002. The Plants of Pennsylvania, An Illustrated Manual. Morris Arboretum of the University of Pennsylvania. University of Pennsylvania Press, Philadelphia, PA. 1060 pp.</p>
+    <br>
+    <p>Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp (USDA SRS).</p>
+    <br>
+    <p>Florida Exotic Pest and Plant Council. Macfadyena unguis-cati (L.) A. Gentry. Accessed 5 December 2008: http://www.fleppc.org/ID_book/Macfadyena%20unguis-cati.pdf.</p>
+    <br>
+    <p>MacDonald, G., B. Sellers, K. Langeland, T. Duperron-Bond, and E. Ketterer-Guest. 2008. Cats Claw Vine. Center for Aquatic and Invasive Plants, University of Florida. Accessed 5 December 2008: http://aquat1.ifas.ufl.edu/node/259.</p>
+    <br>
+    <p>The Quiet Invasion: A Guide to Invasive Plants of the Galveston Bay Area (www.galvbayinvasives.org). Lisa Gonzalez and Jeff DallaRosa. Houston Advanced Research Center, 2006.</p>
+    <br>
+    <p>Lorence, David/Flynn, Tim. 1999. New naturalized plant records for the Hawaiian Islands. In: Evenhuis, Neal L. and Eldredge, Lucius G., eds. Records of the Hawaii Biological Survey for 1998. Part 2: Notes. Bishop Museum Occasional Papers. 59:3-6.</p>
+    <br>
+    <p>Wagner, Warren L./Herbst, Derral R./Sohmer, S. H. 1999. Manual of the flowering plants of Hawaii. Revised edition. Bernice P. Bishop Museum special publication. University of Hawaii Press/Bishop Museum Press, Honolulu. 1919 pp. (two volumes).</p>
+    <br>
+    <p>USDA PLANTS Database. Accessed Dec. 2009: http://plants.usda.gov/java/profile?symbol=PHSE17.</p>
+    <br>
+    <p>The Quiet Invasion: A Guide to Invasive Plants of the Galveston Bay Area. Lisa Gonzalez and Jeff DallaRosa. Houston Advanced Research Center, 2006.</p>
+    <br>
+    <p>Swearingen, J., K. Reshetiloff, B. Slattery, and S. Zwicker. 2002. Plant Invaders of Mid-Atlantic Natural Areas. National Park Service and U.S. Fish & Wildlife Service, 82 pp.</p>
+    <br>
+    <p>Diggs, Jr., G. M., Lipscomb, B.L., and O'Kennon, R. J. Shinners and Mahler's Illustrated Flora of North Central Texas. Fort Worth, TX: Botanical Research Institute; 1999; p. 476.</p>
+    <br>
+    <p>Hashem, A., Bowran, D., Piper, T. and Dhammu, H. 2001. Resistance of wild radish (Raphanus raphanistrum) to acetolacetate synthase-inhibiting herbicides in the Western Australia wheat belt. Weed Technology 15:68-74.</p>
+    <br>
+    <p>Kartesz, J.T. and C.A. Meacham. 1999. Synthesis of the North American Flora. North Carolina Botanical Garden, University of North Carolina at Chapel Hill. Chapel Hill, NC. [CD]</p>
+    <br>
+    <p>Lemke, David E. and Worthington, Richard D. Brassica and Rapistrum (Brassicaceae) in Texas. The Southwestern Naturalist; June, 1991: pp. 194-196.</p>
+    <br>
+    <p>Neiman, Bill*. Personal conversation 4/9/2000. *President, Native American Seed.</p>
+    <br>
+    <p>Rollins, Reed C. The Cruciferae of Continental North America. Stanford, CA: Stanford University Press; 1993; p. 722.</p>
+    <br>
+    <p>USDA, ARS, National Genetic Resources Program. Germplasm Resources Information Network - (GRIN). [Online Database] National Germplasm Resources Laboratory, Beltsville, Maryland. (http://www.ars-grin.gov/var/apache/cgi-bin/npgs/html)</p>
+    <br>
+    <p>Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp (USDA SRS).</p>
+    <br>
+    <p>Baum, B.R. 1978. The genus Tamarix. The Israel Academy of Sciences and Humanities, Jerusalem.
+Carman, J.G. and J.D. Brotherson. 1982. Comparisons of sites infested and not infested with saltcedar and Russian olive. Weed Science 30:360-364.
+DeLoach, C.J., M.J. Pitcairn, and D. Woods. 1996. Biological control of saltcedar in Southern California. In: Joe DiTomaso and Carl E. Bell, eds., Proceedings of the Saltcedar Management Workshop, Rancho Mirage, California, pp. 30-31.
+Howe, W.H. and F.L. Knopf. 1991. On the imminent decline of Rio Grande cottonwoods in central New Mexico. Southwestern Naturalist 36(2):218-224.
+Hudson, Laura E. 1999. Climatic and hydrologic effects on the establishment of Tamarix ramosissima in the cold desert of northern Wyoming (Bighorn Lake). M.S. Thesis, University of Montana, Missoula.
+Jackson, N.E. 1996. Chemical control of saltcedar (Tamarix ramosissima). In: Joe DiTomaso and Carl E. Bell, eds., Proceedings of the Saltcedar Management Workshop, Rancho Mirage, California, pp. 21-27.
+The Nature Conservancy. Tamarisk: Element Stewardship Abstract. In: Wildland Weeds Management & Research Program, Weeds on the Web.</p>
+    <br>
+    <p>Brusati, E. and J.M. DiTomaso. 2005. Plant Assessment Form for Torilis arvensis. California Invasive Plant Inventory, California Invasive Plant Council. http://www.cal-ipc.org/paf/site/paf/440. [Accessed Dec 6 2014]</p>
+    <br>
+    <p>Constance, Lincoln and Margriet Wetherwax. 2013. Torilis, in Jepson Flora Project (eds.) Jepson eFlora, http://ucjeps.berkeley.edu/cgi-bin/get_IJM.pl?tid=46743 [Accessed on Dec 5 2014]</p>
+    <br>
+    <p>Dixon, Kiersten. July 2011. Hedge Parsley. Ninnescah Biology Field Station, Wichita State University. http://ninnescahlife.wichita.edu/node/323, [Accessed Dec 5 2014]</p>
+    <br>
+    <p>DiTomaso, J.M., G.B. Kyser et al. 2013. Hedgeparsley. In: Weed Control in Natural Areas in the Western United States. Weed Research and Information Center, University of California. 544 pp. http://wric.ucdavis.edu/information/natural%20areas/wr_T/Torilis.pdf. [Accessed Dec 6 2014]</p>
+    <br>
+    <p>Hilty, John. 2012. Common Hedge Parsley. In: Illinois Wildflowers, http://www.illinoiswildflowers.info/weeds/plants/hdg_parsley.htm. [Accessed Dec 6 2014]</p>
+    <br>
+    <p>DiTomaso, J.M., G.B. Kyser et al. 2013. Weed Control in Natural Areas in the Western United States.Weed Research and Information Center, University of California. 544 pp.</p>
+    <br>
+    <p>Miller, J.H. 2003. Nonnative invasive plants of southern forests: a field guide for identification and control. Gen. Tech. Rep. SRS-62. Asheville, NC: U.S. Department of Agriculture, Forest Service, Southern Research Station. 93 pp (USDA SRS).</p>
+    <br>
+    <br>
+    <br>
 </article>
