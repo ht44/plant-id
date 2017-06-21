@@ -4,4 +4,3 @@ vcap-local.json
 storage_auth.json
 filler.js
 .DS_Store
-/public/test
