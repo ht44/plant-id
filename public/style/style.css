@@ -39,6 +39,7 @@ a:active{
 	/*border: 3px outset grey;*/
 	width: 100%;
 	height: 50px;
+	min-width: 500px;
 	background-color: rgba(71, 62, 62, 1);
 	border-bottom: 2px outset grey;
 	position: fixed;
